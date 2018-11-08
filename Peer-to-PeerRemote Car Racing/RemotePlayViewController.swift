@@ -10,6 +10,15 @@ import UIKit
 
 class RemotePlayViewController: UIViewController {
     
+    @IBOutlet weak var displayLabel: UILabel!
+    @IBOutlet weak var controllerLabel: UILabel!
+    
+    @IBOutlet weak var displayImage: UIImageView!
+    @IBOutlet weak var controllerImage: UIImageView!
+    
+    @IBOutlet var display: UITapGestureRecognizer!
+    @IBOutlet var controller: UITapGestureRecognizer!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

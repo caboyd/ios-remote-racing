@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jgX-W3-zdo">
-    <device id="retina4_7" orientation="landscape">
+    <device id="retina5_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,26 +14,32 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Peer_to_PeerRemote_Car_Racing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNt-AW-U44">
-                                <rect key="frame" x="20" y="52" width="627" height="30"/>
+                                <rect key="frame" x="20" y="64" width="696" height="30"/>
                                 <state key="normal" title="REMOTE PLAY"/>
                                 <connections>
                                     <segue destination="kSd-NA-fPm" kind="show" id="6mX-HU-zHk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Df5-Wf-aVu">
-                                <rect key="frame" x="20" y="325" width="627" height="30"/>
+                                <rect key="frame" x="20" y="364" width="696" height="30"/>
                                 <state key="normal" title="PLAY"/>
+                                <connections>
+                                    <segue destination="UYn-J8-yXz" kind="show" id="o0l-fU-TW9"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zH6-bf-h4U">
-                                <rect key="frame" x="20" y="162.5" width="627" height="50"/>
+                                <rect key="frame" x="20" y="182" width="696" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="eWR-F3-spb"/>
                                 </constraints>
                                 <state key="normal" title="LEADERBOARD"/>
+                                <connections>
+                                    <segue destination="VE8-e1-MuA" kind="show" id="Iab-UB-Zkh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -61,30 +67,107 @@
             </objects>
             <point key="canvasLocation" x="924.28785607196414" y="133.59999999999999"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="6Gt-uO-ztl">
+            <objects>
+                <viewController id="VE8-e1-MuA" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C7H-jy-gY9">
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="3Xd-j7-nsR"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uzc-iZ-Wjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1821" y="1330"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="IBp-VV-rcL">
+            <objects>
+                <viewController id="UYn-J8-yXz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6xd-lB-amJ">
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Ajq-u2-sID"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JsX-lZ-vBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1822" y="133"/>
+        </scene>
         <!--Remote Play View Controller-->
         <scene sceneID="Fem-gj-KpT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="r7c-rs-AQ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="kSd-NA-fPm" customClass="RemotePlayViewController" customModule="Peer_to_PeerRemote_Car_Racing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vgd-PR-SB2">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="akj-7P-ZIe">
-                                <rect key="frame" x="347" y="32" width="300" height="323"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="qlc-nU-EwA">
+                                <rect key="frame" x="55" y="46" width="626" height="322"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="displayImage" translatesAutoresizingMaskIntoConstraints="NO" id="3Zx-Gn-MUs">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="322"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="mTx-i3-S9h" appends="YES" id="Jvu-U0-fNZ"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="controllerImage" translatesAutoresizingMaskIntoConstraints="NO" id="JyA-4p-kjz">
+                                        <rect key="frame" x="327" y="0.0" width="299" height="322"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="299" id="ucc-bc-XEx"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="6xS-zY-c5r" appends="YES" id="tVN-Ux-iyU"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ORO-Dq-fdh">
-                                <rect key="frame" x="29" y="32" width="300" height="323"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </stackView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="st5-53-2qc">
+                                <rect key="frame" x="175" y="189" width="55.666666666666657" height="20.333333333333343"/>
+                                <color key="tintColor" red="1" green="0.095763123306086606" blue="0.43352306109541172" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <color key="highlightedColor" red="1" green="0.17609396788000253" blue="0.14346886515980883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="90" translatesAutoresizingMaskIntoConstraints="NO" id="oC8-ZD-U5X">
+                                <rect key="frame" x="501.33333333333331" y="189" width="75.666666666666686" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <color key="highlightedColor" red="1" green="0.17609396790000001" blue="0.14346886519999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Qu5-CE-SNc" firstAttribute="trailing" secondItem="oC8-ZD-U5X" secondAttribute="trailing" constant="159" id="9Aj-A1-B7C"/>
+                            <constraint firstItem="qlc-nU-EwA" firstAttribute="leading" secondItem="Qu5-CE-SNc" secondAttribute="leading" constant="55" id="OmR-kg-UZS"/>
+                            <constraint firstItem="oC8-ZD-U5X" firstAttribute="top" secondItem="Qu5-CE-SNc" secondAttribute="top" constant="145" id="VDZ-CE-UoX"/>
+                            <constraint firstItem="qlc-nU-EwA" firstAttribute="centerX" secondItem="Vgd-PR-SB2" secondAttribute="centerX" id="XNU-2v-Aa2"/>
+                            <constraint firstItem="qlc-nU-EwA" firstAttribute="centerY" secondItem="Vgd-PR-SB2" secondAttribute="centerY" id="cm2-dg-aXk"/>
+                            <constraint firstItem="oC8-ZD-U5X" firstAttribute="baseline" secondItem="st5-53-2qc" secondAttribute="baseline" id="d5D-bV-8uD"/>
+                            <constraint firstItem="qlc-nU-EwA" firstAttribute="top" secondItem="Qu5-CE-SNc" secondAttribute="top" constant="2" id="jw2-S7-o3q"/>
+                            <constraint firstItem="st5-53-2qc" firstAttribute="leading" secondItem="Qu5-CE-SNc" secondAttribute="leading" constant="175" id="wm2-C1-u8z"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Qu5-CE-SNc"/>
                     </view>
+                    <connections>
+                        <outlet property="controller" destination="6xS-zY-c5r" id="cDE-hh-b6K"/>
+                        <outlet property="controllerImage" destination="JyA-4p-kjz" id="xW0-xY-az9"/>
+                        <outlet property="controllerLabel" destination="oC8-ZD-U5X" id="Uie-d6-Gdg"/>
+                        <outlet property="display" destination="mTx-i3-S9h" id="h0m-Fh-FW3"/>
+                        <outlet property="displayImage" destination="3Zx-Gn-MUs" id="YRN-8R-xXc"/>
+                        <outlet property="displayLabel" destination="st5-53-2qc" id="uEE-WL-xi4"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r7c-rs-AQ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="mTx-i3-S9h"/>
+                <tapGestureRecognizer id="6xS-zY-c5r"/>
             </objects>
-            <point key="canvasLocation" x="1616.9415292353824" y="133.59999999999999"/>
+            <point key="canvasLocation" x="1820" y="-881"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7VP-35-w1r">
@@ -92,7 +175,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jgX-W3-zdo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qmT-KP-bh7">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="32"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -105,4 +188,8 @@
             <point key="canvasLocation" x="133.5832083958021" y="133.59999999999999"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="controllerImage" width="219" height="107"/>
+        <image name="displayImage" width="533" height="302"/>
+    </resources>
 </document>
