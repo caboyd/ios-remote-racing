@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jgX-W3-zdo">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +12,97 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Peer_to_PeerRemote_Car_Racing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNt-AW-U44">
+                                <rect key="frame" x="20" y="52" width="627" height="30"/>
+                                <state key="normal" title="REMOTE PLAY"/>
+                                <connections>
+                                    <segue destination="kSd-NA-fPm" kind="show" id="6mX-HU-zHk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Df5-Wf-aVu">
+                                <rect key="frame" x="20" y="325" width="627" height="30"/>
+                                <state key="normal" title="PLAY"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zH6-bf-h4U">
+                                <rect key="frame" x="20" y="162.5" width="627" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="eWR-F3-spb"/>
+                                </constraints>
+                                <state key="normal" title="LEADERBOARD"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eNt-AW-U44" secondAttribute="trailing" constant="20" id="4dt-cv-qfP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Df5-Wf-aVu" secondAttribute="bottom" constant="20" id="E5W-0O-ZYb"/>
+                            <constraint firstItem="zH6-bf-h4U" firstAttribute="leading" secondItem="eNt-AW-U44" secondAttribute="leading" id="Fpy-tx-sb3"/>
+                            <constraint firstItem="Df5-Wf-aVu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Ggj-1k-VAG"/>
+                            <constraint firstItem="eNt-AW-U44" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Y45-Sp-2Hm"/>
+                            <constraint firstItem="eNt-AW-U44" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="bNz-4a-Llg"/>
+                            <constraint firstItem="zH6-bf-h4U" firstAttribute="trailing" secondItem="eNt-AW-U44" secondAttribute="trailing" id="nCx-N1-4Au"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Df5-Wf-aVu" secondAttribute="trailing" constant="20" id="ogw-aH-Eog"/>
+                            <constraint firstItem="zH6-bf-h4U" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="pGJ-Eb-MVj"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="MOc-dp-CvL"/>
+                    <connections>
+                        <outlet property="leaderBoard" destination="zH6-bf-h4U" id="ZQ2-Dm-4o3"/>
+                        <outlet property="playButton" destination="Df5-Wf-aVu" id="war-QJ-kYr"/>
+                        <outlet property="remotePlay" destination="eNt-AW-U44" id="1oU-1e-Xaw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="924.28785607196414" y="133.59999999999999"/>
+        </scene>
+        <!--Remote Play View Controller-->
+        <scene sceneID="Fem-gj-KpT">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r7c-rs-AQ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="kSd-NA-fPm" customClass="RemotePlayViewController" customModule="Peer_to_PeerRemote_Car_Racing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vgd-PR-SB2">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="akj-7P-ZIe">
+                                <rect key="frame" x="347" y="32" width="300" height="323"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ORO-Dq-fdh">
+                                <rect key="frame" x="29" y="32" width="300" height="323"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Qu5-CE-SNc"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1616.9415292353824" y="133.59999999999999"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7VP-35-w1r">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jgX-W3-zdo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qmT-KP-bh7">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="o6T-wT-Iwy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jCJ-3h-oMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="133.5832083958021" y="133.59999999999999"/>
         </scene>
     </scenes>
 </document>

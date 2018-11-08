@@ -9,6 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var remotePlay: UIButton!
+    @IBOutlet weak var leaderBoard: UIButton!
+    @IBOutlet weak var playButton: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
