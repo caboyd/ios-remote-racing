@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jgX-W3-zdo">
-    <device id="retina4_0" orientation="landscape">
+    <device id="retina5_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,25 +14,25 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Peer_to_PeerRemote_Car_Racing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNt-AW-U44">
-                                <rect key="frame" x="20" y="52" width="528" height="30"/>
+                                <rect key="frame" x="20" y="64" width="696" height="30"/>
                                 <state key="normal" title="REMOTE PLAY"/>
                                 <connections>
                                     <segue destination="kSd-NA-fPm" kind="show" id="6mX-HU-zHk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Df5-Wf-aVu">
-                                <rect key="frame" x="20" y="270" width="528" height="30"/>
+                                <rect key="frame" x="20" y="364" width="696" height="30"/>
                                 <state key="normal" title="PLAY"/>
                                 <connections>
                                     <segue destination="UYn-J8-yXz" kind="show" id="o0l-fU-TW9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zH6-bf-h4U">
-                                <rect key="frame" x="20" y="135" width="528" height="50"/>
+                                <rect key="frame" x="20" y="182" width="696" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="eWR-F3-spb"/>
                                 </constraints>
@@ -72,7 +72,7 @@
             <objects>
                 <viewController id="VE8-e1-MuA" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C7H-jy-gY9">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="3Xd-j7-nsR"/>
@@ -87,7 +87,7 @@
             <objects>
                 <viewController id="UYn-J8-yXz" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6xd-lB-amJ">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Ajq-u2-sID"/>
@@ -115,21 +115,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r7c-rs-AQ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="kSd-NA-fPm" customClass="RemotePlayViewController" customModule="Peer_to_PeerRemote_Car_Racing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vgd-PR-SB2">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6jS-al-8No">
-                                <rect key="frame" x="20" y="32" width="260" height="268"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKe-Ii-ja4">
+                                <rect key="frame" x="288" y="44" width="428" height="350"/>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKe-Ii-ja4">
-                                <rect key="frame" x="288" y="32" width="260" height="268"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6jS-al-8No">
+                                <rect key="frame" x="20" y="44" width="260" height="350"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="eHW-ML-HC7"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZKe-Ii-ja4" firstAttribute="trailing" secondItem="Vgd-PR-SB2" secondAttribute="trailingMargin" id="LGw-vu-B6p"/>
+                            <constraint firstItem="6jS-al-8No" firstAttribute="top" secondItem="Qu5-CE-SNc" secondAttribute="top" id="QkG-Re-rGr"/>
+                            <constraint firstItem="6jS-al-8No" firstAttribute="leading" secondItem="Vgd-PR-SB2" secondAttribute="leadingMargin" id="VW9-5C-koE"/>
+                            <constraint firstItem="ZKe-Ii-ja4" firstAttribute="top" secondItem="6jS-al-8No" secondAttribute="top" id="dei-rK-3XH"/>
+                            <constraint firstItem="ZKe-Ii-ja4" firstAttribute="firstBaseline" secondItem="6jS-al-8No" secondAttribute="baseline" id="mFM-9q-5Mp"/>
+                            <constraint firstAttribute="bottom" secondItem="6jS-al-8No" secondAttribute="bottom" constant="20" symbolic="YES" id="sdh-sd-nmY"/>
+                            <constraint firstItem="ZKe-Ii-ja4" firstAttribute="leading" secondItem="6jS-al-8No" secondAttribute="trailing" constant="8" symbolic="YES" id="tgZ-3R-eHL"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Qu5-CE-SNc"/>
                     </view>
                     <connections>
@@ -146,7 +156,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jgX-W3-zdo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qmT-KP-bh7">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="32"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -163,7 +173,7 @@
             <objects>
                 <viewController id="O70-ED-IGM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XqX-Vn-1lQ">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="FHf-Kp-TDL"/>
@@ -179,7 +189,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zde-e4-Q6J" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="bxs-Kx-DK3" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zEi-Tc-qh7">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="gMd-LH-cws"/>
