@@ -164,8 +164,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r7c-rs-AQ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="mTx-i3-S9h"/>
-                <tapGestureRecognizer id="6xS-zY-c5r"/>
+                <tapGestureRecognizer id="mTx-i3-S9h">
+                    <connections>
+                        <action selector="display:" destination="kSd-NA-fPm" id="7tX-t3-3Px"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="6xS-zY-c5r">
+                    <connections>
+                        <action selector="controller:" destination="kSd-NA-fPm" id="JYV-Vt-cqO"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1820" y="-881"/>
         </scene>

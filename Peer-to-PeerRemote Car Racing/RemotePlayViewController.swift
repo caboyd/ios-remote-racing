@@ -28,5 +28,10 @@ class RemotePlayViewController: UIViewController {
     
     // MARK: - Navigation
  
-
+    @IBAction func display(_ sender: UITapGestureRecognizer) {
+        
+    }
+    
+    @IBAction func controller(_ sender: UITapGestureRecognizer) {
+    }
 }
