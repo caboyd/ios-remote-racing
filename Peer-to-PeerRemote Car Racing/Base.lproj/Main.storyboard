@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNt-AW-U44">
-                                <rect key="frame" x="184" y="192" width="368" height="30"/>
+                                <rect key="frame" x="73.666666666666686" y="183" width="588.66666666666652" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eNt-AW-U44" secondAttribute="height" multiplier="184:15" id="6My-RN-aQH"/>
@@ -32,7 +32,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Df5-Wf-aVu">
-                                <rect key="frame" x="184" y="130" width="368" height="30"/>
+                                <rect key="frame" x="73.666666666666686" y="121" width="588.66666666666652" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Df5-Wf-aVu" secondAttribute="height" multiplier="184:15" id="clB-li-XaD"/>
@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zH6-bf-h4U">
-                                <rect key="frame" x="184" y="254" width="368" height="30"/>
+                                <rect key="frame" x="73.666666666666686" y="245" width="588.66666666666652" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zH6-bf-h4U" secondAttribute="height" multiplier="184:15" id="6tZ-ld-5Jb"/>
@@ -65,7 +65,7 @@
                             <constraint firstItem="7ga-sd-KPR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="RWn-dj-DbU"/>
                             <constraint firstItem="zH6-bf-h4U" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="V3d-eK-7Dp"/>
                             <constraint firstItem="eNt-AW-U44" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Vr1-98-PfF"/>
-                            <constraint firstItem="Df5-Wf-aVu" firstAttribute="width" secondItem="7ga-sd-KPR" secondAttribute="width" multiplier="0.5" id="cGl-kr-yrV"/>
+                            <constraint firstItem="Df5-Wf-aVu" firstAttribute="width" secondItem="7ga-sd-KPR" secondAttribute="width" multiplier="0.8" id="cGl-kr-yrV"/>
                             <constraint firstItem="Df5-Wf-aVu" firstAttribute="centerX" secondItem="7ga-sd-KPR" secondAttribute="centerX" id="csB-Vi-TVH"/>
                             <constraint firstItem="zH6-bf-h4U" firstAttribute="width" secondItem="Df5-Wf-aVu" secondAttribute="width" id="m94-X0-zAE"/>
                             <constraint firstItem="eNt-AW-U44" firstAttribute="width" secondItem="Df5-Wf-aVu" secondAttribute="width" id="zOi-RI-fLa"/>
