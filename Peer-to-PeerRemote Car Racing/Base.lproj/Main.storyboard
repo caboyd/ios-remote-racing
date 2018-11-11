@@ -125,20 +125,10 @@
                                 <rect key="frame" x="55" y="46" width="626" height="322"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="displayImage" translatesAutoresizingMaskIntoConstraints="NO" id="3Zx-Gn-MUs">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="322"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="626" height="322"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="mTx-i3-S9h" appends="YES" id="Jvu-U0-fNZ"/>
-                                        </connections>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="controllerImage" translatesAutoresizingMaskIntoConstraints="NO" id="JyA-4p-kjz">
-                                        <rect key="frame" x="327" y="0.0" width="299" height="322"/>
-                                        <gestureRecognizers/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="299" id="ucc-bc-XEx"/>
-                                        </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="6xS-zY-c5r" appends="YES" id="tVN-Ux-iyU"/>
                                         </connections>
                                     </imageView>
                                 </subviews>
@@ -172,7 +162,6 @@
                     </view>
                     <connections>
                         <outlet property="controller" destination="6xS-zY-c5r" id="cDE-hh-b6K"/>
-                        <outlet property="controllerImage" destination="JyA-4p-kjz" id="xW0-xY-az9"/>
                         <outlet property="controllerLabel" destination="oC8-ZD-U5X" id="Uie-d6-Gdg"/>
                         <outlet property="display" destination="mTx-i3-S9h" id="h0m-Fh-FW3"/>
                         <outlet property="displayImage" destination="3Zx-Gn-MUs" id="YRN-8R-xXc"/>
@@ -245,7 +234,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="controllerImage" width="219" height="107"/>
         <image name="displayImage" width="533" height="302"/>
         <image name="ios-background-2" width="1920" height="1045"/>
     </resources>
