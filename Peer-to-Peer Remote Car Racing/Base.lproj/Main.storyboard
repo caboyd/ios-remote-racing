@@ -89,9 +89,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ios-background-2" translatesAutoresizingMaskIntoConstraints="NO" id="g3n-M1-ofw">
                                 <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Leaderboard Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tj3-Xz-mFN">
-                                <rect key="frame" x="170" y="148" width="396" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leaderboard Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tj3-Xz-mFN">
+                                <rect key="frame" x="170" y="179.66666666666666" width="396" height="55"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="46"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -116,7 +115,9 @@
                             <constraint firstItem="g3n-M1-ofw" firstAttribute="top" secondItem="3Xd-j7-nsR" secondAttribute="top" id="9pL-3x-Ahh"/>
                             <constraint firstItem="g3n-M1-ofw" firstAttribute="leading" secondItem="3Xd-j7-nsR" secondAttribute="leading" id="NYC-nl-60N"/>
                             <constraint firstItem="x8y-O9-ZJI" firstAttribute="width" secondItem="g3n-M1-ofw" secondAttribute="width" multiplier="0.15" id="Sq4-dW-eLx"/>
+                            <constraint firstItem="tj3-Xz-mFN" firstAttribute="centerY" secondItem="C7H-jy-gY9" secondAttribute="centerY" id="TwW-Mq-ltS"/>
                             <constraint firstItem="g3n-M1-ofw" firstAttribute="trailing" secondItem="3Xd-j7-nsR" secondAttribute="trailing" id="VdA-GS-dsQ"/>
+                            <constraint firstItem="tj3-Xz-mFN" firstAttribute="centerX" secondItem="C7H-jy-gY9" secondAttribute="centerX" id="eae-aU-QC2"/>
                             <constraint firstItem="g3n-M1-ofw" firstAttribute="bottom" secondItem="3Xd-j7-nsR" secondAttribute="bottom" id="m22-bV-v54"/>
                             <constraint firstItem="3Xd-j7-nsR" firstAttribute="trailing" secondItem="x8y-O9-ZJI" secondAttribute="trailing" priority="999" id="s2K-q3-6o4"/>
                         </constraints>
@@ -138,16 +139,14 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ios-background-2" translatesAutoresizingMaskIntoConstraints="NO" id="yLj-TS-7sO">
                                 <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Track Selection Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgo-8S-FVS">
-                                <rect key="frame" x="132" y="98" width="472" height="59"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Selection Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgo-8S-FVS">
+                                <rect key="frame" x="132" y="77.666666666666686" width="472" height="59.000000000000014"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="49"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Gf-7a-87L">
-                                <rect key="frame" x="280" y="234" width="177" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Gf-7a-87L">
+                                <rect key="frame" x="279.66666666666669" y="177" width="177" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <state key="normal" title="Start Race"/>
@@ -171,12 +170,16 @@
                         <constraints>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="trailing" secondItem="Ajq-u2-sID" secondAttribute="trailing" id="AAe-2d-pDL"/>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="top" secondItem="Ajq-u2-sID" secondAttribute="top" id="FeR-yg-dxa"/>
+                            <constraint firstItem="Wgo-8S-FVS" firstAttribute="centerY" secondItem="6xd-lB-amJ" secondAttribute="centerY" constant="-100" id="FpU-oZ-WW6"/>
+                            <constraint firstItem="2Gf-7a-87L" firstAttribute="centerX" secondItem="6xd-lB-amJ" secondAttribute="centerX" id="Jnd-L0-WJD"/>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="leading" secondItem="Ajq-u2-sID" secondAttribute="leading" id="OCW-Ub-Wav"/>
                             <constraint firstItem="RAk-VZ-xM3" firstAttribute="leading" secondItem="Ajq-u2-sID" secondAttribute="leading" id="RdB-9a-cbF"/>
                             <constraint firstItem="RAk-VZ-xM3" firstAttribute="top" secondItem="Ajq-u2-sID" secondAttribute="top" id="dSF-Oq-4NR"/>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="bottom" secondItem="Ajq-u2-sID" secondAttribute="bottom" id="gIa-Cl-VbV"/>
                             <constraint firstItem="RAk-VZ-xM3" firstAttribute="width" secondItem="yLj-TS-7sO" secondAttribute="width" multiplier="0.15" id="jzs-YL-Qor"/>
                             <constraint firstItem="Ajq-u2-sID" firstAttribute="trailing" secondItem="RAk-VZ-xM3" secondAttribute="trailing" priority="999" id="mBT-B8-06q"/>
+                            <constraint firstItem="Wgo-8S-FVS" firstAttribute="centerX" secondItem="6xd-lB-amJ" secondAttribute="centerX" id="sKx-tS-DK9"/>
+                            <constraint firstItem="2Gf-7a-87L" firstAttribute="centerY" secondItem="6xd-lB-amJ" secondAttribute="centerY" id="t44-kS-Vng"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ajq-u2-sID"/>
                     </view>
