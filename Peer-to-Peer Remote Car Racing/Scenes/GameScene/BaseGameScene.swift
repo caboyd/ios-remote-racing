@@ -23,15 +23,17 @@ class BaseGameScene: SKScene {
     var lap: Int = 1;
     var lastWaypoint: Int = 0;
     var totalLaps:Int = 3;
+    var totalTime: TimeInterval = 0;
+    var summedLapTimes: TimeInterval = 0;
     
     private var landBackground:SKTileMapNode!
     private var track:SKTileMapNode!
     
     var lapLabel:SKLabelNode!;
-    var timeTextNode:SKNode!;
     var timeLabel:SKLabelNode!;
-    var bestLapTextNode:SKNode!;
-    var bestLapLabel:SKLabelNode!;
+    var bestLapTimeLabel:SKLabelNode!;
+    var bestLapNode:SKNode!;
+
     
     private let displaySize: CGRect = UIScreen.main.bounds;
     
@@ -130,9 +132,23 @@ class BaseGameScene: SKScene {
     }
     
     func setupHUD(){
-        let HUDNode = SKScene(fileNamed: "HUD")?.childNode(withName: "HUD")!.copy() as! SKNode;
+        let HUDScene = SKScene(fileNamed: "HUD");
+        let HUDNode = HUDScene?.childNode(withName: "HUD")!.copy() as! SKNode;
         lapLabel = (HUDNode.childNode(withName: "//lapLabel") as! SKLabelNode);
         timeLabel = (HUDNode.childNode(withName: "//timeLabel") as! SKLabelNode);
+        bestLapNode = (HUDNode.childNode(withName: "//BestLap"));
+        bestLapTimeLabel = (HUDNode.childNode(withName: "//bestLapLabel") as! SKLabelNode);
+        bestLapNode.isHidden = true;
+        
+        //Fixes HUD for different resolution displays
+        let displayAspect = displaySize.width / displaySize.height;
+        let HUDAspect = (HUDScene?.frame.size.width)! / (HUDScene?.frame.size.height)!;
+        let maxAspect = displayAspect / HUDAspect;
+        let scale = displaySize.height / (HUDScene?.frame.size.height)! * maxAspect
+        HUDNode.setScale( scale);
+        
+        //Moves the HUD to the top of the screen for different aspect ratios
+        HUDNode.position.y += (displaySize.height - (HUDScene?.frame.size.height)! * scale) / 2;
         
         cam.addChild(HUDNode);
         
@@ -213,6 +229,9 @@ extension BaseGameScene: SKPhysicsContactDelegate{
                     if previousWaypoint(waypoint) > waypoint {
                         lap += 1;
                         //TODO: play lap sound
+                        bestLapNode.isHidden = false;
+                        bestLapTimeLabel.text = stringFromTimeInterval(interval: totalTime - summedLapTimes) as String;
+                        summedLapTimes = totalTime;
                     }
                 }
                 break;

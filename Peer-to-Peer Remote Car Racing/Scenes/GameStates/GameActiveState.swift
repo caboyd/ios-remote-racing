@@ -35,9 +35,7 @@ class GameActiveState: GKState {
 
   unowned let gameScene: BaseGameScene
   
-  private var timeInMilliseconds = 0
 
-  
   private var previousTimeInterval: TimeInterval = 0
   
   init(gameScene: BaseGameScene) {
@@ -65,19 +63,20 @@ class GameActiveState: GKState {
   }
  
   
-  override func update(deltaTime seconds: TimeInterval) {
-    super.update(deltaTime: seconds)
+  override func update(deltaTime dt: TimeInterval) {
+    super.update(deltaTime: dt)
     
     if previousTimeInterval == 0 {
-      previousTimeInterval = seconds
+      previousTimeInterval = dt
     }
 
     if gameScene.isPaused {
-      previousTimeInterval = seconds
+      previousTimeInterval = dt
       return
     }
 
     //Update Here
+    gameScene.totalTime += dt;
     
     if gameScene.lap > gameScene.totalLaps {
         //TODO: transition to win screen
@@ -106,5 +105,19 @@ class GameActiveState: GKState {
   
   private func updateLabels() {
     gameScene.lapLabel.text = "Lap \(gameScene.lap)/\(gameScene.totalLaps)";
+    
+    gameScene.timeLabel.text = stringFromTimeInterval(interval: gameScene.totalTime) as String;
   }
+}
+
+
+func stringFromTimeInterval(interval: TimeInterval) -> NSString {
+    let ti = NSInteger(interval);
+    
+    let ms = Int(interval.truncatingRemainder(dividingBy: 1) * 1000);
+    
+    let seconds = ti % 60;
+    let minutes = (ti / 60) % 60;
+    
+    return NSString(format: "%0.2d:%0.2d.%0.3d", minutes, seconds, ms);
 }
