@@ -9,17 +9,16 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
-    
-    var entities = [GKEntity]()
-    var graphs = [String : GKGraph]()
+class BaseTrack: SKScene {
     
     private var lastUpdateTime : TimeInterval = 0
     
     public var joystickEnabled = false;
     private var cam: SKCameraNode!
     private var player: Player!;
-    private var currentWaypoint: Int = 0;
+    
+    private var waypoints: Int = 0;
+    private var lastWaypoint: Int = 0;
     private var totalLaps:Int = 3;
     private var lap:Int = 1;
     
@@ -40,7 +39,7 @@ class GameScene: SKScene {
         self.lastUpdateTime = 0
         
     }
-
+    
     override func didMove(to view: SKView) {
         super.didMove(to: view);
         physicsWorld.contactDelegate = self;
@@ -75,6 +74,7 @@ class GameScene: SKScene {
         
         self.track = track;
         
+        //Get start position for car
         var startPosition = CGPoint();
         for row in 0..<track.numberOfRows {
             for col in 0..<track.numberOfColumns {
@@ -89,6 +89,14 @@ class GameScene: SKScene {
             }
         }
         
+        //Count number of waypoint in this track
+        self.enumerateChildNodes(withName: "Waypoint*"){
+            (node, stop) in
+            self.waypoints += 1;
+            node.alpha = 0;
+        }
+        
+        //Add the player car
         player = Player(position: startPosition);
         self.addChild(player!);
     }
@@ -100,13 +108,13 @@ class GameScene: SKScene {
         lapLabel.zPosition = 2;
         lapLabel.position = CGPoint(x: displaySize.width * 0.5 - 10, y: displaySize.height * 0.5 - 2)
         cam.addChild(lapLabel);
-    
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        
     }
-     
+    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
@@ -119,12 +127,7 @@ class GameScene: SKScene {
         // Calculate time since last update
         let dt = currentTime - self.lastUpdateTime
         self.lastUpdateTime = currentTime
-        
-        
-        // Update entities
-        for entity in self.entities {
-            entity.update(deltaTime: dt)
-        }
+
         
         if let camera = cam, let pl = player {
             camera.position = pl.position;
@@ -138,32 +141,50 @@ class GameScene: SKScene {
             player.accelBackwards(dt * Double(joystick.data.velocity.y));
         }
         if(abs(joystick.data.velocity.x) > 7){
-             player.turn(dt * Double(joystick.data.velocity.x));
+            player.turn(dt * Double(joystick.data.velocity.x));
         }
-       
+        
     }
     
     
-
+    func previousWaypoint(_ index:Int) -> Int {
+        var result = index - 1;
+        if result < 0 {
+            result = waypoints - 1;
+        }
+        return result;
+    }
+    
 }
 
-extension GameScene: SKPhysicsContactDelegate{
+extension BaseTrack: SKPhysicsContactDelegate{
     func didBegin(_ contact: SKPhysicsContact) {
         
-        if(contact.bodyA.node?.name == "Waypoint0" || contact.bodyB.node?.name == "Waypoint0") {
-            if(currentWaypoint == 1){
-                print("hit waypoint0")
-                currentWaypoint = 0;
-                lap += 1;
-                lapLabel.text = "Lap \(lap)/\(totalLaps)";
+        for waypoint in 0..<waypoints {
+            let waypointName = "Waypoint\(waypoint)";
+            if(contact.bodyA.node?.name == waypointName ||
+                contact.bodyB.node?.name == waypointName) {
+               
+                if(lastWaypoint == previousWaypoint(waypoint)) {
+                     print("hit \(waypointName)");
+                    //Update waypoint
+                    lastWaypoint = waypoint;
+                    if previousWaypoint(waypoint) > waypoint {
+                        lap += 1;
+                        //TODO: play lap sound
+                    }
+                }
+                break;
             }
         }
         
-        if(contact.bodyA.node?.name == "Waypoint1" || contact.bodyB.node?.name == "Waypoint1") {
-            if(currentWaypoint == 0){
-                print("hit waypoint1")
-                currentWaypoint = 1;
-            }
+        if lap > totalLaps {
+            //TODO: transition to win screen
+            //stop timer
+        } else {
+            lapLabel.text = "Lap \(lap)/\(totalLaps)";
         }
+
     }
 }
+

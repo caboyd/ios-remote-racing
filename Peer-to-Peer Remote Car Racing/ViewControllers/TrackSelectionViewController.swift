@@ -31,6 +31,9 @@ class TrackSelectionViewController: UIViewController {
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
         if let gameViewController = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController {
             
+            gameViewController.carType = "TODO";
+            gameViewController.track = "Track1";
+            
             navigationController?.pushViewController(gameViewController, animated: true)
         }
     }

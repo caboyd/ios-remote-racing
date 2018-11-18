@@ -15,8 +15,8 @@
 		7A6641302194CD2B00F80C9B /* DeviceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A66412F2194CD2B00F80C9B /* DeviceSelectionViewController.swift */; };
 		AB4E2E4D219F974200383747 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E46219F974200383747 /* AnalogJoystick.swift */; };
 		AB4E2E4E219F974200383747 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E48219F974200383747 /* Player.swift */; };
-		AB4E2E4F219F974200383747 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB4E2E49219F974200383747 /* GameScene.sks */; };
-		AB4E2E50219F974200383747 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E4A219F974200383747 /* GameScene.swift */; };
+		AB4E2E4F219F974200383747 /* Track1.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB4E2E49219F974200383747 /* Track1.sks */; };
+		AB4E2E50219F974200383747 /* Track1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E4A219F974200383747 /* Track1.swift */; };
 		AB4E2E51219F974200383747 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E4B219F974200383747 /* GameViewController.swift */; };
 		AB4E2E52219F974200383747 /* TrackTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB4E2E4C219F974200383747 /* TrackTileSet.sks */; };
 		AB4E2E55219F997200383747 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E54219F997200383747 /* NavigationViewController.swift */; };
@@ -35,6 +35,7 @@
 		AB4E2E74219FA21200383747 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E68219FA21200383747 /* Vector3.swift */; };
 		AB4E2E78219FA28300383747 /* button_press.wav in Resources */ = {isa = PBXBuildFile; fileRef = AB4E2E77219FA28300383747 /* button_press.wav */; };
 		AB4E2E7A219FA50000383747 /* TrackSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E79219FA50000383747 /* TrackSelectionViewController.swift */; };
+		ABD5FC5C21A0DD1700A0B155 /* BaseTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC5B21A0DD1700A0B155 /* BaseTrack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,8 +49,8 @@
 		7A66412F2194CD2B00F80C9B /* DeviceSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSelectionViewController.swift; sourceTree = "<group>"; };
 		AB4E2E46219F974200383747 /* AnalogJoystick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
 		AB4E2E48219F974200383747 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		AB4E2E49219F974200383747 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		AB4E2E4A219F974200383747 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		AB4E2E49219F974200383747 /* Track1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Track1.sks; sourceTree = "<group>"; };
+		AB4E2E4A219F974200383747 /* Track1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track1.swift; sourceTree = "<group>"; };
 		AB4E2E4B219F974200383747 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		AB4E2E4C219F974200383747 /* TrackTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TrackTileSet.sks; sourceTree = "<group>"; };
 		AB4E2E54219F997200383747 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 		AB4E2E68219FA21200383747 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
 		AB4E2E77219FA28300383747 /* button_press.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button_press.wav; sourceTree = "<group>"; };
 		AB4E2E79219FA50000383747 /* TrackSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSelectionViewController.swift; sourceTree = "<group>"; };
+		ABD5FC5B21A0DD1700A0B155 /* BaseTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTrack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +120,9 @@
 			children = (
 				AB4E2E46219F974200383747 /* AnalogJoystick.swift */,
 				AB4E2E47219F974200383747 /* Entities */,
-				AB4E2E49219F974200383747 /* GameScene.sks */,
-				AB4E2E4A219F974200383747 /* GameScene.swift */,
+				AB4E2E49219F974200383747 /* Track1.sks */,
+				AB4E2E4A219F974200383747 /* Track1.swift */,
+				ABD5FC5B21A0DD1700A0B155 /* BaseTrack.swift */,
 				AB4E2E4C219F974200383747 /* TrackTileSet.sks */,
 			);
 			path = Race;
@@ -240,7 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB4E2E78219FA28300383747 /* button_press.wav in Resources */,
-				AB4E2E4F219F974200383747 /* GameScene.sks in Resources */,
+				AB4E2E4F219F974200383747 /* Track1.sks in Resources */,
 				7A6641242194BC9900F80C9B /* LaunchScreen.storyboard in Resources */,
 				7A6641212194BC9900F80C9B /* Assets.xcassets in Resources */,
 				7A66411F2194BC9600F80C9B /* Main.storyboard in Resources */,
@@ -262,13 +265,14 @@
 				AB4E2E55219F997200383747 /* NavigationViewController.swift in Sources */,
 				AB4E2E59219F9A7800383747 /* LeaderboardViewController.swift in Sources */,
 				AB4E2E51219F974200383747 /* GameViewController.swift in Sources */,
-				AB4E2E50219F974200383747 /* GameScene.swift in Sources */,
+				AB4E2E50219F974200383747 /* Track1.swift in Sources */,
 				AB4E2E6D219FA21200383747 /* SKAction+Extensions.swift in Sources */,
 				7A66411C2194BC9600F80C9B /* HomeScreenViewController.swift in Sources */,
 				AB4E2E4D219F974200383747 /* AnalogJoystick.swift in Sources */,
 				7A66411A2194BC9600F80C9B /* AppDelegate.swift in Sources */,
 				AB4E2E70219FA21200383747 /* SKNode+Extensions.swift in Sources */,
 				AB4E2E4E219F974200383747 /* Player.swift in Sources */,
+				ABD5FC5C21A0DD1700A0B155 /* BaseTrack.swift in Sources */,
 				AB4E2E6A219FA21200383747 /* CGPoint+Extensions.swift in Sources */,
 				AB4E2E7A219FA50000383747 /* TrackSelectionViewController.swift in Sources */,
 				AB4E2E6C219FA21200383747 /* Int+Extensions.swift in Sources */,

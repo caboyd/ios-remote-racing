@@ -26,6 +26,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eNt-AW-U44" secondAttribute="height" multiplier="184:15" id="6My-RN-aQH"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="43"/>
                                 <state key="normal" title="REMOTE PLAY"/>
                                 <connections>
                                     <action selector="remotePlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oz2-wd-dNg"/>
@@ -37,6 +38,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Df5-Wf-aVu" secondAttribute="height" multiplier="184:15" id="clB-li-XaD"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="43"/>
                                 <state key="normal" title="PLAY"/>
                                 <connections>
                                     <action selector="play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9YP-Ib-lZU"/>
@@ -48,6 +50,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zH6-bf-h4U" secondAttribute="height" multiplier="184:15" id="6tZ-ld-5Jb"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="43"/>
                                 <state key="normal" title="LEADERBOARD"/>
                                 <connections>
                                     <action selector="leaderboard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f42-2K-3Lp"/>
@@ -126,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uzc-iZ-Wjt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="924" y="1004"/>
+            <point key="canvasLocation" x="924" y="942"/>
         </scene>
         <!--Track Selection View Controller-->
         <scene sceneID="IBp-VV-rcL">
@@ -285,7 +288,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCJ-3h-oMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133.5832083958021" y="133.59999999999999"/>
+            <point key="canvasLocation" x="224" y="133"/>
         </scene>
     </scenes>
     <resources>
