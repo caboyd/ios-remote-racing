@@ -20,13 +20,14 @@ class GameViewController: UIViewController {
         
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
-        if let scene = BaseTrack(fileNamed: self.track) {
+        if let scene = BaseGameScene(fileNamed: self.track) {
             
             // Copy gameplay related content over to the scene
             scene.joystickEnabled = true;
             
             // Set the scale mode to scale to fit the window
             scene.scaleMode = .aspectFill
+            scene.size = view.bounds.size;
             
             // Present the scene
             if let view = self.view as! SKView? {

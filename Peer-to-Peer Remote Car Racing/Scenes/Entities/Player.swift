@@ -13,9 +13,9 @@ class Player : SKSpriteNode {
     var velocity: CGVector
     var accel: CGVector;
     
-    static let ACCEL_FORWARD = 750.0;
-    static let ACCEL_BACKWARD = 375.0;
-    static let TURN = 0.001;
+    static let ACCEL_FORWARD = 30000.0;
+    static let ACCEL_BACKWARD = 17000.0;
+    static let TURN = 0.09;
    
     
     init(position: CGPoint) {
@@ -69,3 +69,14 @@ class Player : SKSpriteNode {
        
     }
 }
+
+extension SKSpriteNode {
+    func resetPhysicsForcesAndVelocity() {
+        zRotation = 0
+        if let pBody = physicsBody {
+            pBody.angularVelocity = 0
+            pBody.velocity = .zero
+        }
+    }
+}
+

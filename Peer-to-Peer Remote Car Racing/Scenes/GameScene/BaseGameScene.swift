@@ -9,35 +9,63 @@
 import SpriteKit
 import GameplayKit
 
-class BaseTrack: SKScene {
+class BaseGameScene: SKScene {
     
     private var lastUpdateTime : TimeInterval = 0
     
     public var joystickEnabled = false;
-    private var cam: SKCameraNode!
-    private var player: Player!;
+    var cam: SKCameraNode!
     
-    private var waypoints: Int = 0;
-    private var lastWaypoint: Int = 0;
-    private var totalLaps:Int = 3;
-    private var lap:Int = 1;
+    var startPosition: CGPoint!;
+    var player: Player!;
+    
+    var waypoints: Int = 0;
+    var lap: Int = 1;
+    var lastWaypoint: Int = 0;
+    var totalLaps:Int = 3;
     
     private var landBackground:SKTileMapNode!
     private var track:SKTileMapNode!
-    private var lapLabel:SKLabelNode!;
+    
+    var lapLabel:SKLabelNode!;
     
     private let displaySize: CGRect = UIScreen.main.bounds;
     
-    lazy var joystick: AnalogJoystick = {
-        let js = AnalogJoystick(diameter:90, colors:(UIColor.white, UIColor.gray));
-        js.position = CGPoint(x: displaySize.width * -0.5 + js.radius - 35 , y: displaySize.height * -0.5 + js.radius - 15)
-        js.zPosition = 1;
-        return js;
-    }()
+    private var buttons: [ButtonNode] = [];
+    
+    var inputControl: InputControl!;
+   
+    var overlay: SceneOverlay? {
+        didSet {
+            buttons = [];
+            oldValue?.backgroundNode.removeFromParent();
+            
+            if let overlay = overlay, let camera = camera {
+                //showing overlay
+               
+                camera.addChild(overlay.backgroundNode);
+                overlay.updateScale();
+                
+                
+                buttons = findAllButtonsInScene();
+                
+                
+               
+            } else {
+                //dismissing overlay
+            }
+        }
+    }
+    
+    lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
+        GameActiveState(gameScene: self),
+        GamePauseState(gameScene: self),
+        GameFailureState(gameScene: self),
+        GameSuccessState(gameScene: self)
+        ])
     
     override func sceneDidLoad() {
-        self.lastUpdateTime = 0
-        
+       
     }
     
     override func didMove(to view: SKView) {
@@ -47,9 +75,15 @@ class BaseTrack: SKScene {
         setupCamera();
         setupHUD();
         
+        ButtonNode.parseButtonInNode(containerNode: cam);
+        
+        inputControl = JoystickInput();
+        
         if(joystickEnabled){
-            cam.addChild(joystick);
+            cam.addChild(inputControl as! SKNode);
         }
+        
+        stateMachine.enter(GameActiveState.self);
     }
     
     func setupCamera(){
@@ -58,7 +92,6 @@ class BaseTrack: SKScene {
         cam.setScale(2);
         cam.position = player.position;
         self.addChild(cam!);
-        print("added cam");
     }
     
     func setupRace(){
@@ -75,7 +108,6 @@ class BaseTrack: SKScene {
         self.track = track;
         
         //Get start position for car
-        var startPosition = CGPoint();
         for row in 0..<track.numberOfRows {
             for col in 0..<track.numberOfColumns {
                 let tile = track.tileGroup(atColumn: col, row: row)
@@ -102,12 +134,25 @@ class BaseTrack: SKScene {
     }
     
     func setupHUD(){
+        //Add Lap Tracker Label
         lapLabel = SKLabelNode(fontNamed: "Chalkduster");
-        lapLabel.text = "Lap \(lap)/\(totalLaps)";
         lapLabel.fontColor = SKColor.yellow;
         lapLabel.zPosition = 2;
-        lapLabel.position = CGPoint(x: displaySize.width * 0.5 - 10, y: displaySize.height * 0.5 - 2)
+
+        lapLabel.position = CGPoint(x: displaySize.width * 0.5 - 80, y: displaySize.height * 0.5 - 70)
         cam.addChild(lapLabel);
+        
+        //Add pause button
+        let pauseButton = SKSpriteNode(color: UIColor.blue, size: CGSize(width: 150, height: 70));
+        pauseButton.name = "pause";
+        pauseButton.zPosition = 2;
+        pauseButton.anchorPoint = .zero;
+        pauseButton.position = CGPoint(x: displaySize.width * 0.5, y: displaySize.height * 0.5 );
+        
+        cam.addChild(pauseButton);
+        
+        //Add Lap Timer Label
+        
         
     }
     
@@ -118,7 +163,7 @@ class BaseTrack: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        
+    
         // Initialize _lastUpdateTime if it has not already been
         if (self.lastUpdateTime == 0) {
             self.lastUpdateTime = currentTime
@@ -128,6 +173,9 @@ class BaseTrack: SKScene {
         let dt = currentTime - self.lastUpdateTime
         self.lastUpdateTime = currentTime
 
+        if isPaused {
+            return;
+        }
         
         if let camera = cam, let pl = player {
             camera.position = pl.position;
@@ -135,14 +183,16 @@ class BaseTrack: SKScene {
             //print("cam: \(camera.position)");
             //print("player:  \(pl.position)");
         }
-        if joystick.data.velocity.y > 0 {
-            player.accelForward(dt * Double(joystick.data.velocity.y));
+        if inputControl.velocity.y > 0 {
+            player.accelForward(dt * Double(inputControl.velocity.y));
         }else{
-            player.accelBackwards(dt * Double(joystick.data.velocity.y));
+            player.accelBackwards(dt * Double(inputControl.velocity.y));
         }
-        if(abs(joystick.data.velocity.x) > 7){
-            player.turn(dt * Double(joystick.data.velocity.x));
+        if(abs(inputControl.velocity.x) > 0.15){
+            player.turn(dt * Double(inputControl.velocity.x));
         }
+        
+         stateMachine.update(deltaTime: dt);
         
     }
     
@@ -157,7 +207,7 @@ class BaseTrack: SKScene {
     
 }
 
-extension BaseTrack: SKPhysicsContactDelegate{
+extension BaseGameScene: SKPhysicsContactDelegate{
     func didBegin(_ contact: SKPhysicsContact) {
         
         for waypoint in 0..<waypoints {
@@ -178,12 +228,7 @@ extension BaseTrack: SKPhysicsContactDelegate{
             }
         }
         
-        if lap > totalLaps {
-            //TODO: transition to win screen
-            //stop timer
-        } else {
-            lapLabel.text = "Lap \(lap)/\(totalLaps)";
-        }
+
 
     }
 }

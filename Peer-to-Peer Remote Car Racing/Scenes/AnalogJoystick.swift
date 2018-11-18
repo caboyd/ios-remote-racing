@@ -221,11 +221,12 @@ open class AnalogJoystick: SKNode {
                 return
             }
             
-            let maxDistantion = substrate.radius,
-            realDistantion = sqrt(pow(location.x, 2) + pow(location.y, 2)),
-            needPosition = realDistantion <= maxDistantion ? CGPoint(x: location.x, y: location.y) : CGPoint(x: location.x / realDistantion * maxDistantion, y: location.y / realDistantion * maxDistantion)
-            stick.position = needPosition
-            data = AnalogJoystickData(velocity: needPosition, angular: -atan2(needPosition.x, needPosition.y))
+            let maxDistantion = substrate.radius;
+            let realDistantion = sqrt(pow(location.x, 2) + pow(location.y, 2));
+            var position = realDistantion <= maxDistantion ? CGPoint(x: location.x, y: location.y) : CGPoint(x: location.x / realDistantion * maxDistantion, y: location.y / realDistantion * maxDistantion)
+            stick.position = position
+            position /= maxDistantion;
+            data = AnalogJoystickData(velocity: position, angular: -atan2(position.x, position.y))
         }
     }
     

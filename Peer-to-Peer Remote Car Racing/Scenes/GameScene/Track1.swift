@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class Track1: BaseTrack {
+class Track1: BaseGameScene {
     
     
     override func sceneDidLoad() {
