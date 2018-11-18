@@ -28,6 +28,10 @@ class BaseGameScene: SKScene {
     private var track:SKTileMapNode!
     
     var lapLabel:SKLabelNode!;
+    var timeTextNode:SKNode!;
+    var timeLabel:SKLabelNode!;
+    var bestLapTextNode:SKNode!;
+    var bestLapLabel:SKLabelNode!;
     
     private let displaySize: CGRect = UIScreen.main.bounds;
     
@@ -74,15 +78,7 @@ class BaseGameScene: SKScene {
         setupRace();
         setupCamera();
         setupHUD();
-        
-        ButtonNode.parseButtonInNode(containerNode: cam);
-        
-        inputControl = JoystickInput();
-        
-        if(joystickEnabled){
-            cam.addChild(inputControl as! SKNode);
-        }
-        
+
         stateMachine.enter(GameActiveState.self);
     }
     
@@ -134,25 +130,20 @@ class BaseGameScene: SKScene {
     }
     
     func setupHUD(){
-        //Add Lap Tracker Label
-        lapLabel = SKLabelNode(fontNamed: "Chalkduster");
-        lapLabel.fontColor = SKColor.yellow;
-        lapLabel.zPosition = 2;
-
-        lapLabel.position = CGPoint(x: displaySize.width * 0.5 - 80, y: displaySize.height * 0.5 - 70)
-        cam.addChild(lapLabel);
+        let HUDNode = SKScene(fileNamed: "HUD")?.childNode(withName: "HUD")!.copy() as! SKNode;
+        lapLabel = (HUDNode.childNode(withName: "//lapLabel") as! SKLabelNode);
+        timeLabel = (HUDNode.childNode(withName: "//timeLabel") as! SKLabelNode);
         
-        //Add pause button
-        let pauseButton = SKSpriteNode(color: UIColor.blue, size: CGSize(width: 150, height: 70));
-        pauseButton.name = "pause";
-        pauseButton.zPosition = 2;
-        pauseButton.anchorPoint = .zero;
-        pauseButton.position = CGPoint(x: displaySize.width * 0.5, y: displaySize.height * 0.5 );
+        cam.addChild(HUDNode);
         
-        cam.addChild(pauseButton);
         
-        //Add Lap Timer Label
+        inputControl = JoystickInput();
         
+        if(joystickEnabled){
+            cam.addChild(inputControl as! SKNode);
+        }
+        
+        ButtonNode.parseButtonInNode(containerNode: HUDNode);
         
     }
     
