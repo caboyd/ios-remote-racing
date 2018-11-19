@@ -47,7 +47,7 @@ class GameActiveState: GKState {
   
   override func isValidNextState(_ stateClass: AnyClass) -> Bool {
     switch stateClass {
-      case is GamePauseState.Type, is GameFailureState.Type, is GameSuccessState.Type:
+      case is GamePauseState.Type, is GameCompletedState.Type, is GameSubmitScoreState.Type:
         return true
       default:
         return false
@@ -57,7 +57,7 @@ class GameActiveState: GKState {
   override func didEnter(from previousState: GKState?) {
     super.didEnter(from: previousState)
 
-    if previousState is GameSuccessState {
+    if previousState is GameCompletedState {
       restartLevel()
     }
   }
@@ -104,9 +104,9 @@ class GameActiveState: GKState {
   }
   
   private func updateLabels() {
-    gameScene.lapLabel.text = "Lap \(gameScene.lap)/\(gameScene.totalLaps)";
+    gameScene.hud.lapLabel.text = "Lap \(gameScene.lap)/\(gameScene.totalLaps)";
     
-    gameScene.timeLabel.text = stringFromTimeInterval(interval: gameScene.totalTime) as String;
+    gameScene.hud.timeLabel.text = stringFromTimeInterval(interval: gameScene.totalTime) as String;
   }
 }
 

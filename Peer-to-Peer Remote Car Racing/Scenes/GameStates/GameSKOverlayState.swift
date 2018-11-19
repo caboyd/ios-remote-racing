@@ -31,7 +31,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameOverlayState: GKState {
+class GameSKOverlayState: GKState {
   
 unowned let gameScene: BaseGameScene;
   

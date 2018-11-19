@@ -28,20 +28,13 @@
  * THE SOFTWARE.
  */
 
-import GameplayKit
 import SpriteKit
+import GameplayKit
 
-class GameFailureState: GameOverlayState {
-  
-  override var overlaySceneFileName: String {
-    return "FailureScene"
-  }
-  
-  override func didEnter(from previousState: GKState?) {
-    super.didEnter(from: previousState)
-  }
-  
+class GameSubmitScoreState: GKState {
+
+ 
   override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-    return false
+    return stateClass is GameCompletedState.Type
   }
 }

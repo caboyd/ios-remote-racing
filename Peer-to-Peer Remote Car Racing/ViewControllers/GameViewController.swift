@@ -24,6 +24,8 @@ class GameViewController: UIViewController {
             
             // Copy gameplay related content over to the scene
             scene.joystickEnabled = true;
+            scene.debugMode = true;
+            scene.gameSceneDelegate = self;
             
             // Set the scale mode to scale to fit the window
             scene.scaleMode = .aspectFill
@@ -59,3 +61,14 @@ class GameViewController: UIViewController {
         return true
     }
 }
+
+
+extension GameViewController: BaseGameSceneProtocol {
+    @objc func presentSubmitScoreSubview(gameScene: BaseGameScene) {
+        let controller = storyboard!.instantiateViewController(withIdentifier: "SubmitScoreViewController");
+        self.addChild(controller);
+        view.addSubview(controller.view);
+        controller.didMove(toParent: self);
+    }
+}
+

@@ -9,11 +9,20 @@
 import SpriteKit
 import GameplayKit
 
+@objc
+protocol BaseGameSceneProtocol : class {
+    func presentSubmitScoreSubview(gameScene: BaseGameScene);
+}
+
 class BaseGameScene: SKScene {
+    
+    weak var gameSceneDelegate : BaseGameSceneProtocol?
     
     private var lastUpdateTime : TimeInterval = 0
     
     public var joystickEnabled = false;
+    var debugMode = false;
+    
     var cam: SKCameraNode!
     
     var startPosition: CGPoint!;
@@ -29,10 +38,7 @@ class BaseGameScene: SKScene {
     private var landBackground:SKTileMapNode!
     private var track:SKTileMapNode!
     
-    var lapLabel:SKLabelNode!;
-    var timeLabel:SKLabelNode!;
-    var bestLapTimeLabel:SKLabelNode!;
-    var bestLapNode:SKNode!;
+    var hud: HUD!;
 
     
     private let displaySize: CGRect = UIScreen.main.bounds;
@@ -52,13 +58,11 @@ class BaseGameScene: SKScene {
                 camera.addChild(overlay.backgroundNode);
                 overlay.updateScale();
                 
-                
                 buttons = findAllButtonsInScene();
                 
-                
-               
             } else {
                 //dismissing overlay
+
             }
         }
     }
@@ -66,8 +70,8 @@ class BaseGameScene: SKScene {
     lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
         GameActiveState(gameScene: self),
         GamePauseState(gameScene: self),
-        GameFailureState(gameScene: self),
-        GameSuccessState(gameScene: self)
+        //GameFailureState(gameScene: self),
+        //GameSuccessState(gameScene: self)
         ])
     
     override func sceneDidLoad() {
@@ -132,34 +136,15 @@ class BaseGameScene: SKScene {
     }
     
     func setupHUD(){
-        let HUDScene = SKScene(fileNamed: "HUD");
-        let HUDNode = HUDScene?.childNode(withName: "HUD")!.copy() as! SKNode;
-        lapLabel = (HUDNode.childNode(withName: "//lapLabel") as! SKLabelNode);
-        timeLabel = (HUDNode.childNode(withName: "//timeLabel") as! SKLabelNode);
-        bestLapNode = (HUDNode.childNode(withName: "//BestLap"));
-        bestLapTimeLabel = (HUDNode.childNode(withName: "//bestLapLabel") as! SKLabelNode);
-        bestLapNode.isHidden = true;
-        
-        //Fixes HUD for different resolution displays
-        let displayAspect = displaySize.width / displaySize.height;
-        let HUDAspect = (HUDScene?.frame.size.width)! / (HUDScene?.frame.size.height)!;
-        let maxAspect = displayAspect / HUDAspect;
-        let scale = displaySize.height / (HUDScene?.frame.size.height)! * maxAspect
-        HUDNode.setScale( scale);
-        
-        //Moves the HUD to the top of the screen for different aspect ratios
-        HUDNode.position.y += (displaySize.height - (HUDScene?.frame.size.height)! * scale) / 2;
-        
-        cam.addChild(HUDNode);
-        
-        
+        hud = HUD(gameScene: self, debugMode: debugMode);
+        cam.addChild(hud.node);
+            
         inputControl = JoystickInput();
         
         if(joystickEnabled){
             cam.addChild(inputControl as! SKNode);
         }
         
-        ButtonNode.parseButtonInNode(containerNode: HUDNode);
         
     }
     
@@ -229,8 +214,8 @@ extension BaseGameScene: SKPhysicsContactDelegate{
                     if previousWaypoint(waypoint) > waypoint {
                         lap += 1;
                         //TODO: play lap sound
-                        bestLapNode.isHidden = false;
-                        bestLapTimeLabel.text = stringFromTimeInterval(interval: totalTime - summedLapTimes) as String;
+                        hud.bestLapNode.isHidden = false;
+                        hud.bestLapTimeLabel.text = stringFromTimeInterval(interval: totalTime - summedLapTimes) as String;
                         summedLapTimes = totalTime;
                     }
                 }

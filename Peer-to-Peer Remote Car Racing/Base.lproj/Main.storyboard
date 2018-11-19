@@ -205,6 +205,54 @@
             </objects>
             <point key="canvasLocation" x="1617" y="-629"/>
         </scene>
+        <!--Submit Score View Controller-->
+        <scene sceneID="8sD-SS-ZqU">
+            <objects>
+                <viewController storyboardIdentifier="SubmitScoreViewController" id="KfU-dF-XN7" customClass="SubmitScoreViewController" customModule="Peer_to_Peer_Remote_Car_Racing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IZC-49-wK0">
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZw-uf-WLT">
+                                <rect key="frame" x="184" y="23" width="368" height="368"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is for submitting scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQf-bY-Weo">
+                                        <rect key="frame" x="76" y="118.33333333333334" width="216" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9NO-XW-87K">
+                                        <rect key="frame" x="164.66666666666669" y="169" width="39" height="30"/>
+                                        <state key="normal" title="Close"/>
+                                        <connections>
+                                            <action selector="close:" destination="KfU-dF-XN7" eventType="touchUpInside" id="Eqy-0h-ZfM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="vQf-bY-Weo" firstAttribute="centerX" secondItem="YZw-uf-WLT" secondAttribute="centerX" id="Dde-dg-uin"/>
+                                    <constraint firstAttribute="width" secondItem="YZw-uf-WLT" secondAttribute="height" multiplier="1:1" id="TN8-cv-7tb"/>
+                                    <constraint firstItem="9NO-XW-87K" firstAttribute="centerX" secondItem="YZw-uf-WLT" secondAttribute="centerX" id="X55-CG-vRI"/>
+                                    <constraint firstItem="vQf-bY-Weo" firstAttribute="centerY" secondItem="YZw-uf-WLT" secondAttribute="centerY" multiplier="0.7" id="p77-ON-Spf"/>
+                                    <constraint firstItem="9NO-XW-87K" firstAttribute="centerY" secondItem="YZw-uf-WLT" secondAttribute="centerY" id="wAa-G8-WY9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YZw-uf-WLT" firstAttribute="centerX" secondItem="IZC-49-wK0" secondAttribute="centerX" id="1Le-iz-hoQ"/>
+                            <constraint firstItem="YZw-uf-WLT" firstAttribute="centerY" secondItem="IZC-49-wK0" secondAttribute="centerY" id="X1Z-Af-KfR"/>
+                            <constraint firstItem="YZw-uf-WLT" firstAttribute="width" secondItem="IZC-49-wK0" secondAttribute="width" multiplier="0.5" id="bBl-ZC-A8T"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Jdz-Y8-glY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ypF-8H-Xcq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2310" y="-1396"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="94k-PR-acJ">
             <objects>
