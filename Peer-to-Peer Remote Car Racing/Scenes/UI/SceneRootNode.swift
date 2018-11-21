@@ -21,15 +21,9 @@ class SceneRootNode : SKNode {
         }
        
         if let root = scene.childNode(withName: "root") {
-            print(root.childNode(withName: "//joystick")?.position ?? "n");
             self.originalSize = scene.size;
             root.removeFromParent()
             self.addChild(root);
-            
-            for case let child as SKSpriteNode in root.children {
-                print(child);
-                print(child.position);
-            }
         } else {
             fatalError("Scene \(fileName) missing root node");
         }
@@ -46,9 +40,9 @@ class SceneRootNode : SKNode {
         //Fixes HUD for different resolution displays
         let scale = displaySize.width / originalSize.width;
         self.setScale(scale);
-
+        
         //Moves the HUD to the top of the screen for different aspect ratios
-        self.childNode(withName: "//top")?.position.y = (displaySize.height / 2) / scale;
-        self.childNode(withName: "//bottom")?.position.y = (-displaySize.height / 2 ) / scale;
+        self.childNode(withName: ".//top")?.position.y = (displaySize.height / 2) / scale;
+        self.childNode(withName: ".//bottom")?.position.y = (-displaySize.height / 2 ) / scale;
     }
 }

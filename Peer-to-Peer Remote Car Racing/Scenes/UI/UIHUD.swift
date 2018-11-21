@@ -15,15 +15,18 @@ class UIHUD : SceneRootNode {
     var timeLabel:SKLabelNode!;
     var bestLapTimeLabel:SKLabelNode!;
     var bestLapNode:SKNode!;
+    var speedLabel:SKLabelNode!;
   
     init() {
         super.init(fileNamed: "UIHUD")!;
         
         lapLabel = (self.childNode(withName: "//lapLabel") as! SKLabelNode);
         timeLabel = (self.childNode(withName: "//timeLabel") as! SKLabelNode);
+        
         bestLapNode = (self.childNode(withName: "//bestLap"));
         bestLapTimeLabel = (self.childNode(withName: "//bestLapLabel") as! SKLabelNode);
         bestLapNode.isHidden = true;
+        speedLabel = (self.childNode(withName: "//speedLabel") as! SKLabelNode);
     }
     
     required init?(coder aDecoder: NSCoder) {

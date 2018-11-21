@@ -19,7 +19,6 @@ class UITouchControlsJoystick : SceneRootNode {
         super.init(fileNamed: "UITouchControlsJoystick")!;
         
         let js = childNode(withName: "//joystick") as! AnalogJoystick;
-        print (js.position);
         inputControl = JoystickInput(analogJoystick: js);
     }
     

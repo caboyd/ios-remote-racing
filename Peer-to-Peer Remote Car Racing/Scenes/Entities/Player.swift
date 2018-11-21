@@ -9,13 +9,15 @@
 import Foundation
 import SpriteKit
 
+
+
 class Player : SKSpriteNode {
     var velocity: CGVector
     var accel: CGVector;
     
-    static let ACCEL_FORWARD = 30000.0;
-    static let ACCEL_BACKWARD = 17000.0;
-    static let TURN = 0.09;
+    static let ACCEL_FORWARD = 3000.0 ;
+    static let ACCEL_BACKWARD = 1700.0 ;
+    static let TURN = 0.3;
    
     
     init(position: CGPoint) {
@@ -34,8 +36,10 @@ class Player : SKSpriteNode {
             physics.angularDamping = 2;
             physics.collisionBitMask = 1;
             physics.contactTestBitMask = 2;
-            
+            physics.mass = 1;
+            //physics.density = 1;
         }
+
        
     }
     
@@ -49,10 +53,10 @@ class Player : SKSpriteNode {
     
     func accelForward(_ delta_time: TimeInterval){
         let speed = CGFloat(delta_time * Player.ACCEL_FORWARD);
-        
+ 
         let rot = zRotation + .pi/2;
         let dir = CGVector(dx: cos(rot), dy: sin(rot));
-        physicsBody?.applyForce(dir * speed);
+        physicsBody?.applyImpulse(dir * speed);
     }
     
     func accelBackwards(_ delta_time: TimeInterval){
@@ -60,7 +64,7 @@ class Player : SKSpriteNode {
         
         let rot = zRotation + .pi/2;
         let dir = CGVector(dx: cos(rot), dy: sin(rot));
-        physicsBody?.applyForce( dir * speed);
+        physicsBody?.applyImpulse( dir * speed);
     }
     
     func turn(_ delta_time: TimeInterval){

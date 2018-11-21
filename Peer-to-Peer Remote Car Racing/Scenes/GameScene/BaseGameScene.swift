@@ -39,9 +39,7 @@ class BaseGameScene: SKScene {
     private var track:SKTileMapNode!
     
     var hud: UIHUD!;
-
-    
-    private let displaySize: CGRect = UIScreen.main.bounds;
+    var touchControls : SceneRootNode!;
     
     private var buttons: [ButtonNode] = [];
     
@@ -91,7 +89,7 @@ class BaseGameScene: SKScene {
     func setupCamera(){
         cam = SKCameraNode();
         self.camera = cam;
-        cam.setScale(2);
+        cam.setScale(3 * 320 / displaySize.height );
         cam.position = player.position;
         self.addChild(cam!);
     }
@@ -139,14 +137,19 @@ class BaseGameScene: SKScene {
         hud = UIHUD();
         cam.addChild(hud);
         
-        let touchControls = UITouchControlsJoystick();
-        inputControl = touchControls.inputControl;
+        let tc = UITouchControlsJoystick();
+        touchControls = tc
+        inputControl = tc.inputControl;
         
         if(joystickEnabled){
             cam.addChild(touchControls);
         }
-        
-        
+    }
+    
+    func resize() {
+        displaySize = UIScreen.main.bounds;
+        hud.resizeToDisplay();
+        touchControls.resizeToDisplay();
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -176,12 +179,13 @@ class BaseGameScene: SKScene {
             //print("cam: \(camera.position)");
             //print("player:  \(pl.position)");
         }
+        
         if inputControl.velocity.y > 0 {
             player.accelForward(dt * Double(inputControl.velocity.y));
         }else{
             player.accelBackwards(dt * Double(inputControl.velocity.y));
         }
-        if(abs(inputControl.velocity.x) > 0.15){
+        if(abs(inputControl.velocity.x) > 0.05){
             player.turn(dt * Double(inputControl.velocity.x));
         }
         

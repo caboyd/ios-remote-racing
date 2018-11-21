@@ -227,6 +227,8 @@ open class AnalogJoystick: SKNode {
         stick.zPosition = substrate.zPosition + 1
         addChild(stick)
         disabled = false
+        stick.position = .zero;
+
         let velocityLoop = CADisplayLink(target: self, selector: #selector(listen))
         velocityLoop.add(to: RunLoop.current, forMode: RunLoop.Mode(rawValue: RunLoop.Mode.common.rawValue))
     }
@@ -283,7 +285,11 @@ open class AnalogJoystick: SKNode {
         tracking = false
         let moveToBack = SKAction.move(to: CGPoint.zero, duration: TimeInterval(0.1))
         moveToBack.timingMode = .easeOut
-        stick.run(moveToBack)
+        
+        //  BUG: This action doesnt run until after the app is minimized
+        stick.run(moveToBack);
+        // workaround
+        stick.position = .zero;
         data.reset()
         stopHandler?();
     }

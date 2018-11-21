@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
     
     var carType:String = "";
     var track:String = "Track1";
+    var scene : BaseGameScene?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +22,16 @@ class GameViewController: UIViewController {
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
         if let scene = BaseGameScene(fileNamed: self.track) {
-            
+            self.scene = scene;
             // Copy gameplay related content over to the scene
             scene.joystickEnabled = true;
             scene.debugMode = true;
             scene.gameSceneDelegate = self;
             
             // Set the scale mode to scale to fit the window
-            scene.scaleMode = .aspectFill
-            scene.size = view.bounds.size;
+            //scene.scaleMode = .aspectFill
+            //scene.size = view.bounds.size;
+            
             
             // Present the scene
             if let view = self.view as! SKView? {
@@ -59,6 +61,13 @@ class GameViewController: UIViewController {
     
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.scene?.resize();
+        }
     }
 }
 

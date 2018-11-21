@@ -10,7 +10,11 @@ import Foundation
 import SpriteKit
 
 
-let displaySize: CGRect = UIScreen.main.bounds;
-let displayAspect = displaySize.width / displaySize.height;
+var displaySize: CGRect = UIScreen.main.bounds {
+    didSet {
+        displayAspect = displaySize.width / displaySize.height;
+    }
+};
+var displayAspect = displaySize.width / displaySize.height;
 
 

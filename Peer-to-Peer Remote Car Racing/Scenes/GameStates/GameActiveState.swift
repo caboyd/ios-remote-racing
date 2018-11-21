@@ -107,6 +107,7 @@ class GameActiveState: GKState {
     gameScene.hud.lapLabel.text = "Lap \(gameScene.lap)/\(gameScene.totalLaps)";
     
     gameScene.hud.timeLabel.text = stringFromTimeInterval(interval: gameScene.totalTime) as String;
+    gameScene.hud.speedLabel.text = "\(Int(gameScene.player.physicsBody?.velocity.length() ?? 0))";
   }
 }
 
