@@ -75,15 +75,18 @@ class BaseGameScene: SKScene {
         //GameSuccessState(gameScene: self)
         ])
     
+    
     override func sceneDidLoad() {
-       setupRace();
+        setupRace();
+        setupCamera();
+        
     }
     
     override func didMove(to view: SKView) {
         super.didMove(to: view);
         physicsWorld.contactDelegate = self;
-        setupRace();
-        setupCamera();
+        
+        resetRace();
         setupHUD();
 
         stateMachine.enter(GameActiveState.self);
@@ -92,12 +95,12 @@ class BaseGameScene: SKScene {
     func setupCamera(){
         cam = SKCameraNode();
         self.camera = cam;
-        cam.setScale(3 * 320 / displaySize.height );
-        cam.position = player.position;
         self.addChild(cam!);
+        cam.setScale(3 * 320 / displaySize.height );
     }
     
     func setupRace(){
+        
         guard let landBackground = childNode(withName: "Background") as? SKTileMapNode else {
             fatalError("Background node not loaded");
         }
@@ -134,9 +137,18 @@ class BaseGameScene: SKScene {
             node.alpha = 0;
         }
         
-        //Add the player car
+    }
+    
+    func resetRace() {
+        lap = 1;
+        lastWaypoint = 0;
+        gameEnded = false;
+        summedLapTimes = 0;
+        totalTime = 0;
+        player?.removeFromParent();
         player = Player(position: startPosition);
         self.addChild(player!);
+        cam.position = player.position;
     }
     
     func setupHUD(){
@@ -152,6 +164,20 @@ class BaseGameScene: SKScene {
             tc.pauseButton.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(BaseGameScene.pause))
             tc.addDebugHUD(gameScene: self);
         }
+    }
+    
+    func displayLapLabel() {
+        cam.childNode(withName: "laps")?.removeFromParent();
+        let lap = totalLaps != 1 ? "Laps" : "Lap";
+        let label = SKLabelNode(text: "\(totalLaps) \(lap)")
+        label.name = "laps"
+        label.zPosition = 1;
+        label.fontColor = systemYellowColor;
+        label.fontName = "Futura-MediumItalic"
+        label.fontSize = 350;
+        label.verticalAlignmentMode = .top
+        label.position = CGPoint(x: 0, y: self.size.height / 2);
+        cam.addChild(label);
     }
     
     func resize() {

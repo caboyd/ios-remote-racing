@@ -25,16 +25,20 @@ class TrackSelectionViewController: UIViewController {
 
     func updateTrackImage() {
         if let scene = BaseGameScene(fileNamed: self.track) {
-            scene.size =  scene.trackSize;
-            print(scene.trackSize);
-           //scene.scaleMode = .aspectFill
+          
+            let scale =  scene.trackSize.width / scene.size.width;
+            scene.camera?.setScale(scale);
+            print(scale);
+            scene.displayLapLabel();
+            
             if let view = self.view as! SKView? {
                 let texture = view.texture(from: scene);
-                print(texture);
-                print(texture?.size());
+            
                 let img = UIImage(cgImage: (texture?.cgImage())!);
-                print(img.size);
+                trackImage.contentMode = .scaleAspectFill
+                print(trackImage.frame.size);
                 trackImage.image = img;
+                print(trackImage.frame.size);
                 
             }
         }

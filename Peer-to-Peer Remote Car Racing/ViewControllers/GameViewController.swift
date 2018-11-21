@@ -30,8 +30,8 @@ class GameViewController: UIViewController {
             
             // Set the scale mode to scale to fit the window
             //scene.scaleMode = .aspectFill
-            //scene.size = view.bounds.size;
-            
+            scene.size = scene.trackSize;
+            print(scene.size);
             
             // Present the scene
             if let view = self.view as! SKView? {
