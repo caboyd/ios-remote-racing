@@ -12,6 +12,7 @@ import GameplayKit
 @objc
 protocol BaseGameSceneProtocol : class {
     func presentSubmitScoreSubview(gameScene: BaseGameScene);
+    func quit();
 }
 
 class BaseGameScene: SKScene {
@@ -34,6 +35,7 @@ class BaseGameScene: SKScene {
     var totalLaps:Int = 3;
     var totalTime: TimeInterval = 0;
     var summedLapTimes: TimeInterval = 0;
+    var gameEnded = false;
     
     private var landBackground:SKTileMapNode!
     private var track:SKTileMapNode!
@@ -143,6 +145,8 @@ class BaseGameScene: SKScene {
         
         if(joystickEnabled){
             cam.addChild(touchControls);
+            tc.pauseButton.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(BaseGameScene.pause))
+            tc.addDebugHUD(gameScene: self);
         }
     }
     
@@ -173,6 +177,10 @@ class BaseGameScene: SKScene {
             return;
         }
         
+        if gameEnded {
+            return;
+        }
+        
         if let camera = cam, let pl = player {
             camera.position = pl.position;
             camera.zRotation = pl.zRotation;
@@ -193,6 +201,15 @@ class BaseGameScene: SKScene {
         
     }
     
+    @objc func pause(){
+        stateMachine.enter(GamePauseState.self);
+    }
+    
+    @objc func win(){
+        gameEnded = true;
+        inputControl.disable();
+        gameSceneDelegate?.presentSubmitScoreSubview(gameScene: self);
+    }
     
     func previousWaypoint(_ index:Int) -> Int {
         var result = index - 1;
@@ -222,6 +239,8 @@ extension BaseGameScene: SKPhysicsContactDelegate{
                         hud.bestLapNode.isHidden = false;
                         hud.bestLapTimeLabel.text = stringFromTimeInterval(interval: totalTime - summedLapTimes) as String;
                         summedLapTimes = totalTime;
+                        
+                        win();
                     }
                 }
                 break;

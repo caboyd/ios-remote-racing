@@ -75,13 +75,12 @@ class GameActiveState: GKState {
       return
     }
 
+    if gameScene.gameEnded {
+        return;
+    }
+    
     //Update Here
     gameScene.totalTime += dt;
-    
-    if gameScene.lap > gameScene.totalLaps {
-        //TODO: transition to win screen
-        //stop timer
-    }
     
     updateLabels();
   }

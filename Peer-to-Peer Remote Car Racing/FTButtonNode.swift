@@ -83,7 +83,7 @@ class FTButtonNode: SKSpriteNode {
     }
     
     func fontColor(color: UIColor) {
-        self.label.color = color;
+        self.label.fontColor = color;
     }
     
     var disabledTexture: SKTexture?

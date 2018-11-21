@@ -12,6 +12,9 @@ class SubmitScoreViewController: UIViewController {
 
 
     
+    @IBOutlet weak var timeLabel: UILabel!
+    var time: TimeInterval!;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,7 +22,9 @@ class SubmitScoreViewController: UIViewController {
     }
     
     override func didMove(toParent parent: UIViewController?) {
+        timeLabel.text = stringFromTimeInterval(interval: time) as String;
         
+        //TODO: submit score to firebase leaderboard
     }
     
 

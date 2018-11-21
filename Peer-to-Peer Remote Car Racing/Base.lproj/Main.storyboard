@@ -217,7 +217,13 @@
                                 <rect key="frame" x="184" y="23" width="368" height="368"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is for submitting scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQf-bY-Weo">
-                                        <rect key="frame" x="76" y="118.33333333333334" width="216" height="21"/>
+                                        <rect key="frame" x="76" y="26.333333333333336" width="216" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKH-Ks-YeZ">
+                                        <rect key="frame" x="165" y="63" width="38" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -232,10 +238,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="hKH-Ks-YeZ" firstAttribute="centerY" secondItem="YZw-uf-WLT" secondAttribute="centerY" multiplier="0.4" id="7IB-nD-Qm2"/>
                                     <constraint firstItem="vQf-bY-Weo" firstAttribute="centerX" secondItem="YZw-uf-WLT" secondAttribute="centerX" id="Dde-dg-uin"/>
                                     <constraint firstAttribute="width" secondItem="YZw-uf-WLT" secondAttribute="height" multiplier="1:1" id="TN8-cv-7tb"/>
                                     <constraint firstItem="9NO-XW-87K" firstAttribute="centerX" secondItem="YZw-uf-WLT" secondAttribute="centerX" id="X55-CG-vRI"/>
-                                    <constraint firstItem="vQf-bY-Weo" firstAttribute="centerY" secondItem="YZw-uf-WLT" secondAttribute="centerY" multiplier="0.7" id="p77-ON-Spf"/>
+                                    <constraint firstItem="hKH-Ks-YeZ" firstAttribute="centerX" secondItem="YZw-uf-WLT" secondAttribute="centerX" id="lYE-Vy-eqY"/>
+                                    <constraint firstItem="vQf-bY-Weo" firstAttribute="centerY" secondItem="YZw-uf-WLT" secondAttribute="centerY" multiplier="0.2" id="p77-ON-Spf"/>
                                     <constraint firstItem="9NO-XW-87K" firstAttribute="centerY" secondItem="YZw-uf-WLT" secondAttribute="centerY" id="wAa-G8-WY9"/>
                                 </constraints>
                             </view>
@@ -248,6 +256,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jdz-Y8-glY"/>
                     </view>
+                    <connections>
+                        <outlet property="timeLabel" destination="hKH-Ks-YeZ" id="uQq-ao-RNz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ypF-8H-Xcq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -74,10 +74,19 @@ class GameViewController: UIViewController {
 
 extension GameViewController: BaseGameSceneProtocol {
     @objc func presentSubmitScoreSubview(gameScene: BaseGameScene) {
-        let controller = storyboard!.instantiateViewController(withIdentifier: "SubmitScoreViewController");
+        let controller = storyboard!.instantiateViewController(withIdentifier: "SubmitScoreViewController") as! SubmitScoreViewController;
+        
+        controller.time = gameScene.totalTime;
+        
         self.addChild(controller);
         view.addSubview(controller.view);
         controller.didMove(toParent: self);
+    }
+    
+    func quit() {
+        _ = navigationController?.popToRootViewController(animated: false)
+        //TODO: Close network session
+        // send message to close
     }
 }
 

@@ -23,8 +23,7 @@ extension BaseGameScene : ButtonNodeResponder {
         case .resume:
             stateMachine.enter(GameActiveState.self)
         case .cancel:
-            print("cancel button");
-            //which button is this?
+            gameSceneDelegate?.quit();
         case .replay:
             stateMachine.enter(GameActiveState.self);
         case .pause:
