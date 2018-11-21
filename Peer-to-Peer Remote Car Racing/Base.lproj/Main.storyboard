@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jgX-W3-zdo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jgX-W3-zdo">
     <device id="retina5_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -137,9 +137,6 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ios-background-2" translatesAutoresizingMaskIntoConstraints="NO" id="yLj-TS-7sO">
                                 <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="yLj-TS-7sO" secondAttribute="height" multiplier="16:9" id="8uq-vY-6Yx"/>
-                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Track and Car" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgo-8S-FVS">
                                 <rect key="frame" x="136.99999999999997" y="12" width="462.33333333333326" height="59"/>
@@ -169,17 +166,17 @@
                                     <action selector="backButton:" destination="UYn-J8-yXz" eventType="touchUpInside" id="3L6-Tj-pjp"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vdk-Sd-GbV">
+                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackButton" translatesAutoresizingMaskIntoConstraints="NO" id="vdk-Sd-GbV">
                                 <rect key="frame" x="73.666666666666671" y="96.666666666666671" width="220.66666666666663" height="220.66666666666663"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="vdk-Sd-GbV" secondAttribute="height" multiplier="1:1" id="eXU-28-hUp"/>
+                                    <constraint firstAttribute="width" secondItem="vdk-Sd-GbV" secondAttribute="height" multiplier="1:1" id="zg3-N8-LWk"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="trailing" secondItem="Ajq-u2-sID" secondAttribute="trailing" id="AAe-2d-pDL"/>
-                            <constraint firstItem="vdk-Sd-GbV" firstAttribute="width" secondItem="yLj-TS-7sO" secondAttribute="width" multiplier="0.3" id="DRN-Di-xfw"/>
+                            <constraint firstItem="vdk-Sd-GbV" firstAttribute="width" secondItem="yLj-TS-7sO" secondAttribute="width" multiplier="0.3" id="CDK-PM-Pma"/>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="top" secondItem="Ajq-u2-sID" secondAttribute="top" id="FeR-yg-dxa"/>
                             <constraint firstItem="Wgo-8S-FVS" firstAttribute="centerY" secondItem="6xd-lB-amJ" secondAttribute="centerY" multiplier="0.2" id="FpU-oZ-WW6"/>
                             <constraint firstItem="2Gf-7a-87L" firstAttribute="centerX" secondItem="6xd-lB-amJ" secondAttribute="centerX" id="Jnd-L0-WJD"/>

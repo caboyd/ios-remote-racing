@@ -11,8 +11,11 @@ import GameplayKit
 
 class Track1: BaseGameScene {
     
+   
     
     override func sceneDidLoad() {
+        self.totalLaps = 3;
+        
         super.sceneDidLoad();
     }
 

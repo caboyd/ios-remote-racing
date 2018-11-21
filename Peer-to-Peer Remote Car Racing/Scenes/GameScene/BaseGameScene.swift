@@ -32,12 +32,13 @@ class BaseGameScene: SKScene {
     var waypoints: Int = 0;
     var lap: Int = 1;
     var lastWaypoint: Int = 0;
-    var totalLaps:Int = 3;
+    var totalLaps:Int = 0;
     var totalTime: TimeInterval = 0;
     var summedLapTimes: TimeInterval = 0;
     var gameEnded = false;
     
     var landBackground:SKTileMapNode!
+    var trackSize: CGSize!;
     private var track:SKTileMapNode!
     
     var hud: UIHUD!;
@@ -75,7 +76,7 @@ class BaseGameScene: SKScene {
         ])
     
     override func sceneDidLoad() {
-      // setupRace();
+       setupRace();
     }
     
     override func didMove(to view: SKView) {
@@ -103,11 +104,13 @@ class BaseGameScene: SKScene {
         
         self.landBackground = landBackground;
         
+        
         guard let track = childNode(withName: "Track") as? SKTileMapNode else {
             fatalError("Track node not loaded")
         }
         
         self.track = track;
+        self.trackSize = track.mapSize;
         
         //Get start position for car
         for row in 0..<track.numberOfRows {
@@ -124,6 +127,7 @@ class BaseGameScene: SKScene {
         }
         
         //Count number of waypoint in this track
+        self.waypoints = 0;
         self.enumerateChildNodes(withName: "Waypoint*"){
             (node, stop) in
             self.waypoints += 1;
