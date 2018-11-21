@@ -38,7 +38,7 @@ class BaseGameScene: SKScene {
     private var landBackground:SKTileMapNode!
     private var track:SKTileMapNode!
     
-    var hud: HUD!;
+    var hud: UIHUD!;
 
     
     private let displaySize: CGRect = UIScreen.main.bounds;
@@ -136,13 +136,14 @@ class BaseGameScene: SKScene {
     }
     
     func setupHUD(){
-        hud = HUD(gameScene: self, debugMode: debugMode);
-        cam.addChild(hud.node);
-            
-        inputControl = JoystickInput();
+        hud = UIHUD();
+        cam.addChild(hud);
+        
+        let touchControls = UITouchControlsJoystick();
+        inputControl = touchControls.inputControl;
         
         if(joystickEnabled){
-            cam.addChild(inputControl as! SKNode);
+            cam.addChild(touchControls);
         }
         
         

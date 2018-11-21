@@ -22,7 +22,7 @@ protocol InputControl {
     var velocity: CGPoint { get }
 }
 
-class JoystickInput: SKNode, InputControl {
+class JoystickInput: InputControl {
     
     var joystick: AnalogJoystick!;
     
@@ -30,33 +30,19 @@ class JoystickInput: SKNode, InputControl {
         get { return joystick.data.velocity }
     }
     
-    override init(){
-        super.init();
-        self.joystick = js;
-        self.addChild(joystick);
+    init(analogJoystick : AnalogJoystick?){
+        self.joystick = analogJoystick ?? js;
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 
 }
 
 
-class JoystickButtonInput: SKNode, InputControl {
+class JoystickButtonInput:JoystickInput {
     
-    var joystick: AnalogJoystick!;
-    
-    var velocity: CGPoint {
-        get { return joystick.data.velocity }
-    }
-    
-    override init() {
-        super.init();
-        self.joystick = js;
-        self.addChild(joystick);
-        
+   
+    override init(analogJoystick : AnalogJoystick?) {
+        super.init(analogJoystick: analogJoystick);
+
         //Add gas button
         let gasButton = SKSpriteNode();
         let brakeButton = SKSpriteNode();

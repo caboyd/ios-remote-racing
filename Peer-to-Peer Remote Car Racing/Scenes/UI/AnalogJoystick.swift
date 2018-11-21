@@ -63,6 +63,10 @@ open class AnalogJoystickComponent: SKSpriteNode {
         }
     }
     
+    override public init(texture: SKTexture?, color: UIColor, size: CGSize) {
+        super.init(texture: texture, color: color, size: size);
+    }
+    
     //MARK: - DESIGNATED
     init(diameter: CGFloat, color: UIColor? = nil, image: UIImage? = nil) {
         super.init(texture: nil, color: color ?? UIColor.black, size: CGSize(width: diameter, height: diameter))
@@ -70,6 +74,13 @@ open class AnalogJoystickComponent: SKSpriteNode {
         self.diameter = diameter
         self.image = image
         redrawTexture()
+    }
+    
+    init(templateNode : SKSpriteNode) {
+        super.init(texture: templateNode.texture, color: templateNode.color, size: templateNode.size);
+        addObserver(self, forKeyPath: "color", options: NSKeyValueObservingOptions.old, context: &kvoContext)
+        self.diameter = templateNode.size.width;
+        self.image = UIImage(cgImage: templateNode.texture!.cgImage());
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -166,6 +177,10 @@ open class AnalogJoystick: SKNode {
         }
     }
     
+    override init() {
+        super.init();
+    }
+    
     init(substrate: AnalogJoystickSubstrate, stick: AnalogJoystickStick) {
         super.init()
         self.substrate = substrate
@@ -194,6 +209,26 @@ open class AnalogJoystick: SKNode {
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        guard let stickNode = self.childNode(withName: "//stick") as? SKSpriteNode else {
+            fatalError("stick SKSpriteNode missing. Cannot init AnalogJoystick")
+        }
+        stickNode.removeFromParent();
+        guard let substrateNode = self.childNode(withName: "//substrate") as? SKSpriteNode else {
+            fatalError("substrate SKSpriteNode missing. Cannot init AnalogJoystick")
+        }
+        substrateNode.removeFromParent();
+        
+        self.substrate = AnalogJoystickSubstrate(templateNode: substrateNode);
+        self.stick = AnalogJoystickStick(templateNode: stickNode);
+
+        substrate.zPosition = 0
+        addChild(substrate)
+        stick.zPosition = substrate.zPosition + 1
+        addChild(stick)
+        disabled = false
+        let velocityLoop = CADisplayLink(target: self, selector: #selector(listen))
+        velocityLoop.add(to: RunLoop.current, forMode: RunLoop.Mode(rawValue: RunLoop.Mode.common.rawValue))
     }
     
     @objc func listen() {
