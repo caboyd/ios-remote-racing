@@ -36,7 +36,7 @@ class UITouchControlsJoystick : SceneRootNode {
     }
     
     func addDebugHUD(gameScene: BaseGameScene) {
-        let t = SKTexture(imageNamed: "grey_button_up");
+        let t = SKTexture(imageNamed: "default_button_up");
         let btn = FTButtonNode(normalTexture: t, selectedTexture: t, disabledTexture: t);
         btn.setButtonLabel(title: "WIN", font: "Arial", fontSize: 26);
         btn.fontColor(color:.black);

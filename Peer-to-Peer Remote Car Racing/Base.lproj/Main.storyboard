@@ -21,47 +21,34 @@
                                 <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNt-AW-U44">
-                                <rect key="frame" x="73.666666666666686" y="183" width="588.66666666666652" height="48"/>
+                                <rect key="frame" x="92" y="184" width="552" height="46"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="eNt-AW-U44" secondAttribute="height" multiplier="184:15" id="6My-RN-aQH"/>
+                                    <constraint firstAttribute="width" secondItem="eNt-AW-U44" secondAttribute="height" multiplier="12:1" id="6My-RN-aQH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <state key="normal" title="REMOTE PLAY" backgroundImage="grey_button_up">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <state key="highlighted" backgroundImage="grey_button_down"/>
+                                <state key="normal" title="REMOTE PLAY" backgroundImage="blackButton"/>
                                 <connections>
                                     <action selector="remotePlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oz2-wd-dNg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Df5-Wf-aVu">
-                                <rect key="frame" x="73.666666666666686" y="121" width="588.66666666666652" height="48"/>
+                                <rect key="frame" x="92" y="122" width="552" height="46"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Df5-Wf-aVu" secondAttribute="height" multiplier="184:15" id="clB-li-XaD"/>
+                                    <constraint firstAttribute="width" secondItem="Df5-Wf-aVu" secondAttribute="height" multiplier="12:1" id="clB-li-XaD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <state key="normal" title="PLAY" backgroundImage="grey_button_up">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <state key="highlighted" backgroundImage="grey_button_down">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <state key="normal" title="PLAY" backgroundImage="blackButton"/>
                                 <connections>
                                     <action selector="play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9YP-Ib-lZU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zH6-bf-h4U">
-                                <rect key="frame" x="73.666666666666686" y="245" width="588.66666666666652" height="48"/>
+                                <rect key="frame" x="92" y="246" width="552" height="46"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="zH6-bf-h4U" secondAttribute="height" multiplier="184:15" id="6tZ-ld-5Jb"/>
+                                    <constraint firstAttribute="width" secondItem="zH6-bf-h4U" secondAttribute="height" multiplier="12:1" id="6tZ-ld-5Jb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <state key="normal" title="LEADERBOARD" backgroundImage="grey_button_up">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <state key="highlighted" backgroundImage="grey_button_down">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <state key="normal" title="LEADERBOARD" backgroundImage="blackButton"/>
                                 <connections>
                                     <action selector="leaderboard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f42-2K-3Lp"/>
                                 </connections>
@@ -78,7 +65,7 @@
                             <constraint firstItem="7ga-sd-KPR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="RWn-dj-DbU"/>
                             <constraint firstItem="zH6-bf-h4U" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="V3d-eK-7Dp"/>
                             <constraint firstItem="eNt-AW-U44" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Vr1-98-PfF"/>
-                            <constraint firstItem="Df5-Wf-aVu" firstAttribute="width" secondItem="7ga-sd-KPR" secondAttribute="width" multiplier="0.8" id="cGl-kr-yrV"/>
+                            <constraint firstItem="Df5-Wf-aVu" firstAttribute="width" secondItem="7ga-sd-KPR" secondAttribute="width" multiplier="0.75" id="cGl-kr-yrV"/>
                             <constraint firstItem="Df5-Wf-aVu" firstAttribute="centerX" secondItem="7ga-sd-KPR" secondAttribute="centerX" id="csB-Vi-TVH"/>
                             <constraint firstItem="zH6-bf-h4U" firstAttribute="width" secondItem="Df5-Wf-aVu" secondAttribute="width" id="m94-X0-zAE"/>
                             <constraint firstItem="eNt-AW-U44" firstAttribute="width" secondItem="Df5-Wf-aVu" secondAttribute="width" id="zOi-RI-fLa"/>
@@ -108,13 +95,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8y-O9-ZJI">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8y-O9-ZJI">
                                 <rect key="frame" x="0.0" y="0.0" width="110.33333333333333" height="36.666666666666664"/>
-                                <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="x8y-O9-ZJI" secondAttribute="height" multiplier="3:1" id="7bM-gk-0OM"/>
                                 </constraints>
-                                <state key="normal" title="Back"/>
+                                <state key="normal" title="Back" backgroundImage="blackButton"/>
                                 <connections>
                                     <action selector="backButton:" destination="VE8-e1-MuA" eventType="touchUpInside" id="bBS-5s-aQh"/>
                                     <action selector="backButton:" destination="UYn-J8-yXz" eventType="touchUpInside" id="yU2-lg-QSP"/>
@@ -152,19 +138,20 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ios-background-2" translatesAutoresizingMaskIntoConstraints="NO" id="yLj-TS-7sO">
                                 <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Selection Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgo-8S-FVS">
-                                <rect key="frame" x="132" y="77.666666666666671" width="472" height="59.000000000000014"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Track and Car" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgo-8S-FVS">
+                                <rect key="frame" x="136.99999999999997" y="12" width="462.33333333333326" height="59"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="49"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Gf-7a-87L">
-                                <rect key="frame" x="279.66666666666669" y="182.66666666666666" width="177" height="49"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Gf-7a-87L">
+                                <rect key="frame" x="184" y="352" width="368" height="41"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="Start Race" backgroundImage="grey_button_up">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2Gf-7a-87L" secondAttribute="height" multiplier="9:1" id="7Gj-c8-o2P"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Start Race" backgroundImage="blackButton"/>
                                 <connections>
                                     <action selector="start:" destination="UYn-J8-yXz" eventType="touchUpInside" id="Lny-HE-1gX"/>
                                 </connections>
@@ -174,10 +161,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RAk-VZ-xM3" secondAttribute="height" multiplier="3:1" id="EWt-DL-yte"/>
                                 </constraints>
-                                <state key="normal" title="Back" backgroundImage="grey_button_up">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <state key="highlighted" backgroundImage="grey_button_down"/>
+                                <state key="normal" title="Back" backgroundImage="blackButton"/>
                                 <connections>
                                     <action selector="backButton:" destination="UYn-J8-yXz" eventType="touchUpInside" id="3L6-Tj-pjp"/>
                                 </connections>
@@ -187,16 +171,17 @@
                         <constraints>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="trailing" secondItem="Ajq-u2-sID" secondAttribute="trailing" id="AAe-2d-pDL"/>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="top" secondItem="Ajq-u2-sID" secondAttribute="top" id="FeR-yg-dxa"/>
-                            <constraint firstItem="Wgo-8S-FVS" firstAttribute="centerY" secondItem="6xd-lB-amJ" secondAttribute="centerY" constant="-100" id="FpU-oZ-WW6"/>
+                            <constraint firstItem="Wgo-8S-FVS" firstAttribute="centerY" secondItem="6xd-lB-amJ" secondAttribute="centerY" multiplier="0.2" id="FpU-oZ-WW6"/>
                             <constraint firstItem="2Gf-7a-87L" firstAttribute="centerX" secondItem="6xd-lB-amJ" secondAttribute="centerX" id="Jnd-L0-WJD"/>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="leading" secondItem="Ajq-u2-sID" secondAttribute="leading" id="OCW-Ub-Wav"/>
                             <constraint firstItem="RAk-VZ-xM3" firstAttribute="leading" secondItem="Ajq-u2-sID" secondAttribute="leading" id="RdB-9a-cbF"/>
+                            <constraint firstItem="2Gf-7a-87L" firstAttribute="width" secondItem="yLj-TS-7sO" secondAttribute="width" multiplier="0.5" id="ZxS-2P-LQg"/>
                             <constraint firstItem="RAk-VZ-xM3" firstAttribute="top" secondItem="Ajq-u2-sID" secondAttribute="top" id="dSF-Oq-4NR"/>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="bottom" secondItem="Ajq-u2-sID" secondAttribute="bottom" id="gIa-Cl-VbV"/>
                             <constraint firstItem="RAk-VZ-xM3" firstAttribute="width" secondItem="yLj-TS-7sO" secondAttribute="width" multiplier="0.15" id="jzs-YL-Qor"/>
                             <constraint firstItem="Ajq-u2-sID" firstAttribute="trailing" secondItem="RAk-VZ-xM3" secondAttribute="trailing" priority="999" id="mBT-B8-06q"/>
                             <constraint firstItem="Wgo-8S-FVS" firstAttribute="centerX" secondItem="6xd-lB-amJ" secondAttribute="centerX" id="sKx-tS-DK9"/>
-                            <constraint firstItem="2Gf-7a-87L" firstAttribute="centerY" secondItem="6xd-lB-amJ" secondAttribute="centerY" id="t44-kS-Vng"/>
+                            <constraint firstItem="2Gf-7a-87L" firstAttribute="centerY" secondItem="6xd-lB-amJ" secondAttribute="centerY" multiplier="1.8" id="t44-kS-Vng"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ajq-u2-sID"/>
                     </view>
@@ -313,12 +298,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ry5-aH-7E2" secondAttribute="height" multiplier="3:1" id="ICv-89-M8c"/>
                                 </constraints>
-                                <state key="normal" title="Back" backgroundImage="grey_button_up">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <state key="highlighted" backgroundImage="grey_button_down">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <state key="normal" title="Back" backgroundImage="blackButton"/>
                                 <connections>
                                     <action selector="backButton:" destination="kSd-NA-fPm" eventType="touchUpInside" id="6cJ-kd-evV"/>
                                 </connections>
@@ -369,8 +349,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="grey_button_down" width="13" height="45"/>
-        <image name="grey_button_up" width="13" height="49"/>
+        <image name="blackButton" width="10" height="36"/>
         <image name="ios-background-2" width="1920" height="1045"/>
     </resources>
 </document>

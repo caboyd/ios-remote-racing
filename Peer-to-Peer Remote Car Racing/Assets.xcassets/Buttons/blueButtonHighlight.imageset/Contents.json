@@ -2,25 +2,34 @@
   "images" : [
     {
       "resizing" : {
-        "mode" : "9-part",
+        "mode" : "3-part-horizontal",
         "center" : {
           "mode" : "stretch",
-          "width" : 1,
-          "height" : 1
+          "width" : 1
         },
         "cap-insets" : {
-          "bottom" : 24,
-          "top" : 24,
           "right" : 6,
           "left" : 6
         }
       },
       "idiom" : "universal",
-      "filename" : "grey_button01.png",
+      "filename" : "blueButtonHighlight.png",
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1
+        },
+        "cap-insets" : {
+          "right" : 10,
+          "left" : 10
+        }
+      },
       "idiom" : "universal",
+      "filename" : "blueButtonHighlight@2x.png",
       "scale" : "2x"
     },
     {
