@@ -131,12 +131,15 @@
         <scene sceneID="IBp-VV-rcL">
             <objects>
                 <viewController storyboardIdentifier="TrackSelectionViewController" id="UYn-J8-yXz" customClass="TrackSelectionViewController" customModule="Peer_to_Peer_Remote_Car_Racing" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6xd-lB-amJ">
+                    <view key="view" contentMode="scaleToFill" id="6xd-lB-amJ" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ios-background-2" translatesAutoresizingMaskIntoConstraints="NO" id="yLj-TS-7sO">
                                 <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yLj-TS-7sO" secondAttribute="height" multiplier="16:9" id="8uq-vY-6Yx"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Track and Car" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgo-8S-FVS">
                                 <rect key="frame" x="136.99999999999997" y="12" width="462.33333333333326" height="59"/>
@@ -166,18 +169,27 @@
                                     <action selector="backButton:" destination="UYn-J8-yXz" eventType="touchUpInside" id="3L6-Tj-pjp"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vdk-Sd-GbV">
+                                <rect key="frame" x="73.666666666666671" y="96.666666666666671" width="220.66666666666663" height="220.66666666666663"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vdk-Sd-GbV" secondAttribute="height" multiplier="1:1" id="eXU-28-hUp"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="trailing" secondItem="Ajq-u2-sID" secondAttribute="trailing" id="AAe-2d-pDL"/>
+                            <constraint firstItem="vdk-Sd-GbV" firstAttribute="width" secondItem="yLj-TS-7sO" secondAttribute="width" multiplier="0.3" id="DRN-Di-xfw"/>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="top" secondItem="Ajq-u2-sID" secondAttribute="top" id="FeR-yg-dxa"/>
                             <constraint firstItem="Wgo-8S-FVS" firstAttribute="centerY" secondItem="6xd-lB-amJ" secondAttribute="centerY" multiplier="0.2" id="FpU-oZ-WW6"/>
                             <constraint firstItem="2Gf-7a-87L" firstAttribute="centerX" secondItem="6xd-lB-amJ" secondAttribute="centerX" id="Jnd-L0-WJD"/>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="leading" secondItem="Ajq-u2-sID" secondAttribute="leading" id="OCW-Ub-Wav"/>
                             <constraint firstItem="RAk-VZ-xM3" firstAttribute="leading" secondItem="Ajq-u2-sID" secondAttribute="leading" id="RdB-9a-cbF"/>
+                            <constraint firstItem="vdk-Sd-GbV" firstAttribute="centerY" secondItem="yLj-TS-7sO" secondAttribute="centerY" id="U3C-UV-FTf"/>
                             <constraint firstItem="2Gf-7a-87L" firstAttribute="width" secondItem="yLj-TS-7sO" secondAttribute="width" multiplier="0.5" id="ZxS-2P-LQg"/>
                             <constraint firstItem="RAk-VZ-xM3" firstAttribute="top" secondItem="Ajq-u2-sID" secondAttribute="top" id="dSF-Oq-4NR"/>
                             <constraint firstItem="yLj-TS-7sO" firstAttribute="bottom" secondItem="Ajq-u2-sID" secondAttribute="bottom" id="gIa-Cl-VbV"/>
+                            <constraint firstItem="vdk-Sd-GbV" firstAttribute="centerX" secondItem="yLj-TS-7sO" secondAttribute="centerX" multiplier="0.5" id="gdh-2M-FAA"/>
                             <constraint firstItem="RAk-VZ-xM3" firstAttribute="width" secondItem="yLj-TS-7sO" secondAttribute="width" multiplier="0.15" id="jzs-YL-Qor"/>
                             <constraint firstItem="Ajq-u2-sID" firstAttribute="trailing" secondItem="RAk-VZ-xM3" secondAttribute="trailing" priority="999" id="mBT-B8-06q"/>
                             <constraint firstItem="Wgo-8S-FVS" firstAttribute="centerX" secondItem="6xd-lB-amJ" secondAttribute="centerX" id="sKx-tS-DK9"/>
@@ -185,6 +197,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ajq-u2-sID"/>
                     </view>
+                    <connections>
+                        <outlet property="trackImage" destination="vdk-Sd-GbV" id="PpV-0f-j01"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JsX-lZ-vBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

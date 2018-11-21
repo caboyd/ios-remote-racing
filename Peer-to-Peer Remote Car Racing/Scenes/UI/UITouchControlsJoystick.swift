@@ -36,8 +36,9 @@ class UITouchControlsJoystick : SceneRootNode {
     }
     
     func addDebugHUD(gameScene: BaseGameScene) {
-        let t = SKTexture(imageNamed: "default_button_up");
-        let btn = FTButtonNode(normalTexture: t, selectedTexture: t, disabledTexture: t);
+        let t = SKTexture(imageNamed: "blackButton");
+        let t2 = SKTexture(imageNamed: "blackButtonHighlighted")
+        let btn = FTButtonNode(normalTexture: t, selectedTexture: t2, disabledTexture: t);
         btn.setButtonLabel(title: "WIN", font: "Arial", fontSize: 26);
         btn.fontColor(color:.black);
         btn.position = pauseButton.position;

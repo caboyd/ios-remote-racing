@@ -7,16 +7,33 @@
 //
 
 import UIKit
+import SpriteKit
 
 class TrackSelectionViewController: UIViewController {
 
+    var track:String = "Track1";
+    @IBOutlet weak var trackImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        updateTrackImage();
     }
     
 
+    func updateTrackImage() {
+        if let scene = BaseGameScene(fileNamed: self.track) {
+            //.size = CGSize(width: 4000, height: 4000);
+            //scene.scaleMode = .aspectFill
+            if let view = self.view as! SKView? {
+                let texture = view.texture(from: scene);
+                let img = UIImage(cgImage: (texture?.cgImage())!);
+                trackImage.image = img;
+            }
+        }
+    }
     /*
     // MARK: - Navigation
 

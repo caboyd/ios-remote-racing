@@ -37,7 +37,7 @@ class BaseGameScene: SKScene {
     var summedLapTimes: TimeInterval = 0;
     var gameEnded = false;
     
-    private var landBackground:SKTileMapNode!
+    var landBackground:SKTileMapNode!
     private var track:SKTileMapNode!
     
     var hud: UIHUD!;
@@ -75,7 +75,7 @@ class BaseGameScene: SKScene {
         ])
     
     override func sceneDidLoad() {
-       
+      // setupRace();
     }
     
     override func didMove(to view: SKView) {
