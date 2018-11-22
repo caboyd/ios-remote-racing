@@ -51,7 +51,6 @@
 		ABD5FC6521A13DD700A0B155 /* GamePauseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6421A13DD700A0B155 /* GamePauseState.swift */; };
 		ABD5FC6721A13DE000A0B155 /* GameActiveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6621A13DE000A0B155 /* GameActiveState.swift */; };
 		ABD5FC6921A13DF500A0B155 /* GameCompletedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6821A13DF500A0B155 /* GameCompletedState.swift */; };
-		ABD5FC6B21A13E0000A0B155 /* GameSubmitScoreState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6A21A13E0000A0B155 /* GameSubmitScoreState.swift */; };
 		ABD5FC6D21A13E0F00A0B155 /* SceneOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6C21A13E0F00A0B155 /* SceneOverlay.swift */; };
 		ABD5FC6F21A13EAC00A0B155 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6E21A13EAC00A0B155 /* ButtonNode.swift */; };
 		ABD5FC7121A1409400A0B155 /* BaseGameScene+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC7021A1409400A0B155 /* BaseGameScene+Buttons.swift */; };
@@ -104,7 +103,6 @@
 		ABD5FC6421A13DD700A0B155 /* GamePauseState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePauseState.swift; sourceTree = "<group>"; };
 		ABD5FC6621A13DE000A0B155 /* GameActiveState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameActiveState.swift; sourceTree = "<group>"; };
 		ABD5FC6821A13DF500A0B155 /* GameCompletedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCompletedState.swift; sourceTree = "<group>"; };
-		ABD5FC6A21A13E0000A0B155 /* GameSubmitScoreState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSubmitScoreState.swift; sourceTree = "<group>"; };
 		ABD5FC6C21A13E0F00A0B155 /* SceneOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneOverlay.swift; sourceTree = "<group>"; };
 		ABD5FC6E21A13EAC00A0B155 /* ButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		ABD5FC7021A1409400A0B155 /* BaseGameScene+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseGameScene+Buttons.swift"; sourceTree = "<group>"; };
@@ -272,7 +270,6 @@
 		ABD5FC5E21A0F43200A0B155 /* GameStates */ = {
 			isa = PBXGroup;
 			children = (
-				ABD5FC6A21A13E0000A0B155 /* GameSubmitScoreState.swift */,
 				ABD5FC6821A13DF500A0B155 /* GameCompletedState.swift */,
 				ABD5FC6621A13DE000A0B155 /* GameActiveState.swift */,
 				ABD5FC6421A13DD700A0B155 /* GamePauseState.swift */,
@@ -386,7 +383,6 @@
 				AB5EF42321A4F7BA006E9489 /* SceneRootNode.swift in Sources */,
 				AB4E2E7A219FA50000383747 /* TrackSelectionViewController.swift in Sources */,
 				AB0EA9A421A2A91D005B5FCE /* FTButtonNode.swift in Sources */,
-				ABD5FC6B21A13E0000A0B155 /* GameSubmitScoreState.swift in Sources */,
 				AB4E2E6C219FA21200383747 /* Int+Extensions.swift in Sources */,
 				AB0EA9A221A2A015005B5FCE /* globals.swift in Sources */,
 				AB5EF42121A4C26F006E9489 /* UITouchControlsJoystick.swift in Sources */,

@@ -20,7 +20,7 @@ fileprivate var js: AnalogJoystick = {
 
 protocol InputControl {
     var velocity: CGPoint { get }
-    func disable();
+    var disabled:Bool { get set } ;
 }
 
 class JoystickInput: InputControl {
@@ -33,10 +33,14 @@ class JoystickInput: InputControl {
     
     init(analogJoystick : AnalogJoystick?){
         self.joystick = analogJoystick ?? js;
+        self.disabled = false;
     }
 
-    func disable(){
-        joystick.disabled = true;
+    var disabled: Bool  {
+        didSet {
+            joystick.disabled = disabled;
+        }
+
     }
 }
 

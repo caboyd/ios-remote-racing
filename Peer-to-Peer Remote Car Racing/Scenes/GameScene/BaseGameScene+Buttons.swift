@@ -22,16 +22,14 @@ extension BaseGameScene : ButtonNodeResponder {
         switch button.buttonIdentifier! {
         case .resume:
             stateMachine.enter(GameActiveState.self)
-        case .cancel:
-            gameSceneDelegate?.quit();
-        case .replay:
+        case .quit:
+            gameSceneDelegate?.quitToMenu();
+        case .restart:
             stateMachine.enter(GameActiveState.self);
         case .pause:
             stateMachine.enter(GamePauseState.self);
-        case .gas:
-            print("gas");
-        case .reverse:
-            print("reverse");
+        case .selectTrack:
+            gameSceneDelegate?.quitToTrackSelection();
         }
     }
 }

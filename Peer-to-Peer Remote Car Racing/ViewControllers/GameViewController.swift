@@ -30,8 +30,7 @@ class GameViewController: UIViewController {
             
             // Set the scale mode to scale to fit the window
             //scene.scaleMode = .aspectFill
-            scene.size = scene.trackSize;
-            print(scene.size);
+            //scene.size = scene.trackSize;
             
             // Present the scene
             if let view = self.view as! SKView? {
@@ -83,10 +82,14 @@ extension GameViewController: BaseGameSceneProtocol {
         controller.didMove(toParent: self);
     }
     
-    func quit() {
+    func quitToMenu() {
         _ = navigationController?.popToRootViewController(animated: false)
         //TODO: Close network session
         // send message to close
+    }
+    
+    func quitToTrackSelection() {
+        _ = navigationController?.popViewController(animated: true)
     }
 }
 

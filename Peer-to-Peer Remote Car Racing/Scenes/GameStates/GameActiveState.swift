@@ -42,12 +42,11 @@ class GameActiveState: GKState {
     self.gameScene = gameScene
     super.init()
     
-    initializeGame()
-  }
+    restartLevel()  }
   
   override func isValidNextState(_ stateClass: AnyClass) -> Bool {
     switch stateClass {
-      case is GamePauseState.Type, is GameCompletedState.Type, is GameSubmitScoreState.Type:
+      case is GamePauseState.Type, is GameCompletedState.Type:
         return true
       default:
         return false
@@ -57,21 +56,25 @@ class GameActiveState: GKState {
   override func didEnter(from previousState: GKState?) {
     super.didEnter(from: previousState)
 
+    var pauseTime = 3.0;
     if previousState is GameCompletedState {
       restartLevel()
     }
+    if previousState is GamePauseState {
+        pauseTime -= 1.5;
+    }
+    
+    gameScene.isSoftPaused = true;
+    let wait = SKAction.wait(forDuration: pauseTime);
+    let unpause = SKAction.run { self.gameScene.isSoftPaused = false }
+    gameScene.cam.run(SKAction.sequence([wait, unpause]));
   }
  
   
   override func update(deltaTime dt: TimeInterval) {
     super.update(deltaTime: dt)
     
-    if previousTimeInterval == 0 {
-      previousTimeInterval = dt
-    }
-
     if gameScene.isPaused {
-      previousTimeInterval = dt
       return
     }
 
@@ -85,19 +88,22 @@ class GameActiveState: GKState {
     updateLabels();
   }
   
-  // MARK: Private methods
-  private func initializeGame() {
-    updateLabels()
-  
-  }
-  
+ 
   private func restartLevel() {
-    let player = gameScene.player!;
-    player.position = gameScene.startPosition;
-    player.resetPhysicsForcesAndVelocity();
-    
+    previousTimeInterval = 0;
+    gameScene.lastUpdateTime = 0;
     gameScene.lastWaypoint = 0;
     gameScene.lap = 1;
+    gameScene.gameEnded = false;
+    gameScene.summedLapTimes = 0;
+    gameScene.totalTime = 0;
+    gameScene.player?.removeFromParent();
+    gameScene.player = Player(position: gameScene.startPosition);
+    gameScene.addChild(gameScene.player!);
+    gameScene.cam.position = gameScene.player.position;
+    gameScene.cam.zRotation = gameScene.player.zRotation;
+    gameScene.hud.bestLapNode.isHidden = true;
+    gameScene.inputControl.disabled = false;
     
     updateLabels()
   }

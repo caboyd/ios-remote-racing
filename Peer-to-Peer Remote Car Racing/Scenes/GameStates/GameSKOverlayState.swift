@@ -42,7 +42,7 @@ unowned let gameScene: BaseGameScene;
     self.gameScene = gameScene
     super.init()
     
-    overlay = SceneOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 3)
+    overlay = SceneOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 5)
     
     ButtonNode.parseButtonInNode(containerNode: overlay.contentNode)
   }

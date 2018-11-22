@@ -41,6 +41,7 @@ class GamePauseState: GameSKOverlayState {
     super.didEnter(from: previousState)
     
     gameScene.isPaused = true
+    gameScene.lastUpdateTime = 0;
   }
   
   override func isValidNextState(_ stateClass: AnyClass) -> Bool {
@@ -51,5 +52,6 @@ class GamePauseState: GameSKOverlayState {
     super.willExit(to: nextState)
     
     gameScene.isPaused = false
+
   }
 }

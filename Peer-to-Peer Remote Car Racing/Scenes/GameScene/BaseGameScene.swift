@@ -12,15 +12,16 @@ import GameplayKit
 @objc
 protocol BaseGameSceneProtocol : class {
     func presentSubmitScoreSubview(gameScene: BaseGameScene);
-    func quit();
+    func quitToMenu();
+    func quitToTrackSelection();
 }
 
 class BaseGameScene: SKScene {
     
     weak var gameSceneDelegate : BaseGameSceneProtocol?
     
-    private var lastUpdateTime : TimeInterval = 0
-    
+    var lastUpdateTime : TimeInterval = 0
+    var isSoftPaused : Bool = false;
     public var joystickEnabled = false;
     var debugMode = false;
     
@@ -71,7 +72,7 @@ class BaseGameScene: SKScene {
     lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
         GameActiveState(gameScene: self),
         GamePauseState(gameScene: self),
-        //GameFailureState(gameScene: self),
+        GameCompletedState(gameScene: self),
         //GameSuccessState(gameScene: self)
         ])
     
@@ -86,7 +87,6 @@ class BaseGameScene: SKScene {
         super.didMove(to: view);
         physicsWorld.contactDelegate = self;
         
-        resetRace();
         setupHUD();
 
         stateMachine.enter(GameActiveState.self);
@@ -139,19 +139,9 @@ class BaseGameScene: SKScene {
         
     }
     
-    func resetRace() {
-        lap = 1;
-        lastWaypoint = 0;
-        gameEnded = false;
-        summedLapTimes = 0;
-        totalTime = 0;
-        player?.removeFromParent();
-        player = Player(position: startPosition);
-        self.addChild(player!);
-        cam.position = player.position;
-    }
-    
+
     func setupHUD(){
+        cam.removeAllChildren();
         hud = UIHUD();
         cam.addChild(hud);
         
@@ -167,7 +157,7 @@ class BaseGameScene: SKScene {
     }
     
     func displayLapLabel() {
-        cam.childNode(withName: "laps")?.removeFromParent();
+        //cam.childNode(withName: "laps")?.removeFromParent();
         let lap = totalLaps != 1 ? "Laps" : "Lap";
         let label = SKLabelNode(text: "\(totalLaps) \(lap)")
         label.name = "laps"
@@ -203,7 +193,7 @@ class BaseGameScene: SKScene {
         let dt = currentTime - self.lastUpdateTime
         self.lastUpdateTime = currentTime
 
-        if isPaused {
+        if isSoftPaused {
             return;
         }
         
@@ -237,8 +227,9 @@ class BaseGameScene: SKScene {
     
     @objc func win(){
         gameEnded = true;
-        inputControl.disable();
+        inputControl.disabled = true;
         gameSceneDelegate?.presentSubmitScoreSubview(gameScene: self);
+        stateMachine.enter(GameCompletedState.self);
     }
     
     func previousWaypoint(_ index:Int) -> Int {
@@ -247,6 +238,14 @@ class BaseGameScene: SKScene {
             result = waypoints - 1;
         }
         return result;
+    }
+    
+    func getThumbnail() -> UIImage {
+        let scale =  self.trackSize.width / self.size.width;
+        cam.setScale(scale);
+        self.displayLapLabel();
+        let texture = SKView().texture(from: self);
+        return UIImage(cgImage: (texture?.cgImage())!);
     }
     
 }
@@ -270,7 +269,10 @@ extension BaseGameScene: SKPhysicsContactDelegate{
                         hud.bestLapTimeLabel.text = stringFromTimeInterval(interval: totalTime - summedLapTimes) as String;
                         summedLapTimes = totalTime;
                         
-                        win();
+                        if(lap > totalLaps) {
+                             win();
+                        }
+                       
                     }
                 }
                 break;

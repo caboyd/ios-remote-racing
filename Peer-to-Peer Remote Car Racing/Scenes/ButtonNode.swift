@@ -36,13 +36,12 @@ protocol ButtonNodeResponder {
 
 enum ButtonIdentifier: String {
   case resume = "resume"
-  case cancel = "cancel"
-  case replay = "replay"
+  case quit = "quit"
+  case restart = "restart"
   case pause  = "pause"
-  case gas    = "gas"
-  case reverse = "reverse"
+  case selectTrack = "selectTrack"
   
-  static let allIdentifiers: [ButtonIdentifier] = [.resume, .cancel, .replay, .pause, .gas, .reverse]
+  static let allIdentifiers: [ButtonIdentifier] = [.resume, .quit, .restart, .pause, .selectTrack]
   
   var selectedTextureName: String? {
     switch self {

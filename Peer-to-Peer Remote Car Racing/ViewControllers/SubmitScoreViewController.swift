@@ -33,4 +33,12 @@ class SubmitScoreViewController: UIViewController {
         view.removeFromSuperview();
         self.removeFromParent()
     }
+    
+    static func saveBestScoreLocally(trackName: String, score : TimeInterval) {
+        UserDefaults.standard.set(score, forKey: trackName)
+    }
+    
+    static func loadBestScoreLocally(trackName : String) -> TimeInterval? {
+        return UserDefaults.standard.double(forKey: trackName);
+    }
 }

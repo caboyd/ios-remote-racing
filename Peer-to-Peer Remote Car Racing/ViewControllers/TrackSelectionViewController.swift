@@ -13,36 +13,29 @@ class TrackSelectionViewController: UIViewController {
 
     var track:String = "Track1";
     @IBOutlet weak var trackImage: UIImageView!
+    @IBOutlet weak var carImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        trackImage.layer.cornerRadius = 10;
+        trackImage.layer.borderColor = UIColor.gray.cgColor;
+        trackImage.layer.borderWidth = 3;
+        
+        carImage.layer.cornerRadius = 10;
+        carImage.layer.borderColor = UIColor.gray.cgColor;
+        carImage.layer.borderWidth = 3;
         
         updateTrackImage();
     }
     
 
     func updateTrackImage() {
-        if let scene = BaseGameScene(fileNamed: self.track) {
-          
-            let scale =  scene.trackSize.width / scene.size.width;
-            scene.camera?.setScale(scale);
-            print(scale);
-            scene.displayLapLabel();
-            
-            if let view = self.view as! SKView? {
-                let texture = view.texture(from: scene);
-            
-                let img = UIImage(cgImage: (texture?.cgImage())!);
-                trackImage.contentMode = .scaleAspectFill
-                print(trackImage.frame.size);
-                trackImage.image = img;
-                print(trackImage.frame.size);
-                
-            }
-        }
+        trackImage.image = UIImage(named: track.lowercased());
     }
+    
+    
     /*
     // MARK: - Navigation
 

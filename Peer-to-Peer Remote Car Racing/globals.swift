@@ -17,4 +17,4 @@ var displaySize: CGRect = UIScreen.main.bounds {
 };
 var displayAspect = displaySize.width / displaySize.height;
 
-var  systemYellowColor = UIColor(red: 255, green: 204, blue: 0, alpha: 1);
+var  systemYellowColor = UIColor(red:255 / 255, green: 204 / 255, blue: 0, alpha: 1);
