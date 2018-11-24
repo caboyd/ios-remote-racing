@@ -25,12 +25,13 @@ enum MessageType : UInt8 {
     case TRACK_NEXT
     case TRACK_PREV
     case LAP_FINISHED
+    case DEBUG_WIN
     
     //messages with data
-    //one CGVector
+    //one CGPoint
     case INPUT_CONTROL
     
-    //two CGVector
+    //two CGPoint
     case CAR_DATA
     
     //one Double for time
@@ -57,6 +58,12 @@ enum MessageType : UInt8 {
 
 class MessageBase {
     var type : MessageType;
+    
+    var description: String {
+        get {
+            return String(describing: type);
+        }
+    }
     
     init(type: MessageType) {
         self.type = type;

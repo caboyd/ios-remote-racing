@@ -28,7 +28,11 @@ class DeviceSelectionViewController: UIViewController, NetServiceDelegate {
         networkService = hns;
         hns.delegate = self;
         
-        alert = UIAlertController(title: "Waiting for Controller", message: "Please use another device and connect as controller.", preferredStyle: .alert)
+        alert = UIAlertController(title: "Waiting for Controller", message: "Please use another device and connect as controller.", preferredStyle: .alert);
+        alert!.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            hns.serviceAdvertiser.stopAdvertisingPeer();
+            hns.send(messageType: .DISCONNECT);
+        }))
         self.present(alert!, animated:true, completion: nil);
     }
     
@@ -59,11 +63,18 @@ extension DeviceSelectionViewController: NetworkServiceDelegate {
         case .CONNECTED:
             alert?.dismiss(animated: true, completion: nil);
             if let trackSelectionViewController = storyboard?.instantiateViewController(withIdentifier: "TrackSelectionViewController") as? TrackSelectionViewController {
-                trackSelectionViewController.isDisplayDevice = true;
+                trackSelectionViewController.gameMode = .DISPLAY;
                 trackSelectionViewController.networkService = networkService;
                 networkService?.delegate = trackSelectionViewController;
                 navigationController?.pushViewController(trackSelectionViewController, animated: true);
                 
+            }
+        case .DISCONNECT:
+            if let ns = networkService as? HostNetworkService {
+                ns.serviceAdvertiser.startAdvertisingPeer();
+            }
+            if ((networkService as? ControllerNetworkService) != nil) {
+                //Do nothing
             }
         default:
             fatalError("Unexpected Network Message \(message.type)")
@@ -76,6 +87,7 @@ extension DeviceSelectionViewController : MCBrowserViewControllerDelegate {
         dismiss(animated: true, completion: nil);
         networkService?.send(messageType: .CONNECTED);
         if let trackSelectionViewController = storyboard?.instantiateViewController(withIdentifier: "TrackSelectionViewController") as? TrackSelectionViewController {
+            trackSelectionViewController.gameMode = .CONTROLLER;
             trackSelectionViewController.networkService = networkService;
             networkService?.delegate = trackSelectionViewController;
             navigationController?.pushViewController(trackSelectionViewController, animated: true)

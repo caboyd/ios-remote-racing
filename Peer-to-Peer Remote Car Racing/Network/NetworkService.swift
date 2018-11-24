@@ -65,24 +65,34 @@ class NetworkService : NSObject {
     }
 }
 
+
+
 extension NetworkService : MCSessionDelegate {
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        os_log("peer %@ didChangeState: %s", log: networkLog, type: .debug, peerID, String(describing: state));
+        os_log("peer %@ didChangeState: %s", log: networkLog, type: .debug, peerID, state.string());
         
         DispatchQueue.main.async {
             if state == .notConnected {
                 self.delegate?.handleMessage(message: MessageBase(type: .DISCONNECT));
             }
         }
-       
-   
+
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        os_log("didReceiveData", log: networkLog, type: .debug);
+        let message = MessageFactory.decode(data: data);
+        
+        os_log("didReceiveData: %@", log: networkLog, type: .debug, message.description);
+        
+        
+        if  message.type == .DISCONNECT {
+            session.disconnect();
+        }
+        
+        
         DispatchQueue.main.async {
-            let message = MessageFactory.decode(data: data);
+            
             self.delegate?.handleMessage(message: message);
         }
         
@@ -101,3 +111,12 @@ extension NetworkService : MCSessionDelegate {
     }
 }
 
+extension MCSessionState {
+    func string() -> String {
+        switch self {
+        case .connected: return "connected"
+        case .connecting: return "connecting"
+        case .notConnected: return "notConnected"
+        }
+    }
+}

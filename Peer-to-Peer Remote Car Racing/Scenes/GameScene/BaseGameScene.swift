@@ -16,6 +16,12 @@ protocol BaseGameSceneProtocol : class {
     func quitToTrackSelection();
 }
 
+enum GameMode: Int {
+    case SOLO
+    case CONTROLLER
+    case DISPLAY
+}
+
 class BaseGameScene: SKScene {
     
     weak var gameSceneDelegate : BaseGameSceneProtocol?

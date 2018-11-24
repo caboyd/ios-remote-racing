@@ -11,9 +11,12 @@ import SpriteKit
 
 class TrackSelectionViewController: UIViewController {
 
+    weak var networkService: NetworkService?;
+    
     var trackID: Int = TrackID.MIN
     var carID: Int = CarID.MIN;
-    var carColor : CarColor = .black;
+    var carColor: CarColor = .black;
+    var gameMode: GameMode = .SOLO;
     @IBOutlet weak var trackImage: UIImageView!
     @IBOutlet weak var carImageParentView: UIView!
     @IBOutlet weak var carImage: UIImageView!
@@ -24,13 +27,11 @@ class TrackSelectionViewController: UIViewController {
     @IBOutlet weak var prevTrackButton: UIButton!
     @IBOutlet weak var nextTrackButton: UIButton!
     @IBOutlet weak var changeColorButton: UIButton!
-    var isDisplayDevice:Bool = false;
-    weak var networkService: NetworkService?;
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Grey rounded border for views
         trackImage.layer.cornerRadius = 10;
         trackImage.layer.borderColor = UIColor.gray.cgColor;
         trackImage.layer.borderWidth = 3;
@@ -42,7 +43,7 @@ class TrackSelectionViewController: UIViewController {
         updateTrackImage();
         updateCarImage();
         
-        if isDisplayDevice {
+        if gameMode == .DISPLAY {
             hideButtons();
         }
     }
@@ -58,7 +59,6 @@ class TrackSelectionViewController: UIViewController {
     }
     func updateTrackImage() {
         trackImage.image = UIImage(named: TrackID.toString(trackID).lowercased());
-    
     }
     
     func updateCarImage() {
@@ -66,77 +66,72 @@ class TrackSelectionViewController: UIViewController {
         carImage.image = UIImage(named: imageName);
     }
     
-    func startSolo() {
-    
-    }
-    
-    func startDisplay(){
-    
-    }
-    
-    func startController(){
-    
-    }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     @IBAction func nextTrack(_ sender: UIButton?) {
         nextTrack();
         networkService?.send(messageType:  .TRACK_NEXT)
     }
+    
     func nextTrack() {
         trackID = TrackID.getNextID(trackID);
         updateTrackImage();
     }
+    
     @IBAction func prevTrack(_ sender: UIButton?) {
         prevTrack();
         networkService?.send(messageType: .TRACK_PREV)
     }
+    
     func prevTrack() {
-        
+        trackID = TrackID.getPreviousID(trackID);
+        updateTrackImage();
     }
+    
     @IBAction func nextCar(_ sender: UIButton?) {
         nextCar();
         networkService?.send(messageType: .CAR_NEXT)
     }
+    
     func nextCar(){
         carID = CarID.getNextID(carID);
         updateCarImage();
     }
+    
     @IBAction func prevCar(_ sender: UIButton?) {
         prevCar();
         networkService?.send(messageType: .CAR_PREV)
     }
+    
     func prevCar() {
         carID = CarID.getPreviousID(carID);
         updateCarImage();
     }
+    
     @IBAction func nextCarColor(_ sender: UIButton?) {
         nextCarColor();
         networkService?.send(messageType: .CAR_COLOR)
     }
+    
     func nextCarColor() {
         carColor.next();
         updateCarImage();
     }
+    
     @IBAction func start(_ sender: UIButton) {
         networkService?.send(messageType: .NAV_START_RACE);
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
+        start();
+    }
+    
+    func start() {
         if let gameViewController = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController {
-            
+            gameViewController.gameMode = gameMode;
             gameViewController.carType = getCarTextureName(id: carID, color: carColor);
             gameViewController.track = TrackID.toString(trackID);
-            
             navigationController?.pushViewController(gameViewController, animated: true)
         }
-        
     }
+    
     @IBAction func backButton(_ sender: UIButton) {
         _ = navigationController?.popViewController(animated: true)
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
@@ -160,7 +155,7 @@ extension TrackSelectionViewController: NetworkServiceDelegate {
         case .CAR_COLOR:
             nextCarColor();
         case .NAV_START_RACE:
-            startDisplay();
+            start();
         case .DISCONNECT:
             _ = navigationController?.popViewController(animated: true)
         default:

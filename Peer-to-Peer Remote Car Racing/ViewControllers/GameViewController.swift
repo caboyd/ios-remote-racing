@@ -15,6 +15,7 @@ class GameViewController: UIViewController {
     var carType:String = "";
     var track:String = "Track1";
     var scene : BaseGameScene?;
+    var gameMode : GameMode = .SOLO;
     
     override func viewDidLoad() {
         super.viewDidLoad()
