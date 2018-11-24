@@ -18,6 +18,15 @@ class TrackSelectionViewController: UIViewController {
     @IBOutlet weak var carImageParentView: UIView!
     @IBOutlet weak var carImage: UIImageView!
     
+    @IBOutlet weak var startRaceButton: UIButton!
+    @IBOutlet weak var prevCarButton: UIButton!
+    @IBOutlet weak var nextCarButton: UIButton!
+    @IBOutlet weak var prevTrackButton: UIButton!
+    @IBOutlet weak var nextTrackButton: UIButton!
+    @IBOutlet weak var changeColorButton: UIButton!
+    var isDisplayDevice:Bool = false;
+    weak var networkService: NetworkService?;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,16 +41,41 @@ class TrackSelectionViewController: UIViewController {
         
         updateTrackImage();
         updateCarImage();
+        
+        if isDisplayDevice {
+            hideButtons();
+        }
     }
     
 
+    func hideButtons() {
+        changeColorButton.isHidden = true;
+        startRaceButton.isHidden = true;
+        prevCarButton.isHidden = true;
+        nextCarButton.isHidden = true;
+        prevTrackButton.isHidden = true;
+        nextTrackButton.isHidden = true;
+    }
     func updateTrackImage() {
         trackImage.image = UIImage(named: TrackID.toString(trackID).lowercased());
+    
     }
     
     func updateCarImage() {
         let imageName = getCarTextureName(id: carID, color: carColor);
         carImage.image = UIImage(named: imageName);
+    }
+    
+    func startSolo() {
+    
+    }
+    
+    func startDisplay(){
+    
+    }
+    
+    func startController(){
+    
     }
     /*
     // MARK: - Navigation
@@ -52,29 +86,47 @@ class TrackSelectionViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func nextTrack(_ sender: UIButton) {
+    @IBAction func nextTrack(_ sender: UIButton?) {
+        nextTrack();
+        networkService?.send(messageType:  .TRACK_NEXT)
+    }
+    func nextTrack() {
         trackID = TrackID.getNextID(trackID);
         updateTrackImage();
     }
-    @IBAction func prevTrack(_ sender: UIButton) {
-        trackID = TrackID.getPreviousID(trackID);
-        updateTrackImage();
+    @IBAction func prevTrack(_ sender: UIButton?) {
+        prevTrack();
+        networkService?.send(messageType: .TRACK_PREV)
     }
-    @IBAction func nextCar(_ sender: UIButton) {
+    func prevTrack() {
+        
+    }
+    @IBAction func nextCar(_ sender: UIButton?) {
+        nextCar();
+        networkService?.send(messageType: .CAR_NEXT)
+    }
+    func nextCar(){
         carID = CarID.getNextID(carID);
         updateCarImage();
     }
-    @IBAction func prevCar(_ sender: UIButton) {
+    @IBAction func prevCar(_ sender: UIButton?) {
+        prevCar();
+        networkService?.send(messageType: .CAR_PREV)
+    }
+    func prevCar() {
         carID = CarID.getPreviousID(carID);
         updateCarImage();
     }
-    
-    @IBAction func nextCarColor(_ sender: UIButton) {
+    @IBAction func nextCarColor(_ sender: UIButton?) {
+        nextCarColor();
+        networkService?.send(messageType: .CAR_COLOR)
+    }
+    func nextCarColor() {
         carColor.next();
         updateCarImage();
     }
-    
     @IBAction func start(_ sender: UIButton) {
+        networkService?.send(messageType: .NAV_START_RACE);
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
         if let gameViewController = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController {
             
@@ -83,9 +135,36 @@ class TrackSelectionViewController: UIViewController {
             
             navigationController?.pushViewController(gameViewController, animated: true)
         }
+        
     }
     @IBAction func backButton(_ sender: UIButton) {
         _ = navigationController?.popViewController(animated: true)
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
+        networkService?.send(messageType: .DISCONNECT);
+    }
+}
+
+
+extension TrackSelectionViewController: NetworkServiceDelegate {
+    func handleMessage(message: MessageBase) {
+        
+        switch message.type {
+        case .CAR_NEXT:
+            nextCar();
+        case .CAR_PREV:
+            prevCar();
+        case .TRACK_NEXT:
+            nextTrack();
+        case .TRACK_PREV:
+            prevTrack();
+        case .CAR_COLOR:
+            nextCarColor();
+        case .NAV_START_RACE:
+            startDisplay();
+        case .DISCONNECT:
+            _ = navigationController?.popViewController(animated: true)
+        default:
+            fatalError("Unexpected Network Message \(message.type)")
+        }
     }
 }

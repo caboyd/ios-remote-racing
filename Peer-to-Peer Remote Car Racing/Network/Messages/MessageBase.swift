@@ -11,6 +11,7 @@ import CoreGraphics
 
 enum MessageType : UInt8 {
     //simple 1 byte messages
+    case CONNECTED
     case DISCONNECT
     case NAV_START_RACE
     case NAV_TRACK_SELECT

@@ -35,7 +35,7 @@ extension HostNetworkService : MCNearbyServiceAdvertiserDelegate {
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         os_log("didReceiveInvitationFromPeer %@", log: networkLog, type: .debug, peerID);
-        
+        serviceAdvertiser.stopAdvertisingPeer();
         invitationHandler(true, self.session);
     }
     

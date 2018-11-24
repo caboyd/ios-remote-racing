@@ -69,14 +69,23 @@ extension NetworkService : MCSessionDelegate {
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         os_log("peer %@ didChangeState: %s", log: networkLog, type: .debug, peerID, String(describing: state));
+        
+        DispatchQueue.main.async {
+            if state == .notConnected {
+                self.delegate?.handleMessage(message: MessageBase(type: .DISCONNECT));
+            }
+        }
+       
    
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         os_log("didReceiveData", log: networkLog, type: .debug);
+        DispatchQueue.main.async {
+            let message = MessageFactory.decode(data: data);
+            self.delegate?.handleMessage(message: message);
+        }
         
-        let message = MessageFactory.decode(data: data);
-        delegate?.handleMessage(message: message);
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
