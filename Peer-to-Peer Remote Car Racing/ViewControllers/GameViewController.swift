@@ -19,25 +19,22 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
-        // including entities and graphs.
+        //Load the track scene
         if let scene = BaseGameScene(fileNamed: self.track) {
             self.scene = scene;
-            // Copy gameplay related content over to the scene
+            
+            //setup the scene
+            scene.name = self.track;
             scene.joystickEnabled = true;
             scene.debugMode = true;
             scene.gameSceneDelegate = self;
             
-            // Set the scale mode to scale to fit the window
-            //scene.scaleMode = .aspectFill
-            //scene.size = scene.trackSize;
-            
             // Present the scene
             if let view = self.view as! SKView? {
                 view.presentScene(scene)
-                
                 view.ignoresSiblingOrder = true
                 
+                //Debug stuff
                 view.showsFPS = true
                 view.showsNodeCount = true
                 //view.showsPhysics = true;
@@ -76,6 +73,7 @@ extension GameViewController: BaseGameSceneProtocol {
         let controller = storyboard!.instantiateViewController(withIdentifier: "SubmitScoreViewController") as! SubmitScoreViewController;
         
         controller.time = gameScene.totalTime;
+        controller.trackName = self.track;
         
         self.addChild(controller);
         view.addSubview(controller.view);

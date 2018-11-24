@@ -47,7 +47,7 @@ class UITouchControlsJoystick : SceneRootNode {
         btn.size = pauseButton.size;
         btn.label.zPosition = 1;
         btn.name = "debug_finish";
-        btn.setButtonAction(target: gameScene, triggerEvent: .TouchUpInside, action: #selector(BaseGameScene.win));
+        btn.setButtonAction(target: gameScene, triggerEvent: .TouchUpInside, action: #selector(BaseGameScene.cheatWin));
         top.addChild(btn);
         
     }

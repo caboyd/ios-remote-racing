@@ -225,10 +225,30 @@ class BaseGameScene: SKScene {
         stateMachine.enter(GamePauseState.self);
     }
     
+    @objc func cheatWin() {
+        if var bestTime = SubmitScoreViewController.loadBestScoreLocally(trackName: name!){
+            if bestTime == 0 {
+                bestTime = 120;
+                SubmitScoreViewController.saveBestScoreLocally(trackName: name!, score: bestTime);
+            }
+            totalTime = bestTime * 0.999;
+        }
+        win();
+    }
+    
     @objc func win(){
         gameEnded = true;
         inputControl.disabled = true;
-        gameSceneDelegate?.presentSubmitScoreSubview(gameScene: self);
+        
+        //If new score is better then present the submit score view
+        if let bestTime = SubmitScoreViewController.loadBestScoreLocally(trackName: name!){
+            if Double(totalTime) < bestTime {
+                gameSceneDelegate?.presentSubmitScoreSubview(gameScene: self);
+            }
+        } else {
+            gameSceneDelegate?.presentSubmitScoreSubview(gameScene: self);
+        }
+
         stateMachine.enter(GameCompletedState.self);
     }
     
