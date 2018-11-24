@@ -19,15 +19,29 @@ class Player : SKSpriteNode {
     static let ACCEL_BACKWARD = 1700.0 ;
     static let TURN = 0.3;
    
-    
-    init(position: CGPoint, carTextureName: String) {
+    init(position: CGPoint, carTextureName: String, gameMode: GameMode) {
         self.velocity = CGVector(dx: 0,dy: 0);
         self.accel = CGVector(dx: 0,dy: 0);
-        let texture = SKTexture(imageNamed: carTextureName);
+        var texture = SKTexture(imageNamed: carTextureName);
+        if gameMode == .CONTROLLER {
+            let path = UIBezierPath();
+            path.move(to: CGPoint(x: 0, y: 90))
+            path.addLine(to: CGPoint(x: -70, y: -90));
+            path.addLine(to: CGPoint(x: 70, y: -90));
+            path.addLine(to: CGPoint(x: 0, y: 90));
+            let triangle = SKShapeNode(path: path.cgPath);
+            triangle.fillColor = systemYellowColor;
+            texture = SKView().texture(from: triangle)!;
+        }
+        
         super.init(texture: texture, color: UIColor.clear, size: texture.size());
         self.position = position;
+        self.zPosition = 1;
         
-        physicsBody = SKPhysicsBody(texture: texture, size: texture.size());
+        if gameMode != .CONTROLLER {
+            physicsBody = SKPhysicsBody(texture: texture, size: texture.size());
+        }
+        
         if let physics = physicsBody {
             physics.affectedByGravity = false;
             physics.allowsRotation = true;
@@ -39,16 +53,15 @@ class Player : SKSpriteNode {
             physics.mass = 1;
             //physics.density = 1;
         }
-
-       
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(_ delta_time: TimeInterval){
-        
+    func setPositionRotation(_ position: CGPoint, _ angle: CGFloat) {
+        self.position = position;
+        self.zRotation = angle;
     }
     
     func accelForward(_ delta_time: TimeInterval){

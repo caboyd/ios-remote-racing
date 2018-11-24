@@ -12,6 +12,11 @@ import CoreGraphics
 class InputControlMessage : MessageBase {
     var velocity: CGPoint
     
+    override var description : String {
+        get {
+            return "\(String(describing: type)) - velocity:\(velocity)"
+        }
+    }
     required init(velocity: CGPoint) {
         self.velocity = velocity;
         super.init(type: .INPUT_CONTROL);

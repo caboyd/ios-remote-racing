@@ -11,6 +11,12 @@ import Foundation
 class RaceFinishedMessage : MessageBase {
     var time: Double
     
+    override var description : String {
+        get {
+            return "\(String(describing: type)) - time: \(time)"
+        }
+    }
+    
     required init(time: Double) {
         self.time = time;
         super.init(type: .RACE_FINISHED)

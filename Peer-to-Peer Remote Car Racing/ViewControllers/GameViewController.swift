@@ -16,6 +16,7 @@ class GameViewController: UIViewController {
     var track:String = "Track1";
     var scene : BaseGameScene?;
     var gameMode : GameMode = .SOLO;
+    weak var networkService: NetworkService?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,10 @@ class GameViewController: UIViewController {
             scene.carType = carType;
             scene.joystickEnabled = true;
             scene.debugMode = true;
+            scene.gameMode = gameMode;
             scene.gameSceneDelegate = self;
+            scene.networkService = networkService;
+            networkService?.delegate = scene;
             
             // Present the scene
             if let view = self.view as! SKView? {
@@ -85,8 +89,6 @@ extension GameViewController: BaseGameSceneProtocol {
     
     func quitToMenu() {
         _ = navigationController?.popToRootViewController(animated: false)
-        //TODO: Close network session
-        // send message to close
     }
     
     func quitToTrackSelection() {

@@ -42,11 +42,26 @@ class NetworkService : NSObject {
     }
     
     func sendInputControl(inputControl: InputControl) {
-        send(data: InputControlMessage(inputControl: inputControl).toData(), with: .unreliable)
+        struct LastSent {
+            static var velocity: CGPoint = CGPoint(x:0, y: 0);
+        }
+        if inputControl.velocity != LastSent.velocity {
+            send(data: InputControlMessage(inputControl: inputControl).toData(), with: .unreliable)
+        }
+        LastSent.velocity = inputControl.velocity;
     }
     
-    func sendCarData(position: CGPoint, direction: CGPoint) {
-        send(data: CarDataMessage(position: position, direction: direction).toData());
+    func sendCarData(position: CGPoint, angle: CGFloat) {
+        struct LastSent {
+            static var position = CGPoint(x:0, y: 0);
+            static var angle = CGFloat(0);
+        }
+
+        if position != LastSent.position || angle != LastSent.angle {
+           send(data: CarDataMessage(position: position, angle: angle).toData());
+        }
+        LastSent.position = position;
+        LastSent.angle = angle;
     }
     
     func sendRaceFinished(time: Double) {

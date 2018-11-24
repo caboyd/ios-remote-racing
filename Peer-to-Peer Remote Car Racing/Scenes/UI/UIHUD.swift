@@ -17,6 +17,8 @@ class UIHUD : SceneRootNode {
     var bestLapNode:SKNode!;
     var speedLabel:SKLabelNode!;
   
+    var timersNode: SKNode!;
+    var speedNode: SKNode!;
     init() {
         super.init(fileNamed: "UIHUD")!;
         
@@ -27,6 +29,9 @@ class UIHUD : SceneRootNode {
         bestLapTimeLabel = (self.childNode(withName: "//bestLapLabel") as! SKLabelNode);
         bestLapNode.isHidden = true;
         speedLabel = (self.childNode(withName: "//speedLabel") as! SKLabelNode);
+        
+        timersNode = (self.childNode(withName: "//timers"));
+        speedNode = (self.childNode(withName: "//speed"));
     }
     
     required init?(coder aDecoder: NSCoder) {

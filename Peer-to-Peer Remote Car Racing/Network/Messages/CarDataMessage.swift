@@ -11,11 +11,17 @@ import CoreGraphics
 
 class CarDataMessage : MessageBase {
     var position: CGPoint
-    var direction: CGPoint
+    var angle: CGFloat
     
-    required init(position: CGPoint, direction: CGPoint) {
+    override var description : String {
+        get {
+            return "\(String(describing: type)) - position: \(position), angle: \(angle)"
+        }
+    }
+    
+    required init(position: CGPoint, angle: CGFloat) {
         self.position = position;
-        self.direction = direction;
+        self.angle = angle;
         super.init(type: .CAR_DATA);
         
     }
@@ -23,22 +29,19 @@ class CarDataMessage : MessageBase {
     static func from(data _data: Data) -> Self {
         let firstByte = _data[0];
         assert(MessageType(rawValue: firstByte) == .CAR_DATA);
-        var data = _data.dropFirst();
-        
-        guard let pos =  CGPoint(data: data.prefix(upTo: 16)) else {
+        let d1 = _data[1..<17];
+        let d2 = _data[17..<25];
+        guard let pos =  CGPoint(data: d1) else {
             fatalError("Bad data \(CarDataMessage.self)")
         };
-        data.removeSubrange(0..<16);
-        guard let dir = CGPoint(data: data.prefix(upTo: 16)) else {
-            fatalError("Bad data \(CarDataMessage.self)")
-        };
+        let angle = d2.to(type: CGFloat.self);
         
-        return self.init(position: pos, direction: dir);
+        return self.init(position: pos, angle: angle);
     }
     
     override func toData() -> Data {
         var data = position.data;
-        data.append(direction.data);
+        data.append(Data(from: angle));
         data.insert(type.rawValue, at: 0);
         return data;
     }

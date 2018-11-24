@@ -128,6 +128,7 @@ class TrackSelectionViewController: UIViewController {
             gameViewController.gameMode = gameMode;
             gameViewController.carType = getCarTextureName(id: carID, color: carColor);
             gameViewController.track = TrackID.toString(trackID);
+            gameViewController.networkService = networkService;
             navigationController?.pushViewController(gameViewController, animated: true)
         }
     }

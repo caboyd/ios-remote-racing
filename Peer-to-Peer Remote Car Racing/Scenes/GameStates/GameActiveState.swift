@@ -28,6 +28,14 @@
  * THE SOFTWARE.
  */
 
+//
+//  GameActiveState.swift
+//  Peer-to-Peer Remote Car Racing
+//
+//  Created by user145437 on 11/18/18.
+//  Copyright © 2018 Josh & Chris. All rights reserved.
+//
+
 import SpriteKit
 import GameplayKit
 
@@ -64,10 +72,13 @@ class GameActiveState: GKState {
         pauseTime -= 1.5;
     }
     
-    gameScene.isSoftPaused = true;
-    let wait = SKAction.wait(forDuration: pauseTime);
-    let unpause = SKAction.run { self.gameScene.isSoftPaused = false }
-    gameScene.cam.run(SKAction.sequence([wait, unpause]));
+    if gameScene.gameMode != .CONTROLLER {
+        gameScene.isSoftPaused = true;
+        let wait = SKAction.wait(forDuration: pauseTime);
+        let unpause = SKAction.run { self.gameScene.isSoftPaused = false }
+        gameScene.cam.run(SKAction.sequence([wait, unpause]));
+    }
+
   }
  
   
@@ -82,9 +93,11 @@ class GameActiveState: GKState {
         return;
     }
     
-    //Update Here
-    gameScene.totalTime += dt;
     
+    if gameScene.gameMode != .CONTROLLER{
+        gameScene.totalTime += dt;
+    }
+
     updateLabels();
   }
   
@@ -98,10 +111,12 @@ class GameActiveState: GKState {
     gameScene.summedLapTimes = 0;
     gameScene.totalTime = 0;
     gameScene.player?.removeFromParent();
-    gameScene.player = Player(position: gameScene.startPosition, carTextureName: gameScene.carType);
+    gameScene.player = Player(position: gameScene.startPosition, carTextureName: gameScene.carType, gameMode: gameScene.gameMode);
     gameScene.addChild(gameScene.player!);
-    gameScene.cam.position = gameScene.player.position;
-    gameScene.cam.zRotation = gameScene.player.zRotation;
+    if gameScene.gameMode != .CONTROLLER {
+        gameScene.cam.position = gameScene.player.position;
+        gameScene.cam.zRotation = gameScene.player.zRotation;
+    }
     gameScene.hud.bestLapNode.isHidden = true;
     gameScene.inputControl.disabled = false;
     

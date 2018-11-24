@@ -24,7 +24,9 @@ enum GameMode: Int {
 
 class BaseGameScene: SKScene {
     
+    weak var networkService : NetworkService?;
     weak var gameSceneDelegate : BaseGameSceneProtocol?
+    var gameMode: GameMode = .SOLO;
     
     var lastUpdateTime : TimeInterval = 0
     var isSoftPaused : Bool = false;
@@ -92,21 +94,51 @@ class BaseGameScene: SKScene {
     
     override func didMove(to view: SKView) {
         super.didMove(to: view);
-        physicsWorld.contactDelegate = self;
+        
+        if gameMode == .CONTROLLER {
+            fitWholeSceneInCamera(0.5) ;
+           
+            //Remove the whole scene except track
+            self.childNode(withName : "//trackroot")?.removeFromParent();
+            
+            //make the track darker
+            track.color = .gray;
+            track.colorBlendFactor = 0.8;
+            track.removeFromParent();
+            self.addChild(track);
+
+            
+        } else {
+            physicsWorld.contactDelegate = self
+        }
         
         setupHUD();
-
         stateMachine.enter(GameActiveState.self);
+        
     }
     
     func setupCamera(){
         cam = SKCameraNode();
         self.camera = cam;
         self.addChild(cam!);
-        cam.setScale(3 * 320 / displaySize.height );
+        if gameMode == .CONTROLLER {
+            fitWholeSceneInCamera();
+        } else {
+            cam.setScale(3 * 320 / displaySize.height );
+        }
+        
     }
     
     func setupRace(){
+        guard let track = childNode(withName: "//Track") as? SKTileMapNode else {
+            fatalError("Track node not loaded")
+        }
+        
+        self.track = track;
+        self.trackSize = track.mapSize;
+        
+
+        
         guard let landBackground = childNode(withName: "//Background") as? SKTileMapNode else {
             fatalError("Background node not loaded");
         }
@@ -114,12 +146,7 @@ class BaseGameScene: SKScene {
         self.landBackground = landBackground;
         
         
-        guard let track = childNode(withName: "//Track") as? SKTileMapNode else {
-            fatalError("Track node not loaded")
-        }
-        
-        self.track = track;
-        self.trackSize = track.mapSize;
+
         
         //Get start position for car
         for row in 0..<track.numberOfRows {
@@ -137,7 +164,7 @@ class BaseGameScene: SKScene {
         
         //Count number of waypoint in this track
         self.waypoints = 0;
-        self.enumerateChildNodes(withName: "Waypoint*"){
+        self.enumerateChildNodes(withName: "//Waypoint*"){
             (node, stop) in
             self.waypoints += 1;
             node.alpha = 0;
@@ -148,14 +175,16 @@ class BaseGameScene: SKScene {
 
     func setupHUD(){
         cam.removeAllChildren();
-        hud = UIHUD();
-        cam.addChild(hud);
-        
+
         let tc = UITouchControlsJoystick();
         touchControls = tc
         inputControl = tc.inputControl;
+        hud = UIHUD();
+        cam.addChild(hud);
         
-        if(joystickEnabled){
+        if gameMode != .DISPLAY {
+            hud.timersNode.isHidden = true;
+            hud.speedNode.isHidden = true;
             cam.addChild(touchControls);
             tc.pauseButton.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(BaseGameScene.pause))
             tc.addDebugHUD(gameScene: self);
@@ -182,11 +211,6 @@ class BaseGameScene: SKScene {
         touchControls.resizeToDisplay();
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-    }
-    
-    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
     
@@ -205,6 +229,13 @@ class BaseGameScene: SKScene {
         
         if gameEnded {
             return;
+        }
+        
+        if gameMode == .CONTROLLER {
+            networkService?.sendInputControl(inputControl: inputControl);
+            return;
+        } else if gameMode == .DISPLAY {
+            networkService?.sendCarData(position: player.position, angle: player.zRotation)
         }
         
         if let camera = cam, let pl = player {
@@ -267,11 +298,15 @@ class BaseGameScene: SKScene {
     }
     
     func getThumbnail() -> UIImage {
-        let scale =  self.trackSize.width / self.size.width;
-        cam.setScale(scale);
+        fitWholeSceneInCamera();
         self.displayLapLabel();
         let texture = SKView().texture(from: self);
         return UIImage(cgImage: (texture?.cgImage())!);
+    }
+    
+    func fitWholeSceneInCamera(_ mult: CGFloat = 1.0) {
+        let scale =  self.trackSize.width / self.size.width;
+        cam.setScale(scale / mult);
     }
     
 }
@@ -293,19 +328,75 @@ extension BaseGameScene: SKPhysicsContactDelegate{
                         hud.bestLapNode.isHidden = false;
                         hud.bestLapTimeLabel.text = stringFromTimeInterval(interval: totalTime - summedLapTimes) as String;
                         summedLapTimes = totalTime;
-                        
+                        networkService?.send(messageType: .LAP_FINISHED);
                         if(lap > totalLaps) {
                              win();
                         }
-                       
                     }
                 }
                 break;
             }
         }
+    }
+}
+
+extension BaseGameScene : NetworkServiceDelegate {
+    func handleMessage(message: MessageBase) {
+        switch gameMode {
+        case .DISPLAY:
+            handleMessageDisplay(message: message);
+        case .CONTROLLER:
+            handleMessageController(message: message);
+        case .SOLO:
+            fatalError();
+        }
+    }
+    
+    private func handleMessageDisplay(message: MessageBase) {
+        switch message {
+        case is InputControlMessage:
+            inputControl.velocity = (message as! InputControlMessage).velocity;
+        default:
+            break;
+        }
         
-
-
+        switch message.type {
+        case .PAUSE:
+            stateMachine.enter(GamePauseState.self);
+        case .RESUME:
+            stateMachine.enter(GameActiveState.self);
+        case .DEBUG_WIN:
+            cheatWin();
+        case .DISCONNECT:
+            gameSceneDelegate?.quitToMenu();
+            networkService?.session.disconnect();
+        case .RESTART:
+            stateMachine.enter(GameActiveState.self);
+        default:
+            break;
+        }
+    }
+    
+    private func handleMessageController(message: MessageBase) {
+        switch message {
+        case is CarDataMessage:
+            let m = message as! CarDataMessage;
+            player.setPositionRotation(m.position,m.angle);
+        case is RaceFinishedMessage:
+            let m = message as! RaceFinishedMessage;
+            totalTime = m.time;
+            win();
+        default: break;
+        }
+        
+        switch message.type {
+        case .LAP_FINISHED:
+            lap += 1;
+        case .DISCONNECT:
+            gameSceneDelegate?.quitToMenu();
+        default:
+            break;
+        }
     }
 }
 

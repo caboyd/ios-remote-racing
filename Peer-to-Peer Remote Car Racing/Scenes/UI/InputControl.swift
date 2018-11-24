@@ -19,7 +19,7 @@ fileprivate var js: AnalogJoystick = {
 }();
 
 protocol InputControl {
-    var velocity: CGPoint { get }
+    var velocity: CGPoint { get set }
     var disabled:Bool { get set } ;
 }
 
@@ -29,6 +29,7 @@ class JoystickInput: InputControl {
     
     var velocity: CGPoint {
         get { return joystick.data.velocity }
+        set { joystick.data.velocity = newValue }
     }
     
     init(analogJoystick : AnalogJoystick?){
