@@ -27,25 +27,46 @@ enum CarColor: Int {
 
 class CarID {
 
-    static let minCarID = 1;
-    static let maxCarID = 5;
+    static let MIN = 1;
+    static let MAX = 5;
     
     static func getNextID(_ id: Int) -> Int {
-        if id + 1 > maxCarID {
-            return minCarID;
+        if id + 1 > MAX {
+            return MIN;
         }
         return id + 1;
     }
     
     static func getPreviousID(_ id: Int) -> Int {
-        if id - 1 < minCarID {
-           return maxCarID;
+        if id - 1 < MIN {
+           return MAX;
         }
         return id - 1;
     }
 }
 
-
+class TrackID {
+    static let MIN = 1;
+    static let MAX = 2;
+    
+    static func getNextID(_ id: Int) -> Int {
+        if id + 1 > MAX {
+            return MIN;
+        }
+        return id + 1;
+    }
+    
+    static func getPreviousID(_ id: Int) -> Int {
+        if id - 1 < MIN {
+            return MAX;
+        }
+        return id - 1;
+    }
+    
+    static func toString(_ id: Int) -> String {
+        return "Track\(id)"
+    }
+}
 
 func getCarTextureName(id: Int, color:CarColor) -> String{
     return "car_\(color)_\(id)";

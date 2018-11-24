@@ -101,15 +101,14 @@ class BaseGameScene: SKScene {
     }
     
     func setupRace(){
-        
-        guard let landBackground = childNode(withName: "Background") as? SKTileMapNode else {
+        guard let landBackground = childNode(withName: "//Background") as? SKTileMapNode else {
             fatalError("Background node not loaded");
         }
         
         self.landBackground = landBackground;
         
         
-        guard let track = childNode(withName: "Track") as? SKTileMapNode else {
+        guard let track = childNode(withName: "//Track") as? SKTileMapNode else {
             fatalError("Track node not loaded")
         }
         
@@ -280,7 +279,6 @@ extension BaseGameScene: SKPhysicsContactDelegate{
                 contact.bodyB.node?.name == waypointName) {
                
                 if(lastWaypoint == previousWaypoint(waypoint)) {
-                     print("hit \(waypointName)");
                     //Update waypoint
                     lastWaypoint = waypoint;
                     if previousWaypoint(waypoint) > waypoint {

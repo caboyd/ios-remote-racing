@@ -11,8 +11,8 @@ import SpriteKit
 
 class TrackSelectionViewController: UIViewController {
 
-    var track:String = "Track1";
-    var carID: Int = CarID.minCarID;
+    var trackID: Int = TrackID.MIN
+    var carID: Int = CarID.MIN;
     var carColor : CarColor = .black;
     @IBOutlet weak var trackImage: UIImageView!
     @IBOutlet weak var carImageParentView: UIView!
@@ -36,7 +36,7 @@ class TrackSelectionViewController: UIViewController {
     
 
     func updateTrackImage() {
-        trackImage.image = UIImage(named: track.lowercased());
+        trackImage.image = UIImage(named: TrackID.toString(trackID).lowercased());
     }
     
     func updateCarImage() {
@@ -52,6 +52,14 @@ class TrackSelectionViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func nextTrack(_ sender: UIButton) {
+        trackID = TrackID.getNextID(trackID);
+        updateTrackImage();
+    }
+    @IBAction func prevTrack(_ sender: UIButton) {
+        trackID = TrackID.getPreviousID(trackID);
+        updateTrackImage();
+    }
     @IBAction func nextCar(_ sender: UIButton) {
         carID = CarID.getNextID(carID);
         updateCarImage();
@@ -71,7 +79,7 @@ class TrackSelectionViewController: UIViewController {
         if let gameViewController = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController {
             
             gameViewController.carType = getCarTextureName(id: carID, color: carColor);
-            gameViewController.track = "Track1";
+            gameViewController.track = TrackID.toString(trackID);
             
             navigationController?.pushViewController(gameViewController, animated: true)
         }
