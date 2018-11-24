@@ -25,6 +25,7 @@ class GameViewController: UIViewController {
             
             //setup the scene
             scene.name = self.track;
+            scene.carType = carType;
             scene.joystickEnabled = true;
             scene.debugMode = true;
             scene.gameSceneDelegate = self;

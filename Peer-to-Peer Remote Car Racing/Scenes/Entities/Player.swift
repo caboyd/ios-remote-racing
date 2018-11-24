@@ -20,10 +20,10 @@ class Player : SKSpriteNode {
     static let TURN = 0.3;
    
     
-    init(position: CGPoint) {
+    init(position: CGPoint, carTextureName: String) {
         self.velocity = CGVector(dx: 0,dy: 0);
         self.accel = CGVector(dx: 0,dy: 0);
-        let texture = SKTexture(imageNamed: "car_black_1");
+        let texture = SKTexture(imageNamed: carTextureName);
         super.init(texture: texture, color: UIColor.clear, size: texture.size());
         self.position = position;
         

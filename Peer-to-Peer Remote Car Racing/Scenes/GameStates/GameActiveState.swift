@@ -98,7 +98,7 @@ class GameActiveState: GKState {
     gameScene.summedLapTimes = 0;
     gameScene.totalTime = 0;
     gameScene.player?.removeFromParent();
-    gameScene.player = Player(position: gameScene.startPosition);
+    gameScene.player = Player(position: gameScene.startPosition, carTextureName: gameScene.carType);
     gameScene.addChild(gameScene.player!);
     gameScene.cam.position = gameScene.player.position;
     gameScene.cam.zRotation = gameScene.player.zRotation;

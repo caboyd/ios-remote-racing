@@ -11,11 +11,8 @@ import GameplayKit
 
 class Track1: BaseGameScene {
     
-   
-    
     override func sceneDidLoad() {
         self.totalLaps = 3;
-        
         super.sceneDidLoad();
     }
 
@@ -23,18 +20,7 @@ class Track1: BaseGameScene {
         super.didMove(to: view);
 
     }
-    
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event);
-    }
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        super.update(currentTime);
-       
-    }
-    
+   
     
 
 }

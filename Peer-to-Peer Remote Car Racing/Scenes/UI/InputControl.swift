@@ -52,8 +52,8 @@ class JoystickButtonInput:JoystickInput {
         super.init(analogJoystick: analogJoystick);
 
         //Add gas button
-        let gasButton = SKSpriteNode();
-        let brakeButton = SKSpriteNode();
+        //let gasButton = SKSpriteNode();
+        //let brakeButton = SKSpriteNode();
     }
     
 

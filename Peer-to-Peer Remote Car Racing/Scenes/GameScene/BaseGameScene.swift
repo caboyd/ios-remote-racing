@@ -28,6 +28,7 @@ class BaseGameScene: SKScene {
     var cam: SKCameraNode!
     
     var startPosition: CGPoint!;
+    var carType: String!;
     var player: Player!;
     
     var waypoints: Int = 0;

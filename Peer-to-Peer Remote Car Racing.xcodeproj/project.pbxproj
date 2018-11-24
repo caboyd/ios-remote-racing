@@ -16,6 +16,9 @@
 		AB0EA9A021A29F0C005B5FCE /* UIHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EA99F21A29F0C005B5FCE /* UIHUD.swift */; };
 		AB0EA9A221A2A015005B5FCE /* globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EA9A121A2A015005B5FCE /* globals.swift */; };
 		AB0EA9A421A2A91D005B5FCE /* FTButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EA9A321A2A91D005B5FCE /* FTButtonNode.swift */; };
+		AB23AF5F21A8D24B004FB964 /* CarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF5E21A8D24B004FB964 /* CarType.swift */; };
+		AB23AF6121A8F086004FB964 /* Track2.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB23AF6021A8F086004FB964 /* Track2.sks */; };
+		AB23AF6321A8F0E2004FB964 /* Track2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF6221A8F0E2004FB964 /* Track2.swift */; };
 		AB4E2E4D219F974200383747 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E46219F974200383747 /* AnalogJoystick.swift */; };
 		AB4E2E4E219F974200383747 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E48219F974200383747 /* Player.swift */; };
 		AB4E2E4F219F974200383747 /* Track1.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB4E2E49219F974200383747 /* Track1.sks */; };
@@ -68,6 +71,9 @@
 		AB0EA99F21A29F0C005B5FCE /* UIHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHUD.swift; sourceTree = "<group>"; };
 		AB0EA9A121A2A015005B5FCE /* globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = globals.swift; sourceTree = "<group>"; };
 		AB0EA9A321A2A91D005B5FCE /* FTButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTButtonNode.swift; sourceTree = "<group>"; };
+		AB23AF5E21A8D24B004FB964 /* CarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarType.swift; sourceTree = "<group>"; };
+		AB23AF6021A8F086004FB964 /* Track2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Track2.sks; sourceTree = "<group>"; };
+		AB23AF6221A8F0E2004FB964 /* Track2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track2.swift; sourceTree = "<group>"; };
 		AB4E2E46219F974200383747 /* AnalogJoystick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
 		AB4E2E48219F974200383747 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		AB4E2E49219F974200383747 /* Track1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Track1.sks; sourceTree = "<group>"; };
@@ -157,6 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				AB4E2E49219F974200383747 /* Track1.sks */,
+				AB23AF6021A8F086004FB964 /* Track2.sks */,
+				AB23AF6221A8F0E2004FB964 /* Track2.swift */,
 				AB4E2E4A219F974200383747 /* Track1.swift */,
 				ABD5FC5B21A0DD1700A0B155 /* BaseGameScene.swift */,
 				ABD5FC7021A1409400A0B155 /* BaseGameScene+Buttons.swift */,
@@ -168,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				AB4E2E48219F974200383747 /* Player.swift */,
+				AB23AF5E21A8D24B004FB964 /* CarType.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -343,6 +352,7 @@
 				7A6641212194BC9900F80C9B /* Assets.xcassets in Resources */,
 				7A66411F2194BC9600F80C9B /* Main.storyboard in Resources */,
 				AB85BD5521A14D630066BCEE /* CompletedScene.sks in Resources */,
+				AB23AF6121A8F086004FB964 /* Track2.sks in Resources */,
 				AB8BB62D21A2084700E3E1F0 /* UIHUD.sks in Resources */,
 				AB4E2E52219F974200383747 /* TrackTileSet.sks in Resources */,
 				AB85BD5221A14D510066BCEE /* PauseScene.sks in Resources */,
@@ -386,8 +396,10 @@
 				AB4E2E6C219FA21200383747 /* Int+Extensions.swift in Sources */,
 				AB0EA9A221A2A015005B5FCE /* globals.swift in Sources */,
 				AB5EF42121A4C26F006E9489 /* UITouchControlsJoystick.swift in Sources */,
+				AB23AF6321A8F0E2004FB964 /* Track2.swift in Sources */,
 				AB54CC5B21A28DDC00D4F818 /* SubmitScoreViewController.swift in Sources */,
 				AB4E2E73219FA21200383747 /* SKTTimingFunctions.swift in Sources */,
+				AB23AF5F21A8D24B004FB964 /* CarType.swift in Sources */,
 				ABD5FC6F21A13EAC00A0B155 /* ButtonNode.swift in Sources */,
 				AB4E2E6B219FA21200383747 /* CGVector+Extensions.swift in Sources */,
 				AB4E2E6F219FA21200383747 /* SKColor+Extensions.swift in Sources */,

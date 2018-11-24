@@ -12,7 +12,10 @@ import SpriteKit
 class TrackSelectionViewController: UIViewController {
 
     var track:String = "Track1";
+    var carID: Int = CarID.minCarID;
+    var carColor : CarColor = .black;
     @IBOutlet weak var trackImage: UIImageView!
+    @IBOutlet weak var carImageParentView: UIView!
     @IBOutlet weak var carImage: UIImageView!
     
     override func viewDidLoad() {
@@ -23,11 +26,12 @@ class TrackSelectionViewController: UIViewController {
         trackImage.layer.borderColor = UIColor.gray.cgColor;
         trackImage.layer.borderWidth = 3;
         
-        carImage.layer.cornerRadius = 10;
-        carImage.layer.borderColor = UIColor.gray.cgColor;
-        carImage.layer.borderWidth = 3;
+        carImageParentView.layer.cornerRadius = 10;
+        carImageParentView.layer.borderColor = UIColor.gray.cgColor;
+        carImageParentView.layer.borderWidth = 3;
         
         updateTrackImage();
+        updateCarImage();
     }
     
 
@@ -35,7 +39,10 @@ class TrackSelectionViewController: UIViewController {
         trackImage.image = UIImage(named: track.lowercased());
     }
     
-    
+    func updateCarImage() {
+        let imageName = getCarTextureName(id: carID, color: carColor);
+        carImage.image = UIImage(named: imageName);
+    }
     /*
     // MARK: - Navigation
 
@@ -45,12 +52,25 @@ class TrackSelectionViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func nextCar(_ sender: UIButton) {
+        carID = CarID.getNextID(carID);
+        updateCarImage();
+    }
+    @IBAction func prevCar(_ sender: UIButton) {
+        carID = CarID.getPreviousID(carID);
+        updateCarImage();
+    }
+    
+    @IBAction func nextCarColor(_ sender: UIButton) {
+        carColor.next();
+        updateCarImage();
+    }
+    
     @IBAction func start(_ sender: UIButton) {
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
         if let gameViewController = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController {
             
-            gameViewController.carType = "TODO";
+            gameViewController.carType = getCarTextureName(id: carID, color: carColor);
             gameViewController.track = "Track1";
             
             navigationController?.pushViewController(gameViewController, animated: true)
