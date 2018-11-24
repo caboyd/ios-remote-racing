@@ -19,6 +19,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         //Load the track scene
         if let scene = BaseGameScene(fileNamed: self.track) {
             self.scene = scene;
