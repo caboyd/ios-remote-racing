@@ -38,7 +38,8 @@ class NetworkService : NSObject {
     }
     
     func send(messageType: MessageType){
-        send(data: messageType.toData());
+        assert(messageType.isSimpleMessageType());
+        send(message: MessageBase(type: messageType));
     }
     
     func sendInputControl(inputControl: InputControl) {
@@ -46,7 +47,7 @@ class NetworkService : NSObject {
             static var velocity: CGPoint = CGPoint(x:0, y: 0);
         }
         if inputControl.velocity != LastSent.velocity {
-            send(data: InputControlMessage(inputControl: inputControl).toData(), with: .unreliable)
+            send(message: InputControlMessage(inputControl: inputControl), with: .unreliable)
         }
         LastSent.velocity = inputControl.velocity;
     }
@@ -58,20 +59,26 @@ class NetworkService : NSObject {
         }
 
         if position != LastSent.position || angle != LastSent.angle {
-           send(data: CarDataMessage(position: position, angle: angle).toData());
+           send(message: CarDataMessage(position: position, angle: angle));
         }
         LastSent.position = position;
         LastSent.angle = angle;
     }
     
     func sendRaceFinished(time: Double) {
-        send(data: RaceFinishedMessage(time: time).toData());
+        send(message: RaceFinishedMessage(time: time));
+    }
+    
+    func send(message: MessageBase, with mode: MCSessionSendDataMode = .reliable){
+        os_log("send %@", log: networkLog, type: .debug, message.description);
+        send(data: message.toData(), with: mode );
     }
     
     private func send(data: Data, with mode: MCSessionSendDataMode = .reliable ) {
         if session.connectedPeers.count > 0 {
             do {
                 try self.session.send(data, toPeers: session.connectedPeers, with: mode)
+                
             }
             catch let error {
                 os_log("Error for sending %@", log: networkLog, type: .debug, error.localizedDescription);

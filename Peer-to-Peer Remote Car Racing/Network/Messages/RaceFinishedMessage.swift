@@ -23,7 +23,7 @@ class RaceFinishedMessage : MessageBase {
     }
     
     override func toData() -> Data {
-        var data = Data(from: Double.self);
+        var data = Data(from: time);
         data.insert(type.rawValue, at: 0);
         return data;
     }

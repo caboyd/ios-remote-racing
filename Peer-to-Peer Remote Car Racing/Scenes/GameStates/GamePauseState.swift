@@ -31,7 +31,7 @@
 import SpriteKit
 import GameplayKit
 
-class GamePauseState: GameSKOverlayState {
+class GamePauseState: GameOverlayState {
   
   override var overlaySceneFileName: String {
     return "PauseScene"

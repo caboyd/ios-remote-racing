@@ -31,7 +31,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameSKOverlayState: GKState {
+class GameOverlayState: GKState {
   
 unowned let gameScene: BaseGameScene;
   
@@ -44,7 +44,14 @@ unowned let gameScene: BaseGameScene;
     
     overlay = SceneOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 5)
     
-    ButtonNode.parseButtonInNode(containerNode: overlay.contentNode)
+    //Hide the overlay buttons for display
+    if gameScene.gameMode == .DISPLAY {
+        overlay.contentNode.childNode(withName: ".//controller")?.isHidden = true;
+    } else {
+        //If this function runs the buttons will unhide
+        //Turns the buttons into button nodes that are touchable with textures
+        ButtonNode.parseButtonInNode(containerNode: overlay.contentNode)
+    }
   }
   
   override func didEnter(from previousState: GKState?) {

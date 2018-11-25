@@ -57,7 +57,7 @@
 		AB8BB62D21A2084700E3E1F0 /* UIHUD.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB8BB62C21A2084700E3E1F0 /* UIHUD.sks */; };
 		ABD5FC5C21A0DD1700A0B155 /* BaseGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC5B21A0DD1700A0B155 /* BaseGameScene.swift */; };
 		ABD5FC6121A128E900A0B155 /* InputControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6021A128E900A0B155 /* InputControl.swift */; };
-		ABD5FC6321A13DCF00A0B155 /* GameSKOverlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6221A13DCF00A0B155 /* GameSKOverlayState.swift */; };
+		ABD5FC6321A13DCF00A0B155 /* GameOverlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6221A13DCF00A0B155 /* GameOverlayState.swift */; };
 		ABD5FC6521A13DD700A0B155 /* GamePauseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6421A13DD700A0B155 /* GamePauseState.swift */; };
 		ABD5FC6721A13DE000A0B155 /* GameActiveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6621A13DE000A0B155 /* GameActiveState.swift */; };
 		ABD5FC6921A13DF500A0B155 /* GameCompletedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6821A13DF500A0B155 /* GameCompletedState.swift */; };
@@ -119,7 +119,7 @@
 		AB8BB62C21A2084700E3E1F0 /* UIHUD.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = UIHUD.sks; sourceTree = "<group>"; };
 		ABD5FC5B21A0DD1700A0B155 /* BaseGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGameScene.swift; sourceTree = "<group>"; };
 		ABD5FC6021A128E900A0B155 /* InputControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputControl.swift; sourceTree = "<group>"; };
-		ABD5FC6221A13DCF00A0B155 /* GameSKOverlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSKOverlayState.swift; sourceTree = "<group>"; };
+		ABD5FC6221A13DCF00A0B155 /* GameOverlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverlayState.swift; sourceTree = "<group>"; };
 		ABD5FC6421A13DD700A0B155 /* GamePauseState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePauseState.swift; sourceTree = "<group>"; };
 		ABD5FC6621A13DE000A0B155 /* GameActiveState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameActiveState.swift; sourceTree = "<group>"; };
 		ABD5FC6821A13DF500A0B155 /* GameCompletedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCompletedState.swift; sourceTree = "<group>"; };
@@ -199,6 +199,7 @@
 		AB4E2E45219F974200383747 /* GameScene */ = {
 			isa = PBXGroup;
 			children = (
+				ABD5FC6E21A13EAC00A0B155 /* ButtonNode.swift */,
 				AB4E2E49219F974200383747 /* Track1.sks */,
 				AB23AF6021A8F086004FB964 /* Track2.sks */,
 				AB23AF6221A8F0E2004FB964 /* Track2.swift */,
@@ -306,8 +307,6 @@
 				AB85BD5321A14D630066BCEE /* CompletedScene */,
 				AB85BD5021A14D440066BCEE /* PauseScene */,
 				ABD5FC5E21A0F43200A0B155 /* GameStates */,
-				ABD5FC6C21A13E0F00A0B155 /* SceneOverlay.swift */,
-				ABD5FC6E21A13EAC00A0B155 /* ButtonNode.swift */,
 				AB4E2E47219F974200383747 /* Entities */,
 			);
 			path = Scenes;
@@ -316,10 +315,11 @@
 		ABD5FC5E21A0F43200A0B155 /* GameStates */ = {
 			isa = PBXGroup;
 			children = (
+				ABD5FC6C21A13E0F00A0B155 /* SceneOverlay.swift */,
 				ABD5FC6821A13DF500A0B155 /* GameCompletedState.swift */,
 				ABD5FC6621A13DE000A0B155 /* GameActiveState.swift */,
 				ABD5FC6421A13DD700A0B155 /* GamePauseState.swift */,
-				ABD5FC6221A13DCF00A0B155 /* GameSKOverlayState.swift */,
+				ABD5FC6221A13DCF00A0B155 /* GameOverlayState.swift */,
 			);
 			path = GameStates;
 			sourceTree = "<group>";
@@ -421,7 +421,7 @@
 				7A66411C2194BC9600F80C9B /* HomeScreenViewController.swift in Sources */,
 				AB4E2E4D219F974200383747 /* AnalogJoystick.swift in Sources */,
 				AB23AF6A21A9069E004FB964 /* HostNetworkService.swift in Sources */,
-				ABD5FC6321A13DCF00A0B155 /* GameSKOverlayState.swift in Sources */,
+				ABD5FC6321A13DCF00A0B155 /* GameOverlayState.swift in Sources */,
 				7A66411A2194BC9600F80C9B /* AppDelegate.swift in Sources */,
 				AB23AF6921A9069E004FB964 /* ControllerNetworkService.swift in Sources */,
 				AB4E2E70219FA21200383747 /* SKNode+Extensions.swift in Sources */,

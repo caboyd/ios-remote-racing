@@ -97,6 +97,8 @@ class MessageFactory {
             return InputControlMessage.from(data: data);
         case .CAR_DATA:
             return CarDataMessage.from(data: data);
+        case .RACE_FINISHED:
+            return RaceFinishedMessage.from(data: data);
         default:
             fatalError()
         }

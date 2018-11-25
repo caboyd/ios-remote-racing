@@ -17,6 +17,7 @@ class GameViewController: UIViewController {
     var scene : BaseGameScene?;
     var gameMode : GameMode = .SOLO;
     weak var networkService: NetworkService?;
+    weak var trackSelectionViewController: TrackSelectionViewController?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +30,14 @@ class GameViewController: UIViewController {
             //setup the scene
             scene.name = self.track;
             scene.carType = carType;
-            scene.joystickEnabled = true;
-            scene.debugMode = true;
+            
             scene.gameMode = gameMode;
             scene.gameSceneDelegate = self;
             scene.networkService = networkService;
             networkService?.delegate = scene;
+            
+            //debug
+            scene.debugMode = true;
             
             // Present the scene
             if let view = self.view as! SKView? {
@@ -42,14 +45,14 @@ class GameViewController: UIViewController {
                 view.ignoresSiblingOrder = true
                 
                 //Debug stuff
-                view.showsFPS = true
-                view.showsNodeCount = true
+                //view.showsFPS = true
+                //view.showsNodeCount = true
                 //view.showsPhysics = true;
             }
             
         }
     }
-    
+
     override var shouldAutorotate: Bool {
         return true
     }
@@ -79,12 +82,15 @@ extension GameViewController: BaseGameSceneProtocol {
     @objc func presentSubmitScoreSubview(gameScene: BaseGameScene) {
         let controller = storyboard!.instantiateViewController(withIdentifier: "SubmitScoreViewController") as! SubmitScoreViewController;
         
+        scene?.buttonsEnabled = false;
         controller.time = gameScene.totalTime;
         controller.trackName = self.track;
+        controller.closeCallback = { self.scene?.buttonsEnabled = true;}
         
-        self.addChild(controller);
         view.addSubview(controller.view);
+        self.addChild(controller);
         controller.didMove(toParent: self);
+        
     }
     
     func quitToMenu() {
@@ -92,6 +98,7 @@ extension GameViewController: BaseGameSceneProtocol {
     }
     
     func quitToTrackSelection() {
+        trackSelectionViewController?.networkService?.delegate = trackSelectionViewController;
         _ = navigationController?.popViewController(animated: true)
     }
 }

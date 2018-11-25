@@ -21,14 +21,18 @@ extension BaseGameScene : ButtonNodeResponder {
         
         switch button.buttonIdentifier! {
         case .resume:
+            networkService?.send(messageType: .RESUME);
             stateMachine.enter(GameActiveState.self)
         case .quit:
+            networkService?.send(messageType: .DISCONNECT)
             gameSceneDelegate?.quitToMenu();
         case .restart:
+            networkService?.send(messageType: .RESTART);
             stateMachine.enter(GameActiveState.self);
         case .pause:
-            stateMachine.enter(GamePauseState.self);
+            self.pause();
         case .selectTrack:
+            networkService?.send(messageType: .NAV_TRACK_SELECT);
             gameSceneDelegate?.quitToTrackSelection();
         }
     }

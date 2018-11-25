@@ -49,6 +49,7 @@ class TrackSelectionViewController: UIViewController {
     }
     
 
+
     func hideButtons() {
         changeColorButton.isHidden = true;
         startRaceButton.isHidden = true;
@@ -129,6 +130,7 @@ class TrackSelectionViewController: UIViewController {
             gameViewController.carType = getCarTextureName(id: carID, color: carColor);
             gameViewController.track = TrackID.toString(trackID);
             gameViewController.networkService = networkService;
+            gameViewController.trackSelectionViewController = self;
             navigationController?.pushViewController(gameViewController, animated: true)
         }
     }
