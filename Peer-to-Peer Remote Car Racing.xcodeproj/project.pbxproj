@@ -19,6 +19,13 @@
 		AB23AF5F21A8D24B004FB964 /* CarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF5E21A8D24B004FB964 /* CarType.swift */; };
 		AB23AF6121A8F086004FB964 /* Track2.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB23AF6021A8F086004FB964 /* Track2.sks */; };
 		AB23AF6321A8F0E2004FB964 /* Track2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF6221A8F0E2004FB964 /* Track2.swift */; };
+		AB23AF6921A9069E004FB964 /* ControllerNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF6521A9069E004FB964 /* ControllerNetworkService.swift */; };
+		AB23AF6A21A9069E004FB964 /* HostNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF6621A9069E004FB964 /* HostNetworkService.swift */; };
+		AB23AF6B21A9069E004FB964 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF6721A9069E004FB964 /* NetworkService.swift */; };
+		AB23AF6F21A90788004FB964 /* MessageBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF6E21A90788004FB964 /* MessageBase.swift */; };
+		AB23AF7121A920B3004FB964 /* InputControlMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF7021A920B3004FB964 /* InputControlMessage.swift */; };
+		AB23AF7321A926E6004FB964 /* CarDataMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF7221A926E6004FB964 /* CarDataMessage.swift */; };
+		AB23AF7521A92DB3004FB964 /* RaceFinishedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF7421A92DB3004FB964 /* RaceFinishedMessage.swift */; };
 		AB4E2E4D219F974200383747 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E46219F974200383747 /* AnalogJoystick.swift */; };
 		AB4E2E4E219F974200383747 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E48219F974200383747 /* Player.swift */; };
 		AB4E2E4F219F974200383747 /* Track1.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB4E2E49219F974200383747 /* Track1.sks */; };
@@ -50,7 +57,7 @@
 		AB8BB62D21A2084700E3E1F0 /* UIHUD.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB8BB62C21A2084700E3E1F0 /* UIHUD.sks */; };
 		ABD5FC5C21A0DD1700A0B155 /* BaseGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC5B21A0DD1700A0B155 /* BaseGameScene.swift */; };
 		ABD5FC6121A128E900A0B155 /* InputControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6021A128E900A0B155 /* InputControl.swift */; };
-		ABD5FC6321A13DCF00A0B155 /* GameSKOverlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6221A13DCF00A0B155 /* GameSKOverlayState.swift */; };
+		ABD5FC6321A13DCF00A0B155 /* GameOverlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6221A13DCF00A0B155 /* GameOverlayState.swift */; };
 		ABD5FC6521A13DD700A0B155 /* GamePauseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6421A13DD700A0B155 /* GamePauseState.swift */; };
 		ABD5FC6721A13DE000A0B155 /* GameActiveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6621A13DE000A0B155 /* GameActiveState.swift */; };
 		ABD5FC6921A13DF500A0B155 /* GameCompletedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5FC6821A13DF500A0B155 /* GameCompletedState.swift */; };
@@ -74,6 +81,13 @@
 		AB23AF5E21A8D24B004FB964 /* CarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarType.swift; sourceTree = "<group>"; };
 		AB23AF6021A8F086004FB964 /* Track2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Track2.sks; sourceTree = "<group>"; };
 		AB23AF6221A8F0E2004FB964 /* Track2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track2.swift; sourceTree = "<group>"; };
+		AB23AF6521A9069E004FB964 /* ControllerNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerNetworkService.swift; sourceTree = "<group>"; };
+		AB23AF6621A9069E004FB964 /* HostNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostNetworkService.swift; sourceTree = "<group>"; };
+		AB23AF6721A9069E004FB964 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		AB23AF6E21A90788004FB964 /* MessageBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBase.swift; sourceTree = "<group>"; };
+		AB23AF7021A920B3004FB964 /* InputControlMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputControlMessage.swift; sourceTree = "<group>"; };
+		AB23AF7221A926E6004FB964 /* CarDataMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDataMessage.swift; sourceTree = "<group>"; };
+		AB23AF7421A92DB3004FB964 /* RaceFinishedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceFinishedMessage.swift; sourceTree = "<group>"; };
 		AB4E2E46219F974200383747 /* AnalogJoystick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
 		AB4E2E48219F974200383747 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		AB4E2E49219F974200383747 /* Track1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Track1.sks; sourceTree = "<group>"; };
@@ -105,7 +119,7 @@
 		AB8BB62C21A2084700E3E1F0 /* UIHUD.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = UIHUD.sks; sourceTree = "<group>"; };
 		ABD5FC5B21A0DD1700A0B155 /* BaseGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGameScene.swift; sourceTree = "<group>"; };
 		ABD5FC6021A128E900A0B155 /* InputControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputControl.swift; sourceTree = "<group>"; };
-		ABD5FC6221A13DCF00A0B155 /* GameSKOverlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSKOverlayState.swift; sourceTree = "<group>"; };
+		ABD5FC6221A13DCF00A0B155 /* GameOverlayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverlayState.swift; sourceTree = "<group>"; };
 		ABD5FC6421A13DD700A0B155 /* GamePauseState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePauseState.swift; sourceTree = "<group>"; };
 		ABD5FC6621A13DE000A0B155 /* GameActiveState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameActiveState.swift; sourceTree = "<group>"; };
 		ABD5FC6821A13DF500A0B155 /* GameCompletedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCompletedState.swift; sourceTree = "<group>"; };
@@ -144,6 +158,7 @@
 		7A6641182194BC9600F80C9B /* Peer-to-Peer Remote Car Racing */ = {
 			isa = PBXGroup;
 			children = (
+				AB23AF6421A9069E004FB964 /* Network */,
 				AB4E2E53219F980300383747 /* ViewControllers */,
 				ABD5FC5D21A0F1D300A0B155 /* Scenes */,
 				AB4E2E75219FA26B00383747 /* Resources */,
@@ -159,9 +174,32 @@
 			path = "Peer-to-Peer Remote Car Racing";
 			sourceTree = "<group>";
 		};
+		AB23AF6421A9069E004FB964 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AB23AF6D21A90778004FB964 /* Messages */,
+				AB23AF6521A9069E004FB964 /* ControllerNetworkService.swift */,
+				AB23AF6621A9069E004FB964 /* HostNetworkService.swift */,
+				AB23AF6721A9069E004FB964 /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		AB23AF6D21A90778004FB964 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				AB23AF6E21A90788004FB964 /* MessageBase.swift */,
+				AB23AF7021A920B3004FB964 /* InputControlMessage.swift */,
+				AB23AF7221A926E6004FB964 /* CarDataMessage.swift */,
+				AB23AF7421A92DB3004FB964 /* RaceFinishedMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
 		AB4E2E45219F974200383747 /* GameScene */ = {
 			isa = PBXGroup;
 			children = (
+				ABD5FC6E21A13EAC00A0B155 /* ButtonNode.swift */,
 				AB4E2E49219F974200383747 /* Track1.sks */,
 				AB23AF6021A8F086004FB964 /* Track2.sks */,
 				AB23AF6221A8F0E2004FB964 /* Track2.swift */,
@@ -269,8 +307,6 @@
 				AB85BD5321A14D630066BCEE /* CompletedScene */,
 				AB85BD5021A14D440066BCEE /* PauseScene */,
 				ABD5FC5E21A0F43200A0B155 /* GameStates */,
-				ABD5FC6C21A13E0F00A0B155 /* SceneOverlay.swift */,
-				ABD5FC6E21A13EAC00A0B155 /* ButtonNode.swift */,
 				AB4E2E47219F974200383747 /* Entities */,
 			);
 			path = Scenes;
@@ -279,10 +315,11 @@
 		ABD5FC5E21A0F43200A0B155 /* GameStates */ = {
 			isa = PBXGroup;
 			children = (
+				ABD5FC6C21A13E0F00A0B155 /* SceneOverlay.swift */,
 				ABD5FC6821A13DF500A0B155 /* GameCompletedState.swift */,
 				ABD5FC6621A13DE000A0B155 /* GameActiveState.swift */,
 				ABD5FC6421A13DD700A0B155 /* GamePauseState.swift */,
-				ABD5FC6221A13DCF00A0B155 /* GameSKOverlayState.swift */,
+				ABD5FC6221A13DCF00A0B155 /* GameOverlayState.swift */,
 			);
 			path = GameStates;
 			sourceTree = "<group>";
@@ -369,9 +406,12 @@
 				ABD5FC6921A13DF500A0B155 /* GameCompletedState.swift in Sources */,
 				AB4E2E74219FA21200383747 /* Vector3.swift in Sources */,
 				AB4E2E6E219FA21200383747 /* SKAction+SpecialEffects.swift in Sources */,
+				AB23AF7121A920B3004FB964 /* InputControlMessage.swift in Sources */,
 				AB4E2E72219FA21200383747 /* SKTEffects.swift in Sources */,
+				AB23AF6F21A90788004FB964 /* MessageBase.swift in Sources */,
 				AB0EA9A021A29F0C005B5FCE /* UIHUD.swift in Sources */,
 				AB4E2E69219FA21200383747 /* CGFloat+Extensions.swift in Sources */,
+				AB23AF7521A92DB3004FB964 /* RaceFinishedMessage.swift in Sources */,
 				AB4E2E55219F997200383747 /* NavigationViewController.swift in Sources */,
 				AB4E2E59219F9A7800383747 /* LeaderboardViewController.swift in Sources */,
 				ABD5FC6D21A13E0F00A0B155 /* SceneOverlay.swift in Sources */,
@@ -380,10 +420,13 @@
 				AB4E2E6D219FA21200383747 /* SKAction+Extensions.swift in Sources */,
 				7A66411C2194BC9600F80C9B /* HomeScreenViewController.swift in Sources */,
 				AB4E2E4D219F974200383747 /* AnalogJoystick.swift in Sources */,
-				ABD5FC6321A13DCF00A0B155 /* GameSKOverlayState.swift in Sources */,
+				AB23AF6A21A9069E004FB964 /* HostNetworkService.swift in Sources */,
+				ABD5FC6321A13DCF00A0B155 /* GameOverlayState.swift in Sources */,
 				7A66411A2194BC9600F80C9B /* AppDelegate.swift in Sources */,
+				AB23AF6921A9069E004FB964 /* ControllerNetworkService.swift in Sources */,
 				AB4E2E70219FA21200383747 /* SKNode+Extensions.swift in Sources */,
 				ABD5FC6121A128E900A0B155 /* InputControl.swift in Sources */,
+				AB23AF7321A926E6004FB964 /* CarDataMessage.swift in Sources */,
 				AB4E2E4E219F974200383747 /* Player.swift in Sources */,
 				ABD5FC5C21A0DD1700A0B155 /* BaseGameScene.swift in Sources */,
 				ABD5FC7121A1409400A0B155 /* BaseGameScene+Buttons.swift in Sources */,
@@ -398,6 +441,7 @@
 				AB5EF42121A4C26F006E9489 /* UITouchControlsJoystick.swift in Sources */,
 				AB23AF6321A8F0E2004FB964 /* Track2.swift in Sources */,
 				AB54CC5B21A28DDC00D4F818 /* SubmitScoreViewController.swift in Sources */,
+				AB23AF6B21A9069E004FB964 /* NetworkService.swift in Sources */,
 				AB4E2E73219FA21200383747 /* SKTTimingFunctions.swift in Sources */,
 				AB23AF5F21A8D24B004FB964 /* CarType.swift in Sources */,
 				ABD5FC6F21A13EAC00A0B155 /* ButtonNode.swift in Sources */,

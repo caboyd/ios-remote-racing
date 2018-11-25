@@ -31,7 +31,7 @@
 import GameplayKit
 import SpriteKit
 
-class GameCompletedState: GameSKOverlayState {
+class GameCompletedState: GameOverlayState {
   
   override var overlaySceneFileName: String {
     return "CompletedScene"

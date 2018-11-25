@@ -140,7 +140,7 @@ open class AnalogJoystick: SKNode {
     var substrate: AnalogJoystickSubstrate!
     var stick: AnalogJoystickStick!
     private var tracking = false
-    private(set) var data = AnalogJoystickData()
+    var data = AnalogJoystickData()
     
     var disabled: Bool {
         get {

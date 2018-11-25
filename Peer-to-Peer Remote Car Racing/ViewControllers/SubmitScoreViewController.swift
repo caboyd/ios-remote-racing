@@ -19,6 +19,7 @@ class SubmitScoreViewController: UIViewController {
     
     var time: TimeInterval!;
     var trackName: String!;
+    var closeCallback: (() -> Void)?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,7 @@ class SubmitScoreViewController: UIViewController {
     
     
     @IBAction func close(_ sender: UIButton) {
+        closeCallback?();
         self.willMove(toParent: nil);
         view.removeFromSuperview();
         self.removeFromParent()

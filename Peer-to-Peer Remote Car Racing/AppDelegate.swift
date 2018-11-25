@@ -8,9 +8,12 @@
 
 import UIKit
 
+let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var networkService: NetworkService?
     var window: UIWindow?
 
 

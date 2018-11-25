@@ -43,12 +43,24 @@ enum ButtonIdentifier: String {
   
   static let allIdentifiers: [ButtonIdentifier] = [.resume, .quit, .restart, .pause, .selectTrack]
   
-  var selectedTextureName: String? {
+  var defaultTextureName: String? {
     switch self {
+    case .resume:
+        return "greyButton"
+    case .quit:
+        return "orangeButton"
+    case .restart:
+        return "greyButton"
+    case .selectTrack:
+        return "greyButton"
       default:
-        return nil
+        return "greyButton"
     }
   }
+    
+    var selectedTextureName: String? {
+        return (defaultTextureName != nil) ? "\(defaultTextureName!)Highlight" : nil;
+    }
 }
 
 class ButtonNode: SKSpriteNode {
@@ -88,12 +100,21 @@ class ButtonNode: SKSpriteNode {
     
     name = templateNode.name
     position = templateNode.position
+    centerRect = CGRect(x: 0.49, y: 0.49, width: 0.02, height: 0.02);
+    
+    
     
     //zPosition
     
     color = SKColor(white: 0.8, alpha: 1.0)
     
-    defaultTexture = texture
+
+    if let textureName = buttonIdentifier.defaultTextureName {
+        defaultTexture = SKTexture(imageNamed: textureName)
+    } else {
+        defaultTexture = texture
+    }
+    texture = defaultTexture;
     
     if let textureName = buttonIdentifier.selectedTextureName {
       selectedTexture = SKTexture(imageNamed: textureName)
@@ -157,10 +178,11 @@ class ButtonNode: SKSpriteNode {
   static func parseButtonInNode(containerNode: SKNode) {
     for identifier in ButtonIdentifier.allIdentifiers {
       
-      guard let templateNode = containerNode.childNode(withName: identifier.rawValue) as? SKSpriteNode else { continue }
+      guard let templateNode = containerNode.childNode(withName: ".//\(identifier.rawValue)") as? SKSpriteNode else { continue }
     
       let buttonNode = ButtonNode(templateNode: templateNode)
       buttonNode.zPosition = templateNode.zPosition
+      
       
       containerNode.addChild(buttonNode)
       templateNode.removeFromParent()
