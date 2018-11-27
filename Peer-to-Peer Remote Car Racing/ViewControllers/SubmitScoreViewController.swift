@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class SubmitScoreViewController: UIViewController {
 
@@ -20,10 +21,11 @@ class SubmitScoreViewController: UIViewController {
     var time: TimeInterval!;
     var trackName: String!;
     var closeCallback: (() -> Void)?;
+    var ref:DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+ref = Database.database().reference()
         // Do any additional setup after loading the view.
         //try to get name from user defaults
         nameTextField.delegate = self;
@@ -34,9 +36,12 @@ class SubmitScoreViewController: UIViewController {
     
     override func didMove(toParent parent: UIViewController?) {
         timeLabel.text = stringFromTimeInterval(interval: time) as String;
-        
-        //TODO: get rank from firebase leaderboard
-        rankLabel.text = "\(999)";
+    
+        let scores = ref?.child(trackName).queryOrdered(byChild: "Score").queryEnding(atValue: time, childKey: "Score")
+        scores?.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.rankLabel.text = "\(snapshot.childrenCount+1)"
+        })
+       ;
     }
     
 
@@ -45,7 +50,11 @@ class SubmitScoreViewController: UIViewController {
         let name = nameTextField.text ?? "";
         UserDefaults.standard.set(name, forKey: "name");
         
-        //TODO: submit to firebase
+        
+        ref?.child(trackName).childByAutoId().setValue(["Name":name, "Score":time])
+        
+        //dismiss the popover
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     
@@ -54,6 +63,9 @@ class SubmitScoreViewController: UIViewController {
         self.willMove(toParent: nil);
         view.removeFromSuperview();
         self.removeFromParent()
+        
+        //dismiss the popover
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     private func updateSubmitButtonState() {

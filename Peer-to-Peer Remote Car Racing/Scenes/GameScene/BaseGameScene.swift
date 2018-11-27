@@ -178,9 +178,13 @@ class BaseGameScene: SKScene {
         hud = UIHUD();
         cam.addChild(hud);
         
-        if gameMode != .DISPLAY {
+        if gameMode == .CONTROLLER{
             hud.timersNode.isHidden = true;
             hud.speedNode.isHidden = true;
+            
+        }
+        if gameMode != .DISPLAY {
+            
             cam.addChild(touchControls);
             if debugMode {
                 tc.addDebugHUD(gameScene: self);

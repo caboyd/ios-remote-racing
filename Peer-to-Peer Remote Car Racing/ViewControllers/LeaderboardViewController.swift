@@ -8,12 +8,19 @@
 
 import UIKit
 
-class LeaderboardViewController: UIViewController {
-
+class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tabledScores: UITableView!
+    
+    var Name = ["Joshua", "Chris"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tabledScores.delegate = self
+        tabledScores.dataSource = self
     }
     
 
@@ -31,4 +38,17 @@ class LeaderboardViewController: UIViewController {
         _ = navigationController?.popViewController(animated: true)
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Name.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ScoreCell")
+        cell?.textLabel?.text = Name[indexPath.row]
+        
+        return cell!
+    }
+    
 }
