@@ -25,7 +25,7 @@ class SubmitScoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-ref = Database.database().reference()
+    ref = Database.database().reference()
         // Do any additional setup after loading the view.
         //try to get name from user defaults
         nameTextField.delegate = self;

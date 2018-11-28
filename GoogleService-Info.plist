@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>927258983164-8fgeno9dsb3l0bgs5ef00tpf2jt0njdn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.927258983164-8fgeno9dsb3l0bgs5ef00tpf2jt0njdn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBeY_RyB92ik6WNWkL6DQiv2geOFQDSWA8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>927258983164</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ca.uregina.cs.455.boyd111c.remote-racing</string>
+	<key>PROJECT_ID</key>
+	<string>peer-to-peer-remote-car-racing</string>
+	<key>STORAGE_BUCKET</key>
+	<string>peer-to-peer-remote-car-racing.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:927258983164:ios:3d379392cc063da0</string>
+	<key>DATABASE_URL</key>
+	<string>https://peer-to-peer-remote-car-racing.firebaseio.com</string>
+</dict>
+</plist>

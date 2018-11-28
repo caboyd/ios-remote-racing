@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tabledScores: UITableView!
     
-    var Name = ["Joshua", "Chris"]
+    var Name = [String]()
+    var Score = [Double]()
+    
+    var ref:DatabaseReference?
+    var databaseHandle:DatabaseHandle?
     
     
     override func viewDidLoad() {
@@ -21,6 +26,13 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         // Do any additional setup after loading the view.
         tabledScores.delegate = self
         tabledScores.dataSource = self
+        
+        ref = Database.database().reference()
+        
+        ref?.child("Name").observe(.childAdded, with: {(snapshot) in
+            
+        })
+        
     }
     
 
@@ -46,6 +58,7 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScoreCell")
+        
         cell?.textLabel?.text = Name[indexPath.row]
         
         return cell!

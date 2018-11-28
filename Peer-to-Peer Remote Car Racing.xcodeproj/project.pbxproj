@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		687A2B2221AB36F20023614A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 687A2B2121AB36F20023614A /* GoogleService-Info.plist */; };
+		68CEE77921AF3A9100CD4427 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68CEE77821AF3A9100CD4427 /* GoogleService-Info.plist */; };
 		7A66411A2194BC9600F80C9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6641192194BC9600F80C9B /* AppDelegate.swift */; };
 		7A66411C2194BC9600F80C9B /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A66411B2194BC9600F80C9B /* HomeScreenViewController.swift */; };
 		7A66411F2194BC9600F80C9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A66411D2194BC9600F80C9B /* Main.storyboard */; };
@@ -69,7 +69,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		687A2B2121AB36F20023614A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		68CEE77821AF3A9100CD4427 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		7A6641162194BC9600F80C9B /* Peer-to-Peer Remote Car Racing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peer-to-Peer Remote Car Racing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A6641192194BC9600F80C9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A66411B2194BC9600F80C9B /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 				7A6641222194BC9900F80C9B /* LaunchScreen.storyboard */,
 				7A6641202194BC9900F80C9B /* Assets.xcassets */,
 				7A6641252194BC9900F80C9B /* Info.plist */,
-				687A2B2121AB36F20023614A /* GoogleService-Info.plist */,
+				68CEE77821AF3A9100CD4427 /* GoogleService-Info.plist */,
 				AB0EA9A121A2A015005B5FCE /* globals.swift */,
 				AB0EA9A321A2A91D005B5FCE /* FTButtonNode.swift */,
 			);
@@ -416,7 +416,7 @@
 				AB4E2E4F219F974200383747 /* Track1.sks in Resources */,
 				7A6641242194BC9900F80C9B /* LaunchScreen.storyboard in Resources */,
 				7A6641212194BC9900F80C9B /* Assets.xcassets in Resources */,
-				687A2B2221AB36F20023614A /* GoogleService-Info.plist in Resources */,
+				68CEE77921AF3A9100CD4427 /* GoogleService-Info.plist in Resources */,
 				7A66411F2194BC9600F80C9B /* Main.storyboard in Resources */,
 				AB85BD5521A14D630066BCEE /* CompletedScene.sks in Resources */,
 				AB23AF6121A8F086004FB964 /* Track2.sks in Resources */,
