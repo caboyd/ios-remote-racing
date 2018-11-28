@@ -40,95 +40,139 @@ import SpriteKit
 import GameplayKit
 
 class GameActiveState: GKState {
+    
+    unowned let gameScene: BaseGameScene
+    
+    
+    private var previousTimeInterval: TimeInterval = 0
+    
+    init(gameScene: BaseGameScene) {
+        self.gameScene = gameScene
+        super.init()
+        
+        restartLevel()  }
+    
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
+        switch stateClass {
+        case is GamePauseState.Type, is GameCompletedState.Type:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    override func didEnter(from previousState: GKState?) {
+        super.didEnter(from: previousState)
+        
+        if gameScene.gameMode == .CONTROLLER {
+            return;
+        }
+        
+        if previousState is GameCompletedState || previousState == nil{
+            restartLevel()
+            
+            gameScene.isSoftPaused = true;
+            self.gameScene.hud.countdownLabel.isHidden = false;
+            let wait2sec = SKAction.wait(forDuration: 2);
+            let wait1sec = SKAction.wait(forDuration: 1);
+            let fade = SKAction.fadeAlpha(by: -1, duration: 0.5);
+            
+            let playsound = SKAction.run {
+                SKTAudio.sharedInstance().playSoundEffect("race_countdown.mp3");
+                self.gameScene.hud.countdownLabel.text = "3";
+            }
 
-  unowned let gameScene: BaseGameScene
-  
-
-  private var previousTimeInterval: TimeInterval = 0
-  
-  init(gameScene: BaseGameScene) {
-    self.gameScene = gameScene
-    super.init()
-    
-    restartLevel()  }
-  
-  override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-    switch stateClass {
-      case is GamePauseState.Type, is GameCompletedState.Type:
-        return true
-      default:
-        return false
-    }
-  }
-  
-  override func didEnter(from previousState: GKState?) {
-    super.didEnter(from: previousState)
-
-    var pauseTime = 3.0;
-    if previousState is GameCompletedState {
-      restartLevel()
-    }
-    if previousState is GamePauseState {
-        pauseTime -= 1.5;
-    }
-    
-    if gameScene.gameMode != .CONTROLLER {
-        gameScene.isSoftPaused = true;
-        let wait = SKAction.wait(forDuration: pauseTime);
-        let unpause = SKAction.run { self.gameScene.isSoftPaused = false }
-        gameScene.cam.run(SKAction.sequence([wait, unpause]));
-    }
-
-  }
- 
-  
-  override func update(deltaTime dt: TimeInterval) {
-    super.update(deltaTime: dt)
-    
-    if gameScene.isPaused {
-      return
-    }
-
-    if gameScene.gameEnded {
-        return;
+            let action1 = SKAction.run {
+                
+                self.gameScene.hud.countdownLabel.alpha = 1.0;
+                self.gameScene.hud.countdownLabel.run(fade);
+                self.gameScene.hud.countdownLabel.text = "3";
+            }
+            
+            //set label node 2
+            let action2 = SKAction.run {
+                self.gameScene.hud.countdownLabel.alpha = 1.0;
+                self.gameScene.hud.countdownLabel.run(fade);
+                self.gameScene.hud.countdownLabel.text = "2";
+            }
+            
+            let action3 = SKAction.run {
+                self.gameScene.hud.countdownLabel.text = "1";
+                self.gameScene.hud.countdownLabel.alpha = 1.0;
+                self.gameScene.hud.countdownLabel.run(fade);
+            }
+            
+            let unpause = SKAction.run {
+                self.gameScene.isSoftPaused = false
+                self.gameScene.hud.countdownLabel.isHidden = true;
+            }
+            
+            gameScene.cam.run(SKAction.sequence([wait2sec,playsound, action1, wait1sec, action2, wait1sec, action3,wait1sec, unpause]));
+            
+        }
+        if previousState is GamePauseState {
+            let waitTime = 1.0;
+            
+            
+            gameScene.isSoftPaused = true;
+            let wait = SKAction.wait(forDuration: waitTime);
+            let unpause = SKAction.run { self.gameScene.isSoftPaused = false }
+            gameScene.cam.run(SKAction.sequence([wait, unpause]));
+            
+        }
+        
+        
+        
     }
     
     
-    if gameScene.gameMode != .CONTROLLER{
-        gameScene.totalTime += dt;
+    override func update(deltaTime dt: TimeInterval) {
+        super.update(deltaTime: dt)
+        
+        if gameScene.isPaused {
+            return
+        }
+        
+        if gameScene.gameEnded {
+            return;
+        }
+        
+        
+        if gameScene.gameMode != .CONTROLLER{
+            gameScene.totalTime += dt;
+        }
+        
+        updateLabels();
     }
-
-    updateLabels();
-  }
-  
- 
-  private func restartLevel() {
-    previousTimeInterval = 0;
-    gameScene.lastUpdateTime = 0;
-    gameScene.lastWaypoint = 0;
-    gameScene.lap = 1;
-    gameScene.gameEnded = false;
-    gameScene.summedLapTimes = 0;
-    gameScene.totalTime = 0;
-    gameScene.player?.removeFromParent();
-    gameScene.player = Player(position: gameScene.startPosition, carTextureName: gameScene.carType, gameMode: gameScene.gameMode);
-    gameScene.addChild(gameScene.player!);
-    if gameScene.gameMode != .CONTROLLER {
-        gameScene.cam.position = gameScene.player.position;
-        gameScene.cam.zRotation = gameScene.player.zRotation;
+    
+    
+    private func restartLevel() {
+        previousTimeInterval = 0;
+        gameScene.lastUpdateTime = 0;
+        gameScene.lastWaypoint = 0;
+        gameScene.lap = 1;
+        gameScene.gameEnded = false;
+        gameScene.summedLapTimes = 0;
+        gameScene.totalTime = 0;
+        gameScene.player?.removeFromParent();
+        gameScene.player = Player(position: gameScene.startPosition, carTextureName: gameScene.carType, gameMode: gameScene.gameMode);
+        gameScene.addChild(gameScene.player!);
+        if gameScene.gameMode != .CONTROLLER {
+            gameScene.cam.position = gameScene.player.position;
+            gameScene.cam.zRotation = gameScene.player.zRotation;
+        }
+        gameScene.hud.bestLapNode.isHidden = true;
+        gameScene.inputControl.disabled = false;
+        
+        updateLabels()
     }
-    gameScene.hud.bestLapNode.isHidden = true;
-    gameScene.inputControl.disabled = false;
     
-    updateLabels()
-  }
-  
-  private func updateLabels() {
-    gameScene.hud.lapLabel.text = "Lap \(gameScene.lap)/\(gameScene.totalLaps)";
-    
-    gameScene.hud.timeLabel.text = stringFromTimeInterval(interval: gameScene.totalTime) as String;
-    gameScene.hud.speedLabel.text = "\(Int(gameScene.player.physicsBody?.velocity.length() ?? 0))";
-  }
+    private func updateLabels() {
+        gameScene.hud.lapLabel.text = "Lap \(gameScene.lap)/\(gameScene.totalLaps)";
+        
+        gameScene.hud.timeLabel.text = stringFromTimeInterval(interval: gameScene.totalTime) as String;
+        gameScene.hud.speedLabel.text = "\(Int(gameScene.player.physicsBody?.velocity.length() ?? 0))";
+    }
 }
 
 

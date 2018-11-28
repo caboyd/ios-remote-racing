@@ -47,6 +47,7 @@ class BaseGameScene: SKScene {
     var totalLaps:Int = 0;
     var totalTime: TimeInterval = 0;
     var summedLapTimes: TimeInterval = 0;
+    var bestLapTime: TimeInterval = 0;
     var gameEnded = false;
     
     private var landBackground:SKTileMapNode!
@@ -230,6 +231,7 @@ class BaseGameScene: SKScene {
             
         }
         
+        //Move the camera to follow the player
         if let camera = cam, let pl = player {
             camera.position = pl.position;
             camera.zRotation = pl.zRotation;
@@ -240,10 +242,20 @@ class BaseGameScene: SKScene {
         }else{
             player.accelBackwards(dt * Double(inputControl.velocity.y));
         }
+        
+        //Turn the player depending on x value of joystick
         if(abs(inputControl.velocity.x) > 0.05){
-            player.turn(dt * Double(inputControl.velocity.x));
+            var turn = dt * Double(inputControl.velocity.x);
+            
+            //Invert turn when reversing because it it more natural
+            if inputControl.velocity.y < 0 {
+                turn = -turn;
+            }
+ 
+            player.turn(turn);
         }
         
+        //Update the active game state
          stateMachine.update(deltaTime: dt);
         
     }
@@ -279,9 +291,12 @@ class BaseGameScene: SKScene {
         inputControl.disabled = true;
         stateMachine.enter(GameCompletedState.self);
         
-        if gameMode == .DISPLAY {
+        if gameMode != .CONTROLLER {
             networkService?.sendRaceFinished(time: totalTime);
-        } else {
+            SKTAudio.sharedInstance().playSoundEffect("race_finished.wav");
+        }
+        
+        if gameMode != .DISPLAY {
             //If new score is better then present the submit score view
             if let bestTime = SubmitScoreViewController.loadBestScoreLocally(trackName: name!){
                 if Double(totalTime) < bestTime {
@@ -303,37 +318,38 @@ class BaseGameScene: SKScene {
         let scale =  self.trackSize.width / self.size.width;
         cam.setScale(scale / mult);
     }
+    
+    func vibratePhone() {
+        let generator = UIImpactFeedbackGenerator(style: .medium);
+        generator.impactOccurred();
+        
+    }
 }
 
 extension BaseGameScene: SKPhysicsContactDelegate{
     func didBegin(_ contact: SKPhysicsContact) {
         
+        //car impact with waypoints
         for waypoint in 0..<waypoints {
             let waypointName = "Waypoint\(waypoint)";
-            if(contact.bodyA.node?.name == waypointName ||
-                contact.bodyB.node?.name == waypointName) {
-               
-                if(lastWaypoint == previousWaypoint(waypoint)) {
-                    //Update waypoint
-                    lastWaypoint = waypoint;
-                    
-                    //waypoint looped back to 0 so we did a lap
-                    if previousWaypoint(waypoint) > waypoint {
-                        networkService?.send(messageType: .LAP_FINISHED);
-                        
-                        lap += 1;
-                        //TODO: play lap sound
-                        hud.bestLapNode.isHidden = false;
-                        hud.bestLapTimeLabel.text = stringFromTimeInterval(interval: totalTime - summedLapTimes) as String;
-                        summedLapTimes = totalTime;
-                        
-                        if(lap > totalLaps) {
-                             win();
-                        }
-                    }
-                }
+            
+            //car impact with wal
+            if (contact.bodyA.contactTestBitMask & contact.bodyB.categoryBitMask) == 2 &&
+                ((contact.bodyB.node?.name)! == waypointName) {
+                collisionBetween(player: contact.bodyA.node!, waypoint: waypoint)
+                break;
+            } else if (contact.bodyB.contactTestBitMask & contact.bodyA.categoryBitMask) == 2 &&
+                ((contact.bodyA.node?.name)! == waypointName) {
+                collisionBetween(player: contact.bodyB.node!, waypoint: waypoint)
                 break;
             }
+        }
+        
+        //car impact with wal
+        if (contact.bodyA.contactTestBitMask & contact.bodyB.categoryBitMask) == 1 {
+            collisionBetween(player: contact.bodyA.node! , wall: contact.bodyB.node!)
+        } else if (contact.bodyB.contactTestBitMask & contact.bodyA.categoryBitMask) == 1 {
+            collisionBetween(player: contact.bodyB.node! , wall: contact.bodyA.node!)
         }
     }
     
@@ -344,6 +360,54 @@ extension BaseGameScene: SKPhysicsContactDelegate{
         }
         return result;
     }
+    
+    func collisionBetween(player: SKNode, wall: SKNode){
+        //send vibrate to controller
+        networkService?.send(messageType: .VIBRATE);
+        
+        //play crash sound
+        SKTAudio.sharedInstance().playSoundEffect("thud.wav")
+        
+        if gameMode == .SOLO {
+            vibratePhone();
+        }
+    }
+    
+    func collisionBetween(player: SKNode, waypoint: Int){
+        if(lastWaypoint == previousWaypoint(waypoint)) {
+            //Update waypoint
+            lastWaypoint = waypoint;
+            
+            //waypoint looped back to 0 so we did a lap
+            if previousWaypoint(waypoint) > waypoint {
+                lap += 1;
+                
+                
+                
+                //show best lap on screen
+                if hud.bestLapNode.isHidden {
+                    bestLapTime = totalTime - summedLapTimes;
+                    hud.bestLapNode.isHidden = false;
+                    hud.bestLapTimeLabel.text = stringFromTimeInterval(interval: bestLapTime) as String;
+                } else if totalTime - summedLapTimes < bestLapTime {
+                    bestLapTime = totalTime - summedLapTimes;
+                    hud.bestLapTimeLabel.text = stringFromTimeInterval(interval: bestLapTime) as String;
+                }
+
+                
+                summedLapTimes = totalTime;
+                
+                if(lap > totalLaps) {
+                    win();
+                } else {
+                    //lay lap sound
+                    SKTAudio.sharedInstance().playSoundEffect("lap_finished.wav");
+                    networkService?.send(messageType: .LAP_FINISHED);
+                }
+            }
+        }
+    }
+
 }
 
 extension BaseGameScene : NetworkServiceDelegate {
@@ -394,6 +458,8 @@ extension BaseGameScene : NetworkServiceDelegate {
             lap += 1;
         case .DISCONNECT:
             gameSceneDelegate?.quitToMenu();
+        case .VIBRATE:
+            vibratePhone();
         default:
             fatalError("bad message in handleMessageController \(message.description)")
         }

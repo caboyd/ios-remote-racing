@@ -16,11 +16,14 @@ class UIHUD : SceneRootNode {
     var bestLapTimeLabel:SKLabelNode!;
     var bestLapNode:SKNode!;
     var speedLabel:SKLabelNode!;
+    var countdownLabel:SKLabelNode!;
   
     var timersNode: SKNode!;
     var speedNode: SKNode!;
     init() {
         super.init(fileNamed: "UIHUD")!;
+        countdownLabel = (self.childNode(withName: "//countdown") as! SKLabelNode);
+        countdownLabel.isHidden = true;
         
         lapLabel = (self.childNode(withName: "//lapLabel") as! SKLabelNode);
         timeLabel = (self.childNode(withName: "//timeLabel") as! SKLabelNode);

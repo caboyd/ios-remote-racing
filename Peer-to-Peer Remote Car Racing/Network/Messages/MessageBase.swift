@@ -26,6 +26,7 @@ enum MessageType : UInt8 {
     case TRACK_PREV
     case LAP_FINISHED
     case DEBUG_WIN
+    case VIBRATE
     
     //messages with data
     //one CGPoint

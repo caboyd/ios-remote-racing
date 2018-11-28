@@ -10,6 +10,10 @@
 		68AA8E8821B1D95100D9A133 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AA8E8721B1D95100D9A133 /* Leaderboard.swift */; };
 		68AA8E8A21B1E20400D9A133 /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AA8E8921B1E20400D9A133 /* LeaderboardTableViewCell.swift */; };
 		68CEE77921AF3A9100CD4427 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68CEE77821AF3A9100CD4427 /* GoogleService-Info.plist */; };
+		701F7DC221AF47DE0041A4EE /* thud.wav in Resources */ = {isa = PBXBuildFile; fileRef = 701F7DC121AF47DE0041A4EE /* thud.wav */; };
+		701F7DC421AF549B0041A4EE /* race_finished.wav in Resources */ = {isa = PBXBuildFile; fileRef = 701F7DC321AF549A0041A4EE /* race_finished.wav */; };
+		701F7DC621AF54C10041A4EE /* lap_finished.wav in Resources */ = {isa = PBXBuildFile; fileRef = 701F7DC521AF54C10041A4EE /* lap_finished.wav */; };
+		701F7DC821AF56A20041A4EE /* race_countdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 701F7DC721AF56A20041A4EE /* race_countdown.mp3 */; };
 		7A66411A2194BC9600F80C9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6641192194BC9600F80C9B /* AppDelegate.swift */; };
 		7A66411C2194BC9600F80C9B /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A66411B2194BC9600F80C9B /* HomeScreenViewController.swift */; };
 		7A66411F2194BC9600F80C9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A66411D2194BC9600F80C9B /* Main.storyboard */; };
@@ -74,6 +78,10 @@
 		68AA8E8721B1D95100D9A133 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		68AA8E8921B1E20400D9A133 /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
 		68CEE77821AF3A9100CD4427 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		701F7DC121AF47DE0041A4EE /* thud.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = thud.wav; sourceTree = "<group>"; };
+		701F7DC321AF549A0041A4EE /* race_finished.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = race_finished.wav; sourceTree = "<group>"; };
+		701F7DC521AF54C10041A4EE /* lap_finished.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lap_finished.wav; sourceTree = "<group>"; };
+		701F7DC721AF56A20041A4EE /* race_countdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = race_countdown.mp3; sourceTree = "<group>"; };
 		7A6641162194BC9600F80C9B /* Peer-to-Peer Remote Car Racing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peer-to-Peer Remote Car Racing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A6641192194BC9600F80C9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A66411B2194BC9600F80C9B /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -305,6 +313,10 @@
 		AB4E2E76219FA27900383747 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				701F7DC721AF56A20041A4EE /* race_countdown.mp3 */,
+				701F7DC521AF54C10041A4EE /* lap_finished.wav */,
+				701F7DC321AF549A0041A4EE /* race_finished.wav */,
+				701F7DC121AF47DE0041A4EE /* thud.wav */,
 				AB4E2E77219FA28300383747 /* button_press.wav */,
 			);
 			path = Sounds;
@@ -427,12 +439,16 @@
 			files = (
 				AB4E2E78219FA28300383747 /* button_press.wav in Resources */,
 				AB5EF41F21A4BD44006E9489 /* UITouchControlsJoystick.sks in Resources */,
+				701F7DC621AF54C10041A4EE /* lap_finished.wav in Resources */,
 				AB4E2E4F219F974200383747 /* Track1.sks in Resources */,
 				7A6641242194BC9900F80C9B /* LaunchScreen.storyboard in Resources */,
+				701F7DC221AF47DE0041A4EE /* thud.wav in Resources */,
 				7A6641212194BC9900F80C9B /* Assets.xcassets in Resources */,
 				68CEE77921AF3A9100CD4427 /* GoogleService-Info.plist in Resources */,
 				7A66411F2194BC9600F80C9B /* Main.storyboard in Resources */,
 				AB85BD5521A14D630066BCEE /* CompletedScene.sks in Resources */,
+				701F7DC421AF549B0041A4EE /* race_finished.wav in Resources */,
+				701F7DC821AF56A20041A4EE /* race_countdown.mp3 in Resources */,
 				AB23AF6121A8F086004FB964 /* Track2.sks in Resources */,
 				AB8BB62D21A2084700E3E1F0 /* UIHUD.sks in Resources */,
 				AB4E2E52219F974200383747 /* TrackTileSet.sks in Resources */,
