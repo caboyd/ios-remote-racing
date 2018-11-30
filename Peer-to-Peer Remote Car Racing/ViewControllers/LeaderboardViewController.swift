@@ -13,11 +13,9 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var tabledScores: UITableView!
     
-    var Name = [String]()
-    var Score = [Double]()
+    var trackID : Int = TrackID.MIN
+    var leaderboards = [Leaderboard]()
     
-    var ref:DatabaseReference?
-    var databaseHandle:DatabaseHandle?
     
     
     override func viewDidLoad() {
@@ -27,11 +25,8 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         tabledScores.delegate = self
         tabledScores.dataSource = self
         
-        ref = Database.database().reference()
-        
-        ref?.child("Name").observe(.childAdded, with: {(snapshot) in
-            
-        })
+        leaderboards.append(Leaderboard(trackName: "Track1", tableView: tabledScores));
+        leaderboards.append(Leaderboard(trackName: "Track2", tableView: tabledScores));
         
     }
     
@@ -51,15 +46,20 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1;
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Name.count
+        return leaderboards[trackID - 1].Name.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ScoreCell")
-        
-        cell?.textLabel?.text = Name[indexPath.row]
+        let leaderboard = leaderboards[trackID - 1];
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardTableViewCell") as? LeaderboardTableViewCell
+        let space = stringFromTimeInterval(interval: leaderboard.Score[indexPath.row]) as String
+        cell?.nameLabel?.text = "\(leaderboard.Name[indexPath.row])\(space)"
         
         return cell!
     }

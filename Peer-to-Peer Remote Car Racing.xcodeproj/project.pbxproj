@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68AA8E8821B1D95100D9A133 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AA8E8721B1D95100D9A133 /* Leaderboard.swift */; };
+		68AA8E8A21B1E20400D9A133 /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AA8E8921B1E20400D9A133 /* LeaderboardTableViewCell.swift */; };
 		68CEE77921AF3A9100CD4427 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68CEE77821AF3A9100CD4427 /* GoogleService-Info.plist */; };
 		7A66411A2194BC9600F80C9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6641192194BC9600F80C9B /* AppDelegate.swift */; };
 		7A66411C2194BC9600F80C9B /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A66411B2194BC9600F80C9B /* HomeScreenViewController.swift */; };
@@ -69,6 +71,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		68AA8E8721B1D95100D9A133 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
+		68AA8E8921B1E20400D9A133 /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
 		68CEE77821AF3A9100CD4427 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		7A6641162194BC9600F80C9B /* Peer-to-Peer Remote Car Racing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peer-to-Peer Remote Car Racing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A6641192194BC9600F80C9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +150,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		68AA8E8621B1D93000D9A133 /* Leaderboard */ = {
+			isa = PBXGroup;
+			children = (
+				68AA8E8721B1D95100D9A133 /* Leaderboard.swift */,
+				68AA8E8921B1E20400D9A133 /* LeaderboardTableViewCell.swift */,
+			);
+			path = Leaderboard;
+			sourceTree = "<group>";
+		};
 		7A66410D2194BC9600F80C9B = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +180,7 @@
 		7A6641182194BC9600F80C9B /* Peer-to-Peer Remote Car Racing */ = {
 			isa = PBXGroup;
 			children = (
+				68AA8E8621B1D93000D9A133 /* Leaderboard */,
 				AB23AF6421A9069E004FB964 /* Network */,
 				AB4E2E53219F980300383747 /* ViewControllers */,
 				ABD5FC5D21A0F1D300A0B155 /* Scenes */,
@@ -519,12 +533,14 @@
 				AB5EF42321A4F7BA006E9489 /* SceneRootNode.swift in Sources */,
 				AB4E2E7A219FA50000383747 /* TrackSelectionViewController.swift in Sources */,
 				AB0EA9A421A2A91D005B5FCE /* FTButtonNode.swift in Sources */,
+				68AA8E8A21B1E20400D9A133 /* LeaderboardTableViewCell.swift in Sources */,
 				AB4E2E6C219FA21200383747 /* Int+Extensions.swift in Sources */,
 				AB0EA9A221A2A015005B5FCE /* globals.swift in Sources */,
 				AB5EF42121A4C26F006E9489 /* UITouchControlsJoystick.swift in Sources */,
 				AB23AF6321A8F0E2004FB964 /* Track2.swift in Sources */,
 				AB54CC5B21A28DDC00D4F818 /* SubmitScoreViewController.swift in Sources */,
 				AB23AF6B21A9069E004FB964 /* NetworkService.swift in Sources */,
+				68AA8E8821B1D95100D9A133 /* Leaderboard.swift in Sources */,
 				AB4E2E73219FA21200383747 /* SKTTimingFunctions.swift in Sources */,
 				AB23AF5F21A8D24B004FB964 /* CarType.swift in Sources */,
 				ABD5FC6F21A13EAC00A0B155 /* ButtonNode.swift in Sources */,
@@ -689,7 +705,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.uregina.cs.455.boyd111c.remote-racing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -709,7 +725,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.uregina.cs.455.boyd111c.remote-racing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

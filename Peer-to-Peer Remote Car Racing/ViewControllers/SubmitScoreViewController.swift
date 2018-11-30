@@ -31,6 +31,7 @@ class SubmitScoreViewController: UIViewController {
         nameTextField.delegate = self;
         nameTextField.text = UserDefaults.standard.string(forKey: "name") ?? "";
         
+        
         updateSubmitButtonState();
     }
     
@@ -39,6 +40,7 @@ class SubmitScoreViewController: UIViewController {
     
         let scores = ref?.child(trackName).queryOrdered(byChild: "Score").queryEnding(atValue: time, childKey: "Score")
         scores?.observeSingleEvent(of: .value, with: { (snapshot) in
+
             self.rankLabel.text = "\(snapshot.childrenCount+1)"
         })
        ;
