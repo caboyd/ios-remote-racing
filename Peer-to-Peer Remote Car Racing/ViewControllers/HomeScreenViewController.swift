@@ -37,5 +37,11 @@ class HomeScreenViewController: UIViewController {
             navigationController?.pushViewController(leaderboardViewController, animated: true)
         }
     }
+    @IBAction func options(_ sender: UIButton) {
+        SKTAudio.sharedInstance().playSoundEffect("button_press.wav");
+        if let optionsViewController = storyboard?.instantiateViewController(withIdentifier: "OptionsViewController") as? OptionsViewController {
+            navigationController?.pushViewController(optionsViewController, animated: true)
+        }
+    }
 }
 

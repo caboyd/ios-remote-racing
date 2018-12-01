@@ -64,7 +64,10 @@ class GameActiveState: GKState {
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
         
-        if gameScene.gameMode == .CONTROLLER {
+        if gameScene.gameMode == .CONTROLLER && (previousState is GameCompletedState) {
+            restartLevel()
+            return;
+        } else if gameScene.gameMode == .CONTROLLER {
             return;
         }
         

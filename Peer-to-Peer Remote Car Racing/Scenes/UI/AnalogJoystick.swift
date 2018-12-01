@@ -141,6 +141,7 @@ open class AnalogJoystick: SKNode {
     var stick: AnalogJoystickStick!
     private var tracking = false
     var data = AnalogJoystickData()
+    var disabledYAxis: Bool = false;
     
     var disabled: Bool {
         get {
@@ -261,9 +262,17 @@ open class AnalogJoystick: SKNode {
             let maxDistantion = substrate.radius;
             let realDistantion = sqrt(pow(location.x, 2) + pow(location.y, 2));
             var position = realDistantion <= maxDistantion ? CGPoint(x: location.x, y: location.y) : CGPoint(x: location.x / realDistantion * maxDistantion, y: location.y / realDistantion * maxDistantion)
-            stick.position = position
-            position /= maxDistantion;
-            data = AnalogJoystickData(velocity: position, angular: -atan2(position.x, position.y))
+            if disabledYAxis {
+                stick.position.x = position.x;
+                stick.position.y = 0;
+                position /= maxDistantion;
+                data = AnalogJoystickData(velocity: CGPoint(x: position.x, y: 0), angular: -atan2(position.x, 0));
+            } else {
+                stick.position = position;
+                position /= maxDistantion;
+                data = AnalogJoystickData(velocity: position, angular: -atan2(position.x, position.y))
+            }
+
         }
     }
     

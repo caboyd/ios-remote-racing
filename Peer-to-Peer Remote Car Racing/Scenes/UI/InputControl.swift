@@ -47,17 +47,12 @@ class JoystickInput: InputControl {
 
 
 class JoystickButtonInput:JoystickInput {
-    
-   
     override init(analogJoystick : AnalogJoystick?) {
         super.init(analogJoystick: analogJoystick);
 
-        //Add gas button
-        //let gasButton = SKSpriteNode();
-        //let brakeButton = SKSpriteNode();
+        analogJoystick?.disabledYAxis = true;
     }
     
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
