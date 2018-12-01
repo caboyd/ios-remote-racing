@@ -13,11 +13,11 @@ class Leaderboard {
     
     var Name = [String]()
     var Score = [Double]()
-    var Rank = [Int]()
     var ref:DatabaseReference = Database.database().reference()
     
     init(trackName: String, tableView : UITableView) {
-        ref.child(trackName).observe(.childAdded, with: {(snapshot) in
+        let query = ref.child(trackName).queryOrdered(byChild: "Score").queryLimited(toFirst: 10);
+        query.observe(.childAdded, with: {(snapshot) in
             
             let data = snapshot.value as? NSDictionary
             
@@ -28,10 +28,7 @@ class Leaderboard {
             if let actualName = data? ["Name"] as? String {
                 self.Name.append(actualName)
             }
-            
-            if let actualRank = data? ["Rank"] as? Int {
-                self.Rank.append(actualRank)
-            }
+
             tableView.reloadData();
         })
         

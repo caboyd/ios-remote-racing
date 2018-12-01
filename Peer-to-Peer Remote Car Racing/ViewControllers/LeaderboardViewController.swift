@@ -7,16 +7,14 @@
 //
 
 import UIKit
-import FirebaseDatabase
 
-class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class LeaderboardViewController: UIViewController  {
     
     @IBOutlet weak var tabledScores: UITableView!
+    @IBOutlet weak var trackImage: UIImageView!
     
     var trackID : Int = TrackID.MIN
     var leaderboards = [Leaderboard]()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,23 +26,47 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         leaderboards.append(Leaderboard(trackName: "Track1", tableView: tabledScores));
         leaderboards.append(Leaderboard(trackName: "Track2", tableView: tabledScores));
         
+        tabledScores.layer.cornerRadius = 15;
+        tabledScores.sectionHeaderHeight = 40;
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     @IBAction func backButton(_ sender: UIButton) {
         _ = navigationController?.popViewController(animated: true)
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
     }
+    
+    @IBAction func nextTrack(_ sender: UIButton?) {
+        SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
+        trackID = TrackID.getNextID(trackID);
+        updateTrackImage();
+        tabledScores.reloadData();
+    }
+    
+    @IBAction func prevTrack(_ sender: UIButton?) {
+        SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
+        trackID = TrackID.getPreviousID(trackID);
+        updateTrackImage();
+        tabledScores.reloadData();
+    }
+    
+    func updateTrackImage() {
+        trackImage.image = UIImage(named: TrackID.toString(trackID).lowercased());
+    }
+    
+
+    
+}
+
+extension LeaderboardViewController :UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView();
+        let headerCell = tabledScores.dequeueReusableCell(withIdentifier: "Header")!;
+        headerView.addSubview(headerCell);
+        return headerView;
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
@@ -61,9 +83,9 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         let space = stringFromTimeInterval(interval: leaderboard.Score[indexPath.row]) as String
         cell?.nameLabel?.text = "\(leaderboard.Name[indexPath.row])"
         cell?.scoreLabel?.text = "\(space)"
-        cell?.rankLabel?.text = "\(leaderboard.Rank[indexPath.row])"
+        cell?.rankLabel?.text = "\(indexPath.row + 1)"
         
         return cell!
     }
-    
+
 }
