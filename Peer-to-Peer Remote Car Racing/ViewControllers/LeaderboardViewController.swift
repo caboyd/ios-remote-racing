@@ -12,6 +12,7 @@ class LeaderboardViewController: UIViewController  {
     
     @IBOutlet weak var tabledScores: UITableView!
     @IBOutlet weak var trackImage: UIImageView!
+    @IBOutlet weak var headerView: UIView!
     
     var trackID : Int = TrackID.MIN
     var leaderboards = [Leaderboard]()
@@ -27,7 +28,7 @@ class LeaderboardViewController: UIViewController  {
         leaderboards.append(Leaderboard(trackName: "Track2", tableView: tabledScores));
         
         tabledScores.layer.cornerRadius = 15;
-        tabledScores.sectionHeaderHeight = 40;
+        headerView.layer.cornerRadius = 15;
     }
     
 
@@ -59,13 +60,6 @@ class LeaderboardViewController: UIViewController  {
 }
 
 extension LeaderboardViewController :UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let headerView = UIView();
-        let headerCell = tabledScores.dequeueReusableCell(withIdentifier: "Header")!;
-        headerView.addSubview(headerCell);
-        return headerView;
-    }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
