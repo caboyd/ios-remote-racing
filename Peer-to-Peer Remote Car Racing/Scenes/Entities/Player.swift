@@ -19,10 +19,16 @@ class Player : SKSpriteNode {
     static let ACCEL_BACKWARD = 1700.0 ;
     static let TURN = 0.3;
    
+    //New player with given texture,
+    //gamemode of controller makes the player a triangle
     init(position: CGPoint, carTextureName: String, gameMode: GameMode) {
         self.velocity = CGVector(dx: 0,dy: 0);
         self.accel = CGVector(dx: 0,dy: 0);
+        
+        //Set car texture to one passed in as param
         var texture = SKTexture(imageNamed: carTextureName);
+        
+        //Set car texture to a yellow triangle
         if gameMode == .CONTROLLER {
             let path = UIBezierPath();
             path.move(to: CGPoint(x: 0, y: 90))
@@ -35,9 +41,12 @@ class Player : SKSpriteNode {
         }
         
         super.init(texture: texture, color: UIColor.clear, size: texture.size());
+        self.name = "Player"
         self.position = position;
         self.zPosition = 1;
         
+        
+        //Setup physics if not controller device
         if gameMode != .CONTROLLER {
             physicsBody = SKPhysicsBody(texture: texture, size: texture.size());
         }
@@ -49,7 +58,7 @@ class Player : SKSpriteNode {
             physics.linearDamping = 5
             physics.angularDamping = 2;
             physics.collisionBitMask = 1;
-            physics.contactTestBitMask = 2;
+            physics.contactTestBitMask = 3;
             physics.mass = 1;
             //physics.density = 1;
         }

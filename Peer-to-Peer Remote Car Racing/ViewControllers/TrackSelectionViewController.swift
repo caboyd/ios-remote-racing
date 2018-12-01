@@ -48,7 +48,9 @@ class TrackSelectionViewController: UIViewController {
         }
     }
     
-
+    func playButtonSound(){
+        SKTAudio.sharedInstance().playSoundEffect("button_press.wav");
+    }
 
     func hideButtons() {
         changeColorButton.isHidden = true;
@@ -70,6 +72,7 @@ class TrackSelectionViewController: UIViewController {
 
     @IBAction func nextTrack(_ sender: UIButton?) {
         nextTrack();
+        playButtonSound();
         networkService?.send(messageType:  .TRACK_NEXT)
     }
     
@@ -80,6 +83,7 @@ class TrackSelectionViewController: UIViewController {
     
     @IBAction func prevTrack(_ sender: UIButton?) {
         prevTrack();
+        playButtonSound();
         networkService?.send(messageType: .TRACK_PREV)
     }
     
@@ -90,6 +94,7 @@ class TrackSelectionViewController: UIViewController {
     
     @IBAction func nextCar(_ sender: UIButton?) {
         nextCar();
+        playButtonSound();
         networkService?.send(messageType: .CAR_NEXT)
     }
     
@@ -100,6 +105,7 @@ class TrackSelectionViewController: UIViewController {
     
     @IBAction func prevCar(_ sender: UIButton?) {
         prevCar();
+        playButtonSound();
         networkService?.send(messageType: .CAR_PREV)
     }
     
@@ -110,6 +116,7 @@ class TrackSelectionViewController: UIViewController {
     
     @IBAction func nextCarColor(_ sender: UIButton?) {
         nextCarColor();
+        playButtonSound();
         networkService?.send(messageType: .CAR_COLOR)
     }
     
@@ -120,6 +127,7 @@ class TrackSelectionViewController: UIViewController {
     
     @IBAction func start(_ sender: UIButton) {
         networkService?.send(messageType: .NAV_START_RACE);
+        playButtonSound();
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
         start();
     }
@@ -137,7 +145,7 @@ class TrackSelectionViewController: UIViewController {
     
     @IBAction func backButton(_ sender: UIButton) {
         _ = navigationController?.popViewController(animated: true)
-        SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
+        playButtonSound();
         networkService?.send(messageType: .DISCONNECT);
     }
 }
