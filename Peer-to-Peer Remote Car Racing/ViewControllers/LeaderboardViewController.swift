@@ -59,7 +59,9 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         let leaderboard = leaderboards[trackID - 1];
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardTableViewCell") as? LeaderboardTableViewCell
         let space = stringFromTimeInterval(interval: leaderboard.Score[indexPath.row]) as String
-        cell?.nameLabel?.text = "\(leaderboard.Name[indexPath.row])\(space)"
+        cell?.nameLabel?.text = "\(leaderboard.Name[indexPath.row])"
+        cell?.scoreLabel?.text = "\(space)"
+        cell?.rankLabel?.text = "\(leaderboard.Rank[indexPath.row])"
         
         return cell!
     }

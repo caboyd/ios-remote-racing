@@ -53,7 +53,7 @@ class SubmitScoreViewController: UIViewController {
         UserDefaults.standard.set(name, forKey: "name");
         
         
-        ref?.child(trackName).childByAutoId().setValue(["Name":name, "Score":time])
+        ref?.child(trackName).childByAutoId().setValue(["Name":name, "Score":time, "Rank":rankLabel])
         
         //dismiss the popover
         presentingViewController?.dismiss(animated: true, completion: nil)

@@ -13,6 +13,7 @@ class Leaderboard {
     
     var Name = [String]()
     var Score = [Double]()
+    var Rank = [Int]()
     var ref:DatabaseReference = Database.database().reference()
     
     init(trackName: String, tableView : UITableView) {
@@ -26,6 +27,10 @@ class Leaderboard {
             
             if let actualName = data? ["Name"] as? String {
                 self.Name.append(actualName)
+            }
+            
+            if let actualRank = data? ["Rank"] as? Int {
+                self.Rank.append(actualRank)
             }
             tableView.reloadData();
         })
