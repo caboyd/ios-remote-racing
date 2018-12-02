@@ -11,12 +11,16 @@ import MultipeerConnectivity
 
 class DeviceSelectionViewController: UIViewController, NetServiceDelegate {
     
+    @IBOutlet weak var displayButton: UIButton!
+    @IBOutlet weak var controllerButton: UIButton!
     weak var networkService: NetworkService?;
     var alert: UIAlertController?;
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        displayButton.imageView?.contentMode = .scaleAspectFit
+        
+        controllerButton.imageView?.contentMode  = .scaleAspectFit
     }
     
     // MARK: - Navigation
