@@ -67,16 +67,16 @@ extension LeaderboardViewController :UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return leaderboards[trackID - 1].Name.count
+        return leaderboards[trackID - 1].entries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let leaderboard = leaderboards[trackID - 1];
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardTableViewCell") as? LeaderboardTableViewCell
-        let space = stringFromTimeInterval(interval: leaderboard.Score[indexPath.row]) as String
-        cell?.nameLabel?.text = "\(leaderboard.Name[indexPath.row])"
-        cell?.scoreLabel?.text = "\(space)"
+        let time = stringFromTimeInterval(interval: leaderboard.entries[indexPath.row].Score) as String
+        cell?.nameLabel?.text = "\(leaderboard.entries[indexPath.row].Name)"
+        cell?.scoreLabel?.text = "\(time)"
         cell?.rankLabel?.text = "\(indexPath.row + 1)"
         
         return cell!

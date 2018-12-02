@@ -6,6 +6,5 @@ target 'Peer-to-Peer Remote Car Racing' do
 
 pod 'Firebase/Core'
 pod 'Firebase/Database'
-pod 'Firebase/Auth'
 
 end
