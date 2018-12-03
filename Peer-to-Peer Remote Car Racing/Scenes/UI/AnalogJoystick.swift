@@ -266,7 +266,7 @@ open class AnalogJoystick: SKNode {
                 stick.position.x = position.x;
                 stick.position.y = 0;
                 position /= maxDistantion;
-                data = AnalogJoystickData(velocity: CGPoint(x: position.x, y: 0), angular: -atan2(position.x, 0));
+                data = AnalogJoystickData(velocity: CGPoint(x: position.x, y: data.velocity.y), angular: -atan2(position.x, 0));
             } else {
                 stick.position = position;
                 position /= maxDistantion;
@@ -299,7 +299,13 @@ open class AnalogJoystick: SKNode {
         stick.run(moveToBack);
         // workaround
         stick.position = .zero;
-        data.reset()
+        
+        if disabledYAxis {
+            data.velocity.x = 0;
+        } else {
+            data.reset();
+        }
+        
         stopHandler?();
     }
 }
