@@ -89,14 +89,14 @@ class tiltcontrols:InputControl{
                 break;
             }
             
-            if fabs(value) < 0.1
+            if fabs(value) < 0.09
             {
                 value = 0.0;
             }
-            if value < -0.7 {
-                value = -0.7
-            } else if value > 0.7 {
-                value = 0.7
+            if value < -0.9 {
+                value = -0.9
+            } else if value > 0.9 {
+                value = 0.9
             }
             self!.velocity.x = CGFloat(value);
 

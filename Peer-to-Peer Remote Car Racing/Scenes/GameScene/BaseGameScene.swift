@@ -299,14 +299,9 @@ class BaseGameScene: SKScene {
         }
         
         if gameMode != .DISPLAY {
-            //If new score is better then present the submit score view
-            if let bestTime = SubmitScoreViewController.loadBestScoreLocally(trackName: name!){
-                if Double(totalTime) < bestTime {
-                    gameSceneDelegate?.presentSubmitScoreSubview(gameScene: self);
-                }
-            } else {
+            
                 gameSceneDelegate?.presentSubmitScoreSubview(gameScene: self);
-            }
+            
         }
     }
     

@@ -497,8 +497,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZw-uf-WLT">
                                 <rect key="frame" x="140" y="16" width="288" height="288"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="3Ai-hp-cOd">
-                                        <rect key="frame" x="29" y="98" width="230" height="116"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3Ai-hp-cOd">
+                                        <rect key="frame" x="29" y="85" width="230" height="128"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bau-ja-33g">
                                                 <rect key="frame" x="0.0" y="0.0" width="230" height="36"/>
@@ -524,7 +524,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="P3h-k3-Bbn">
-                                                <rect key="frame" x="0.0" y="40" width="230" height="36"/>
+                                                <rect key="frame" x="0.0" y="46" width="230" height="36"/>
                                                 <subviews>
                                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Rank:" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="agq-Ed-8Ep" userLabel="Rank">
                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="36"/>
@@ -544,7 +544,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nzt-QB-ePY">
-                                                <rect key="frame" x="0.0" y="80" width="230" height="36"/>
+                                                <rect key="frame" x="0.0" y="92" width="230" height="36"/>
                                                 <subviews>
                                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Time:" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CWN-7H-3Qb">
                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="36"/>
@@ -569,12 +569,6 @@
                                             <constraint firstItem="CWN-7H-3Qb" firstAttribute="width" secondItem="lwO-cT-Kpo" secondAttribute="width" id="xKl-b7-bx0"/>
                                         </constraints>
                                     </stackView>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Record!" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vQf-bY-Weo">
-                                        <rect key="frame" x="29" y="0.0" width="230" height="57.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="48"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="9NO-XW-87K">
                                         <rect key="frame" x="162.5" y="232" width="107" height="54"/>
                                         <constraints>
@@ -604,9 +598,9 @@
                                             <action selector="submit:" destination="KfU-dF-XN7" eventType="touchUpInside" id="mI1-60-V67"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submit to Leaderboard" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YgQ-sa-g0O">
-                                        <rect key="frame" x="29" y="51.5" width="230" height="35"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submit to Leaderboard" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="YgQ-sa-g0O">
+                                        <rect key="frame" x="14.5" y="17.5" width="259" height="51.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="43"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -615,17 +609,14 @@
                                 <constraints>
                                     <constraint firstItem="9NO-XW-87K" firstAttribute="width" secondItem="xmk-Fm-105" secondAttribute="width" id="2xz-sm-SQF"/>
                                     <constraint firstItem="YgQ-sa-g0O" firstAttribute="centerX" secondItem="YZw-uf-WLT" secondAttribute="centerX" id="Ay4-TQ-VjQ"/>
-                                    <constraint firstItem="vQf-bY-Weo" firstAttribute="centerX" secondItem="YZw-uf-WLT" secondAttribute="centerX" id="Dde-dg-uin"/>
                                     <constraint firstItem="3Ai-hp-cOd" firstAttribute="width" secondItem="YZw-uf-WLT" secondAttribute="width" multiplier="0.8" id="N4V-9w-bcI"/>
                                     <constraint firstItem="xmk-Fm-105" firstAttribute="centerY" secondItem="YZw-uf-WLT" secondAttribute="centerY" multiplier="1.8" id="SLn-Oj-mRb"/>
                                     <constraint firstAttribute="width" secondItem="YZw-uf-WLT" secondAttribute="height" multiplier="1:1" id="TN8-cv-7tb"/>
-                                    <constraint firstItem="3Ai-hp-cOd" firstAttribute="centerY" secondItem="YZw-uf-WLT" secondAttribute="centerY" multiplier="1.05" constant="5" id="U3G-Ab-4Bm"/>
+                                    <constraint firstItem="3Ai-hp-cOd" firstAttribute="centerY" secondItem="YZw-uf-WLT" secondAttribute="centerY" constant="5" id="U3G-Ab-4Bm"/>
                                     <constraint firstItem="xmk-Fm-105" firstAttribute="centerX" secondItem="YZw-uf-WLT" secondAttribute="centerX" multiplier="0.5" id="VMF-4C-NHy"/>
                                     <constraint firstItem="9NO-XW-87K" firstAttribute="centerX" secondItem="YZw-uf-WLT" secondAttribute="centerX" multiplier="1.5" id="X55-CG-vRI"/>
-                                    <constraint firstItem="YgQ-sa-g0O" firstAttribute="width" relation="lessThanOrEqual" secondItem="YZw-uf-WLT" secondAttribute="width" multiplier="0.8" id="aP1-fg-9eh"/>
-                                    <constraint firstItem="YgQ-sa-g0O" firstAttribute="centerY" secondItem="vQf-bY-Weo" secondAttribute="centerY" constant="40" id="gwh-wt-AEO"/>
-                                    <constraint firstItem="vQf-bY-Weo" firstAttribute="width" relation="lessThanOrEqual" secondItem="YZw-uf-WLT" secondAttribute="width" multiplier="0.8" id="oYY-sc-ter"/>
-                                    <constraint firstItem="vQf-bY-Weo" firstAttribute="centerY" secondItem="YZw-uf-WLT" secondAttribute="centerY" multiplier="0.2" id="p77-ON-Spf"/>
+                                    <constraint firstItem="YgQ-sa-g0O" firstAttribute="width" relation="lessThanOrEqual" secondItem="YZw-uf-WLT" secondAttribute="width" multiplier="0.9" id="aP1-fg-9eh"/>
+                                    <constraint firstItem="YgQ-sa-g0O" firstAttribute="centerY" secondItem="YZw-uf-WLT" secondAttribute="centerY" multiplier="0.3" id="e4v-kf-6xs"/>
                                     <constraint firstItem="xmk-Fm-105" firstAttribute="width" relation="lessThanOrEqual" secondItem="YZw-uf-WLT" secondAttribute="width" multiplier="0.4" id="tll-7m-yKY"/>
                                     <constraint firstItem="9NO-XW-87K" firstAttribute="centerY" secondItem="YZw-uf-WLT" secondAttribute="centerY" multiplier="1.8" id="wAa-G8-WY9"/>
                                     <constraint firstItem="3Ai-hp-cOd" firstAttribute="centerX" secondItem="YZw-uf-WLT" secondAttribute="centerX" id="zju-ko-oxS"/>
