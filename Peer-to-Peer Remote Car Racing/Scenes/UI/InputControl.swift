@@ -67,16 +67,15 @@ class JoystickButtonInput:JoystickInput {
     
 }
 
+var count = 0;
+
 class tiltcontrols:InputControl{
-    deinit {
-        self.motionManager.stopAccelerometerUpdates();
-    }
-    
+ 
     init(){
         self.motionManager = CMMotionManager();
         self.velocity = CGPoint();
         self.disabled = false;
-        self.motionManager.accelerometerUpdateInterval = 0.1;
+        self.motionManager.accelerometerUpdateInterval = 1/60;
         self.motionManager.startAccelerometerUpdates(to: OperationQueue.main, withHandler:  {[weak self](data:CMAccelerometerData?,error:Error?)in
             var value = (data?.acceleration.y)! * 3;
             
@@ -89,7 +88,7 @@ class tiltcontrols:InputControl{
                 break;
             }
             
-            if fabs(value) < 0.09
+            if fabs(value) < 0.07
             {
                 value = 0.0;
             }
@@ -98,12 +97,18 @@ class tiltcontrols:InputControl{
             } else if value > 0.9 {
                 value = 0.9
             }
-            self!.velocity.x = CGFloat(value);
+            if (self?.velocity) != nil{
+                self!.velocity.x = CGFloat(value);
+            }
+            
 
         })
     }
-        
     
+    deinit {
+        self.motionManager.stopAccelerometerUpdates();
+        
+    }
     var motionManager:CMMotionManager
     var velocity: CGPoint
     
