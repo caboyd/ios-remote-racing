@@ -21,7 +21,7 @@ class UITouchControls : SceneRootNode {
     var buttons: SKNode!;
     
     init(gameScene: BaseGameScene, controlType: ControlType) {
-        super.init(fileNamed: "UITouchControlsJoystick")!;
+        super.init(fileNamed: String(describing: UITouchControls.self))!;
         
         let js = childNode(withName: ".//joystick") as! AnalogJoystick;
         

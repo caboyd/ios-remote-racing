@@ -57,7 +57,7 @@
 		AB4E2E78219FA28300383747 /* button_press.wav in Resources */ = {isa = PBXBuildFile; fileRef = AB4E2E77219FA28300383747 /* button_press.wav */; };
 		AB4E2E7A219FA50000383747 /* TrackSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E79219FA50000383747 /* TrackSelectionViewController.swift */; };
 		AB54CC5B21A28DDC00D4F818 /* SubmitScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB54CC5A21A28DDC00D4F818 /* SubmitScoreViewController.swift */; };
-		AB5EF41F21A4BD44006E9489 /* UITouchControlsJoystick.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB5EF41E21A4BD44006E9489 /* UITouchControlsJoystick.sks */; };
+		AB5EF41F21A4BD44006E9489 /* UITouchControls.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB5EF41E21A4BD44006E9489 /* UITouchControls.sks */; };
 		AB5EF42121A4C26F006E9489 /* UITouchControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF42021A4C26F006E9489 /* UITouchControls.swift */; };
 		AB5EF42321A4F7BA006E9489 /* SceneRootNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF42221A4F7BA006E9489 /* SceneRootNode.swift */; };
 		AB85BD5221A14D510066BCEE /* PauseScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB85BD5121A14D510066BCEE /* PauseScene.sks */; };
@@ -128,7 +128,7 @@
 		AB4E2E77219FA28300383747 /* button_press.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button_press.wav; sourceTree = "<group>"; };
 		AB4E2E79219FA50000383747 /* TrackSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSelectionViewController.swift; sourceTree = "<group>"; };
 		AB54CC5A21A28DDC00D4F818 /* SubmitScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitScoreViewController.swift; sourceTree = "<group>"; };
-		AB5EF41E21A4BD44006E9489 /* UITouchControlsJoystick.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = UITouchControlsJoystick.sks; sourceTree = "<group>"; };
+		AB5EF41E21A4BD44006E9489 /* UITouchControls.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = UITouchControls.sks; sourceTree = "<group>"; };
 		AB5EF42021A4C26F006E9489 /* UITouchControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITouchControls.swift; sourceTree = "<group>"; };
 		AB5EF42221A4F7BA006E9489 /* SceneRootNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRootNode.swift; sourceTree = "<group>"; };
 		AB85BD5121A14D510066BCEE /* PauseScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PauseScene.sks; sourceTree = "<group>"; };
@@ -350,7 +350,7 @@
 				AB0EA99F21A29F0C005B5FCE /* UIHUD.swift */,
 				AB5EF42221A4F7BA006E9489 /* SceneRootNode.swift */,
 				AB5EF42021A4C26F006E9489 /* UITouchControls.swift */,
-				AB5EF41E21A4BD44006E9489 /* UITouchControlsJoystick.sks */,
+				AB5EF41E21A4BD44006E9489 /* UITouchControls.sks */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -441,7 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB4E2E78219FA28300383747 /* button_press.wav in Resources */,
-				AB5EF41F21A4BD44006E9489 /* UITouchControlsJoystick.sks in Resources */,
+				AB5EF41F21A4BD44006E9489 /* UITouchControls.sks in Resources */,
 				701F7DC621AF54C10041A4EE /* lap_finished.wav in Resources */,
 				AB4E2E4F219F974200383747 /* Track1.sks in Resources */,
 				7A6641242194BC9900F80C9B /* LaunchScreen.storyboard in Resources */,

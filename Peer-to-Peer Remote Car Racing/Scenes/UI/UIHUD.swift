@@ -21,7 +21,7 @@ class UIHUD : SceneRootNode {
     var timersNode: SKNode!;
     var speedNode: SKNode!;
     init() {
-        super.init(fileNamed: "UIHUD")!;
+        super.init(fileNamed: String(describing: UIHUD.self))!;
         countdownLabel = (self.childNode(withName: "//countdown") as! SKLabelNode);
         countdownLabel.isHidden = true;
         
