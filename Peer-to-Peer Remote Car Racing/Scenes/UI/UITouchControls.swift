@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class UITouchControlsJoystick : SceneRootNode {
+class UITouchControls : SceneRootNode {
     
     weak var gameScene : BaseGameScene?;
     var inputControl : InputControl!;
@@ -20,7 +20,7 @@ class UITouchControlsJoystick : SceneRootNode {
     var reverseButton : FTButtonNode!;
     var buttons: SKNode!;
     
-    init(gameScene: BaseGameScene, buttonsEnabled: Bool) {
+    init(gameScene: BaseGameScene, controlType: ControlType) {
         super.init(fileNamed: "UITouchControlsJoystick")!;
         
         let js = childNode(withName: ".//joystick") as! AnalogJoystick;
@@ -36,12 +36,17 @@ class UITouchControlsJoystick : SceneRootNode {
         
         buttons = childNode(withName: ".//buttons")!;
         
-        if buttonsEnabled {
-            setupGasReverseButtons();
-            inputControl = JoystickButtonInput(analogJoystick: js);
-        } else {
+        switch controlType {
+        case .Joystick:
             inputControl = JoystickInput(analogJoystick: js);
             buttons.isHidden = true;
+        case .JoystickButtons:
+            setupGasReverseButtons();
+            inputControl = JoystickButtonInput(analogJoystick: js);
+        case .TiltButtons:
+            setupGasReverseButtons();
+            inputControl = tiltcontrols()
+            js.isHidden = true;
         }
 
      
@@ -59,8 +64,8 @@ class UITouchControlsJoystick : SceneRootNode {
         gasButton.position = gas.position;
         gasButton.xScale = gas.xScale;
         gasButton.yScale = gas.yScale;
-        gasButton.setButtonAction(target: self, triggerEvent: .TouchDown, action: #selector(UITouchControlsJoystick.gasDown));
-        gasButton.setButtonAction(target: self, triggerEvent: .TouchUp, action: #selector(UITouchControlsJoystick.gasUp))
+        gasButton.setButtonAction(target: self, triggerEvent: .TouchDown, action: #selector(UITouchControls.gasDown));
+        gasButton.setButtonAction(target: self, triggerEvent: .TouchUp, action: #selector(UITouchControls.gasUp))
         buttons.addChild(gasButton);
         
         //Setup Reverse Button Node
@@ -70,9 +75,9 @@ class UITouchControlsJoystick : SceneRootNode {
         reverseButton.position = reverse.position;
         reverseButton.xScale = reverse.xScale;
         reverseButton.yScale = reverse.yScale;
-        reverseButton.setButtonAction(target: self, triggerEvent: .TouchDown, action: #selector(UITouchControlsJoystick.reverseDown));
+        reverseButton.setButtonAction(target: self, triggerEvent: .TouchDown, action: #selector(UITouchControls.reverseDown));
         
-        reverseButton.setButtonAction(target: self, triggerEvent: .TouchUp, action: #selector(UITouchControlsJoystick.reverseUp))
+        reverseButton.setButtonAction(target: self, triggerEvent: .TouchUp, action: #selector(UITouchControls.reverseUp))
         buttons.addChild(reverseButton);
         
         

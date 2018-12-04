@@ -58,7 +58,7 @@
 		AB4E2E7A219FA50000383747 /* TrackSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E2E79219FA50000383747 /* TrackSelectionViewController.swift */; };
 		AB54CC5B21A28DDC00D4F818 /* SubmitScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB54CC5A21A28DDC00D4F818 /* SubmitScoreViewController.swift */; };
 		AB5EF41F21A4BD44006E9489 /* UITouchControlsJoystick.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB5EF41E21A4BD44006E9489 /* UITouchControlsJoystick.sks */; };
-		AB5EF42121A4C26F006E9489 /* UITouchControlsJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF42021A4C26F006E9489 /* UITouchControlsJoystick.swift */; };
+		AB5EF42121A4C26F006E9489 /* UITouchControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF42021A4C26F006E9489 /* UITouchControls.swift */; };
 		AB5EF42321A4F7BA006E9489 /* SceneRootNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF42221A4F7BA006E9489 /* SceneRootNode.swift */; };
 		AB85BD5221A14D510066BCEE /* PauseScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB85BD5121A14D510066BCEE /* PauseScene.sks */; };
 		AB85BD5521A14D630066BCEE /* CompletedScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB85BD5421A14D630066BCEE /* CompletedScene.sks */; };
@@ -129,7 +129,7 @@
 		AB4E2E79219FA50000383747 /* TrackSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSelectionViewController.swift; sourceTree = "<group>"; };
 		AB54CC5A21A28DDC00D4F818 /* SubmitScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitScoreViewController.swift; sourceTree = "<group>"; };
 		AB5EF41E21A4BD44006E9489 /* UITouchControlsJoystick.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = UITouchControlsJoystick.sks; sourceTree = "<group>"; };
-		AB5EF42021A4C26F006E9489 /* UITouchControlsJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITouchControlsJoystick.swift; sourceTree = "<group>"; };
+		AB5EF42021A4C26F006E9489 /* UITouchControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITouchControls.swift; sourceTree = "<group>"; };
 		AB5EF42221A4F7BA006E9489 /* SceneRootNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRootNode.swift; sourceTree = "<group>"; };
 		AB85BD5121A14D510066BCEE /* PauseScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PauseScene.sks; sourceTree = "<group>"; };
 		AB85BD5421A14D630066BCEE /* CompletedScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CompletedScene.sks; sourceTree = "<group>"; };
@@ -349,7 +349,7 @@
 				AB8BB62C21A2084700E3E1F0 /* UIHUD.sks */,
 				AB0EA99F21A29F0C005B5FCE /* UIHUD.swift */,
 				AB5EF42221A4F7BA006E9489 /* SceneRootNode.swift */,
-				AB5EF42021A4C26F006E9489 /* UITouchControlsJoystick.swift */,
+				AB5EF42021A4C26F006E9489 /* UITouchControls.swift */,
 				AB5EF41E21A4BD44006E9489 /* UITouchControlsJoystick.sks */,
 			);
 			path = UI;
@@ -555,7 +555,7 @@
 				68AA8E8A21B1E20400D9A133 /* LeaderboardTableViewCell.swift in Sources */,
 				AB4E2E6C219FA21200383747 /* Int+Extensions.swift in Sources */,
 				AB0EA9A221A2A015005B5FCE /* globals.swift in Sources */,
-				AB5EF42121A4C26F006E9489 /* UITouchControlsJoystick.swift in Sources */,
+				AB5EF42121A4C26F006E9489 /* UITouchControls.swift in Sources */,
 				AB23AF6321A8F0E2004FB964 /* Track2.swift in Sources */,
 				AB54CC5B21A28DDC00D4F818 /* SubmitScoreViewController.swift in Sources */,
 				7075AF0F21B3215E00B5A237 /* OptionsViewController.swift in Sources */,

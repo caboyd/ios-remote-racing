@@ -173,9 +173,9 @@ class BaseGameScene: SKScene {
     func setupHUD(){
         cam.removeAllChildren();
 
-        let buttonsEnabled = UserDefaults.standard.bool(forKey: "JoystickButtons");
+        let controlType = UserDefaults.standard.integer(forKey: "ControlType");
         
-        let tc = UITouchControlsJoystick(gameScene: self, buttonsEnabled: buttonsEnabled);
+        let tc = UITouchControls(gameScene: self, controlType: ControlType(rawValue:controlType)!);
         touchControls = tc
         inputControl = tc.inputControl;
         hud = UIHUD();

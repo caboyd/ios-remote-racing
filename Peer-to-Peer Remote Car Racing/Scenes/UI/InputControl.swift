@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import CoreMotion
 
 let screenBounds: CGRect = UIScreen.main.bounds;
 
@@ -17,6 +18,13 @@ fileprivate var js: AnalogJoystick = {
     js.zPosition = 1;
     return js;
 }();
+
+enum ControlType : Int {
+    
+    case Joystick;
+    case JoystickButtons;
+    case TiltButtons;
+}
 
 protocol InputControl {
     var velocity: CGPoint { get set }
@@ -59,4 +67,50 @@ class JoystickButtonInput:JoystickInput {
     
 }
 
+class tiltcontrols:InputControl{
+    deinit {
+        self.motionManager.stopAccelerometerUpdates();
+    }
+    
+    init(){
+        self.motionManager = CMMotionManager();
+        self.velocity = CGPoint();
+        self.disabled = false;
+        self.motionManager.accelerometerUpdateInterval = 0.1;
+        self.motionManager.startAccelerometerUpdates(to: OperationQueue.main, withHandler:  {[weak self](data:CMAccelerometerData?,error:Error?)in
+            var value = (data?.acceleration.y)! * 3;
+            
+            
+            //swap value when phone orientation changes
+            switch UIDevice.current.orientation {
+            case .landscapeLeft:
+                value = -value
+            default:
+                break;
+            }
+            
+            if fabs(value) < 0.1
+            {
+                value = 0.0;
+            }
+            if value < -0.7 {
+                value = -0.7
+            } else if value > 0.7 {
+                value = 0.7
+            }
+            self!.velocity.x = CGFloat(value);
 
+        })
+    }
+        
+    
+    var motionManager:CMMotionManager
+    var velocity: CGPoint
+    
+    var disabled: Bool
+    
+    func processUserMotion(forUpdate currentTime: CFTimeInterval){
+        
+    }
+    
+}

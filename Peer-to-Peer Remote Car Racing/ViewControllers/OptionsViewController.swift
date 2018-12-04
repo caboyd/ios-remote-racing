@@ -15,8 +15,8 @@ class OptionsViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        let buttons = UserDefaults.standard.bool(forKey: "JoystickButtons");
-        segmentControl.selectedSegmentIndex = buttons ? 1: 0;
+        let buttons = UserDefaults.standard.integer(forKey: "ControlType")
+        segmentControl.selectedSegmentIndex = buttons;
         
         
         let font: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 24)]
@@ -25,14 +25,8 @@ class OptionsViewController: UIViewController {
     
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            UserDefaults.standard.set(false, forKey: "JoystickButtons");
-        case 1:
-            UserDefaults.standard.set(true, forKey: "JoystickButtons")
-        default:
-            break;
-        }
+            UserDefaults.standard.set(sender.selectedSegmentIndex, forKey: "ControlType")
+        
         
     }
     
