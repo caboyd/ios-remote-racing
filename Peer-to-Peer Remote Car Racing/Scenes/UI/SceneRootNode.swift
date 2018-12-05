@@ -13,6 +13,8 @@ import SpriteKit
 class SceneRootNode : SKNode {
     
     var originalSize : CGSize!;
+    var top : SKNode!;
+    var bottom : SKNode!;
     
     init?(fileNamed fileName: String) {
         super.init();
@@ -24,6 +26,8 @@ class SceneRootNode : SKNode {
             self.originalSize = scene.size;
             root.removeFromParent()
             self.addChild(root);
+            self.top = root.childNode(withName: ".//top")!;
+            self.bottom = root.childNode(withName: ".//bottom")!;
         } else {
             fatalError("Scene \(fileName) missing root node");
         }
@@ -42,7 +46,7 @@ class SceneRootNode : SKNode {
         self.setScale(scale);
         
         //Moves the HUD to the top of the screen for different aspect ratios
-        self.childNode(withName: ".//top")?.position.y = (displaySize.height / 2) / scale;
-        self.childNode(withName: ".//bottom")?.position.y = (-displaySize.height / 2 ) / scale;
+        top.position.y = (displaySize.height / 2) / scale;
+        bottom.position.y = (-displaySize.height / 2 ) / scale;
     }
 }

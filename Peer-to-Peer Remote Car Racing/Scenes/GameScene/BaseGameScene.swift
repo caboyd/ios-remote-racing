@@ -22,24 +22,48 @@ enum GameMode: Int {
     case DISPLAY
 }
 
+
+
+/**
+ 
+  Base Game Scene class that holds all game logic for the racing game.
+ 
+ # Description
+  - 3 Different game states. Active, Paused, Completed
+ # Initializing steps
+ ## Solo / Display
+ 1. Loads up the sks file and tilemap. Determines the start position of the car.
+ 2. Moves and scales the camera to fit some of the track inside the screen.
+ 3. Setup HUD in UI
+ ## Controller
+ 1. Loads up the sks file and tilemap. Determines the start position of the car.
+ 2. Scales the camera to fit the whole track inside the screen.
+ 3. Removes background and makes track darker
+ 4. Setup Touch Controls in UI
+ 5.
+ 
+ 
+ */
 class BaseGameScene: SKScene {
+    
+    // MARK: Variables
     
     weak var networkService : NetworkService?;
     weak var gameSceneDelegate : BaseGameSceneProtocol?
     var gameMode: GameMode = .SOLO;
+    
     var update: UInt64 = 0;
-    let updatesPerCarData: UInt64 = 6; // 10 per second
-    let updatesPerInputControl: UInt64 = 6; //10 per second
+    let updatesPerCarData: UInt64 = 6; //every 6 frames or 10 per second
+    let updatesPerInputControl: UInt64 = 6; //every 6 frames or 10 per second
     
     var lastUpdateTime : TimeInterval = 0
     var isSoftPaused : Bool = false;
     var debugMode = false;
     
-    var cam: SKCameraNode!
-    
     var startPosition: CGPoint!;
     var carType: String!;
     var player: Player!;
+    
     
     var waypoints: Int = 0;
     var lap: Int = 1;
@@ -53,7 +77,8 @@ class BaseGameScene: SKScene {
     private var landBackground:SKTileMapNode!
     var trackSize: CGSize!;
     private var track:SKTileMapNode!
-    
+    var cam: SKCameraNode!
+
     var hud: UIHUD!;
     var touchControls : SceneRootNode!;
     var inputControl: InputControl!;
@@ -87,6 +112,7 @@ class BaseGameScene: SKScene {
 
             }
         }
+        
     }
     
     lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
@@ -96,11 +122,12 @@ class BaseGameScene: SKScene {
 
         ])
     
+    // Mark : FUNCTIONS
     
     override func sceneDidLoad() {
         setupRace();
         setupCamera();
-        
+
     }
     
     override func didMove(to view: SKView) {
@@ -118,7 +145,6 @@ class BaseGameScene: SKScene {
             track.removeFromParent();
             self.addChild(track);
 
-            
         } else {
             physicsWorld.contactDelegate = self
         }
@@ -184,7 +210,6 @@ class BaseGameScene: SKScene {
         if gameMode == .CONTROLLER{
             hud.timersNode.isHidden = true;
             hud.speedNode.isHidden = true;
-            
         }
         if gameMode != .DISPLAY {
             
@@ -230,7 +255,6 @@ class BaseGameScene: SKScene {
             if update % updatesPerCarData == 0 {
                 networkService?.sendCarData(position: player.position, angle: player.zRotation)
             }
-            
         }
         
         //Move the camera to follow the player
@@ -266,6 +290,7 @@ class BaseGameScene: SKScene {
     
     //Enter pause state
     @objc func pause(){
+        SKTAudio.sharedInstance().playSoundEffect("button_press.wav");
         networkService?.send(messageType: .PAUSE);
         stateMachine.enter(GamePauseState.self);
     }
@@ -326,28 +351,33 @@ class BaseGameScene: SKScene {
 extension BaseGameScene: SKPhysicsContactDelegate{
     func didBegin(_ contact: SKPhysicsContact) {
         
-        //car impact with waypoints
-        for waypoint in 0..<waypoints {
-            let waypointName = "Waypoint\(waypoint)";
+        //Put on async to not freeze game
+        DispatchQueue.main.async {
+            
+            //car impact with waypoints
+            for waypoint in 0..<self.waypoints {
+                let waypointName = "Waypoint\(waypoint)";
+                
+                //car impact with wal
+                if (contact.bodyA.contactTestBitMask & contact.bodyB.categoryBitMask) == 2 &&
+                    ((contact.bodyB.node?.name)! == waypointName) {
+                    self.collisionBetween(player: contact.bodyA.node!, waypoint: waypoint)
+                    break;
+                } else if (contact.bodyB.contactTestBitMask & contact.bodyA.categoryBitMask) == 2 &&
+                    ((contact.bodyA.node?.name)! == waypointName) {
+                    self.collisionBetween(player: contact.bodyB.node!, waypoint: waypoint)
+                    break;
+                }
+            }
             
             //car impact with wal
-            if (contact.bodyA.contactTestBitMask & contact.bodyB.categoryBitMask) == 2 &&
-                ((contact.bodyB.node?.name)! == waypointName) {
-                collisionBetween(player: contact.bodyA.node!, waypoint: waypoint)
-                break;
-            } else if (contact.bodyB.contactTestBitMask & contact.bodyA.categoryBitMask) == 2 &&
-                ((contact.bodyA.node?.name)! == waypointName) {
-                collisionBetween(player: contact.bodyB.node!, waypoint: waypoint)
-                break;
+            if (contact.bodyA.contactTestBitMask & contact.bodyB.categoryBitMask) == 1 {
+                self.collisionBetween(player: contact.bodyA.node! , wall: contact.bodyB.node!)
+            } else if (contact.bodyB.contactTestBitMask & contact.bodyA.categoryBitMask) == 1 {
+                self.collisionBetween(player: contact.bodyB.node! , wall: contact.bodyA.node!)
             }
         }
         
-        //car impact with wal
-        if (contact.bodyA.contactTestBitMask & contact.bodyB.categoryBitMask) == 1 {
-            collisionBetween(player: contact.bodyA.node! , wall: contact.bodyB.node!)
-        } else if (contact.bodyB.contactTestBitMask & contact.bodyA.categoryBitMask) == 1 {
-            collisionBetween(player: contact.bodyB.node! , wall: contact.bodyA.node!)
-        }
     }
     
     func previousWaypoint(_ index:Int) -> Int {
@@ -363,8 +393,8 @@ extension BaseGameScene: SKPhysicsContactDelegate{
         networkService?.send(messageType: .VIBRATE);
         
         //play crash sound
-        SKTAudio.sharedInstance().playSoundEffect("thud.wav")
-        
+       // SKTAudio.sharedInstance().playSoundEffect("thud.wav")
+        self.run(SKAction.playSoundFileNamed("thud.wav", waitForCompletion: false))
         if gameMode == .SOLO {
             vibratePhone();
         }
@@ -398,7 +428,8 @@ extension BaseGameScene: SKPhysicsContactDelegate{
                     win();
                 } else {
                     //lay lap sound
-                    SKTAudio.sharedInstance().playSoundEffect("lap_finished.wav");
+                   // SKTAudio.sharedInstance().playSoundEffect("lap_finished.wav");
+                    self.run(SKAction.playSoundFileNamed("lap_finished.wav", waitForCompletion: false))
                     networkService?.send(messageType: .LAP_FINISHED);
                 }
             }

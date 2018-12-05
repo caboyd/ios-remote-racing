@@ -21,17 +21,19 @@ extension BaseGameScene : ButtonNodeResponder {
         
         switch button.buttonIdentifier! {
         case .resume:
+            SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
             networkService?.send(messageType: .RESUME);
             stateMachine.enter(GameActiveState.self)
         case .quit:
+            SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
             networkService?.send(messageType: .DISCONNECT)
             gameSceneDelegate?.quitToMenu();
         case .restart:
+            SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
             networkService?.send(messageType: .RESTART);
             stateMachine.enter(GameActiveState.self);
-        case .pause:
-            self.pause();
         case .selectTrack:
+            SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
             networkService?.send(messageType: .NAV_TRACK_SELECT);
             gameSceneDelegate?.quitToTrackSelection();
         }

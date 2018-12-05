@@ -14,22 +14,22 @@ class OptionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        //Update segmentControl with value saved in user defauls
         let buttons = UserDefaults.standard.integer(forKey: "ControlType")
         segmentControl.selectedSegmentIndex = buttons;
         
-        
+        //Increase font size of segment control because it can't be done in the storyboard
         let font: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 24)]
         segmentControl.setTitleTextAttributes(font, for: .normal)
     }
     
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
-            UserDefaults.standard.set(sender.selectedSegmentIndex, forKey: "ControlType")
-        
-        
+        //Save Control Type in user settings
+        UserDefaults.standard.set(sender.selectedSegmentIndex, forKey: "ControlType")
     }
     
+    //Navigate to previous View Controller
     @IBAction func back(_ sender: UIButton) {
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav");
         _ = navigationController?.popViewController(animated: true)

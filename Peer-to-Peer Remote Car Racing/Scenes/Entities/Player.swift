@@ -21,7 +21,7 @@ class Player : SKSpriteNode {
    
     //New player with given texture,
     //gamemode of controller makes the player a triangle
-    init(position: CGPoint, carTextureName: String, gameMode: GameMode) {
+    init(position: CGPoint, carTextureName: String = "car_black_1", gameMode: GameMode) {
         self.velocity = CGVector(dx: 0,dy: 0);
         self.accel = CGVector(dx: 0,dy: 0);
         
@@ -40,7 +40,9 @@ class Player : SKSpriteNode {
             texture = SKView().texture(from: triangle)!;
         }
         
+        //Initialize the SKSpriteNode
         super.init(texture: texture, color: UIColor.clear, size: texture.size());
+        
         self.name = "Player"
         self.position = position;
         self.zPosition = 1;

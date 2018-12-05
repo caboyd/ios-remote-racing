@@ -13,10 +13,15 @@ class TrackSelectionViewController: UIViewController {
 
     weak var networkService: NetworkService?;
     
+    //Current track selected
     var trackID: Int = TrackID.MIN
+    //Current Car type selected
     var carID: Int = CarID.MIN;
+    //Current car color selecting
     var carColor: CarColor = .black;
+    
     var gameMode: GameMode = .SOLO;
+    
     @IBOutlet weak var trackImage: UIImageView!
     @IBOutlet weak var carImageParentView: UIView!
     @IBOutlet weak var carImage: UIImageView!
@@ -43,6 +48,8 @@ class TrackSelectionViewController: UIViewController {
         updateTrackImage();
         updateCarImage();
         
+        //Hide buttons if gameMode is DISPLAY
+        //because the controller device is where they will be pressed
         if gameMode == .DISPLAY {
             hideButtons();
         }
@@ -60,16 +67,20 @@ class TrackSelectionViewController: UIViewController {
         prevTrackButton.isHidden = true;
         nextTrackButton.isHidden = true;
     }
+    
+    //Set trackImage to correct track image using the currently selected track
     func updateTrackImage() {
         trackImage.image = UIImage(named: TrackID.toString(trackID).lowercased());
     }
     
+    //Set the carImage to the correct image using currently selected car id and color
     func updateCarImage() {
         let imageName = getCarTextureName(id: carID, color: carColor);
         carImage.image = UIImage(named: imageName);
     }
-    
 
+    // MARK: - Buttons
+    
     @IBAction func nextTrack(_ sender: UIButton?) {
         nextTrack();
         playButtonSound();
@@ -126,34 +137,42 @@ class TrackSelectionViewController: UIViewController {
     }
     
     @IBAction func start(_ sender: UIButton) {
-        networkService?.send(messageType: .NAV_START_RACE);
-        playButtonSound();
-        SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
         start();
+        playButtonSound();
+        networkService?.send(messageType: .NAV_START_RACE);
     }
     
+    //Navigate to GameViewController
     func start() {
         if let gameViewController = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController {
+            //Set required values for gameViewController using current selections
             gameViewController.gameMode = gameMode;
             gameViewController.carType = getCarTextureName(id: carID, color: carColor);
             gameViewController.track = TrackID.toString(trackID);
+            //Pass along the network service so the gameViewController
+            //can use it
             gameViewController.networkService = networkService;
             gameViewController.trackSelectionViewController = self;
             navigationController?.pushViewController(gameViewController, animated: true)
         }
     }
     
+    //Navigate back to previous controller
+    //Disconnect from network if connected
     @IBAction func backButton(_ sender: UIButton) {
-        _ = navigationController?.popViewController(animated: true)
         playButtonSound();
         networkService?.send(messageType: .DISCONNECT);
+        _ = navigationController?.popViewController(animated: true)
     }
 }
+
 
 
 extension TrackSelectionViewController: NetworkServiceDelegate {
     func handleMessage(message: MessageBase) {
         
+        //These are the expected messages that this
+        //view controller will received
         switch message.type {
         case .CAR_NEXT:
             nextCar();

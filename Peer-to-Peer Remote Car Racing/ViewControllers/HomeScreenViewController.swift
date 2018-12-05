@@ -16,6 +16,7 @@ class HomeScreenViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    //Navigate to TrackSelectionViewController
     @IBAction func play(_ sender: UIButton) {
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav");
         if let trackSelectionViewController = storyboard?.instantiateViewController(withIdentifier: "TrackSelectionViewController") as? TrackSelectionViewController {
@@ -23,6 +24,8 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
+    
+    //Navigate to DeviceSelectionViewController
     @IBAction func remotePlay(_ sender: UIButton) {
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav");
         if let deviceSelectionViewController = storyboard?.instantiateViewController(withIdentifier: "DeviceSelectionViewController") as? DeviceSelectionViewController {
@@ -30,13 +33,14 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
-    
+    //Navigate to LeaderboardViewController
     @IBAction func leaderboard(_ sender: UIButton) {
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav");
         if let leaderboardViewController = storyboard?.instantiateViewController(withIdentifier: "LeaderboardViewController") as? LeaderboardViewController {
             navigationController?.pushViewController(leaderboardViewController, animated: true)
         }
     }
+    //Navigate to OptionsViewController
     @IBAction func options(_ sender: UIButton) {
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav");
         if let optionsViewController = storyboard?.instantiateViewController(withIdentifier: "OptionsViewController") as? OptionsViewController {

@@ -14,7 +14,6 @@ class UITouchControls : SceneRootNode {
     weak var gameScene : BaseGameScene?;
     var inputControl : InputControl!;
     var pauseButton: FTButtonNode!;
-    var top: SKNode!;
     
     var gasButton: FTButtonNode!;
     var reverseButton : FTButtonNode!;
@@ -25,16 +24,8 @@ class UITouchControls : SceneRootNode {
         
         let js = childNode(withName: ".//joystick") as! AnalogJoystick;
         
-        
-        top = childNode(withName: ".//top")!;
-        let pause = childNode(withName: ".//pause") as! SKSpriteNode;
-        pause.removeFromParent();
-        pauseButton = FTButtonNode(normalTexture: pause.texture, selectedTexture: pause.texture, disabledTexture: pause.texture);
-        pauseButton.position = pause.position;
-        pauseButton.setButtonAction(target: gameScene, triggerEvent: .TouchUpInside, action: #selector(BaseGameScene.pause));
-        top.addChild(pauseButton);
-        
         buttons = childNode(withName: ".//buttons")!;
+        setupPauseButton(gameScene: gameScene);
         
         switch controlType {
         case .Joystick:
@@ -45,7 +36,7 @@ class UITouchControls : SceneRootNode {
             inputControl = JoystickButtonInput(analogJoystick: js);
         case .TiltButtons:
             setupGasReverseButtons();
-            inputControl = tiltcontrols()
+            inputControl = TiltControls()
             js.isHidden = true;
         }
 
@@ -54,6 +45,15 @@ class UITouchControls : SceneRootNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupPauseButton(gameScene: BaseGameScene){
+        let pause = childNode(withName: ".//pause") as! SKSpriteNode;
+        pause.removeFromParent();
+        pauseButton = FTButtonNode(normalTexture: pause.texture, selectedTexture: pause.texture, disabledTexture: pause.texture);
+        pauseButton.position = pause.position;
+        pauseButton.setButtonAction(target: gameScene, triggerEvent: .TouchUpInside, action: #selector(BaseGameScene.pause));
+        top.addChild(pauseButton);
     }
     
     func setupGasReverseButtons() {

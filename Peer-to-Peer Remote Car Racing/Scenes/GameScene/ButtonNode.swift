@@ -38,10 +38,9 @@ enum ButtonIdentifier: String {
   case resume = "resume"
   case quit = "quit"
   case restart = "restart"
-  case pause  = "pause"
   case selectTrack = "selectTrack"
   
-  static let allIdentifiers: [ButtonIdentifier] = [.resume, .quit, .restart, .pause, .selectTrack]
+  static let allIdentifiers: [ButtonIdentifier] = [.resume, .quit, .restart, .selectTrack]
   
   var defaultTextureName: String? {
     switch self {
@@ -52,8 +51,6 @@ enum ButtonIdentifier: String {
     case .restart:
         return "greyButton"
     case .selectTrack:
-        return "greyButton"
-      default:
         return "greyButton"
     }
   }

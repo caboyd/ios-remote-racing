@@ -1,33 +1,3 @@
-/**
- * Copyright (c) 2017 Razeware LLC
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
- * distribute, sublicense, create a derivative work, and/or sell copies of the
- * Software in any work that is designed, intended, or marketed for pedagogical or
- * instructional purposes related to programming, coding, application development,
- * or information technology.  Permission for such use, copying, modification,
- * merger, publication, distribution, sublicensing, creation of derivative works,
- * or sale is expressly withheld.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
 //
 //  GameActiveState.swift
 //  Peer-to-Peer Remote Car Racing
@@ -39,9 +9,12 @@
 import SpriteKit
 import GameplayKit
 
+
+//Game Active state corresponding with BaseGameScene
 class GameActiveState: GKState {
     
     unowned let gameScene: BaseGameScene
+    var countdownActive = false;
     
     
     private var previousTimeInterval: TimeInterval = 0
@@ -61,28 +34,41 @@ class GameActiveState: GKState {
         }
     }
     
+    override func willExit(to nextState: GKState) {
+        super.willExit(to: nextState)
+        //Remove countdown actions when race is finished
+        //so they don't run the old actions when new race is started
+        if nextState is GameCompletedState {
+            gameScene.cam.removeAllActions();
+        }
+    }
+    
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
         
-        if gameScene.gameMode == .CONTROLLER && (previousState is GameCompletedState) {
-            restartLevel()
-            return;
-        } else if gameScene.gameMode == .CONTROLLER {
-            return;
+        //Reset level of controller only when starting new race
+        if gameScene.gameMode == .CONTROLLER {
+            if (previousState is GameCompletedState) {
+                restartLevel()
+            }
+                return;
         }
         
+        //Start the countdown timer for new race started
         if previousState is GameCompletedState || previousState == nil{
             restartLevel()
             
             gameScene.isSoftPaused = true;
             self.gameScene.hud.countdownLabel.isHidden = false;
+            self.gameScene.hud.countdownLabel.text = "3";
+            
             let wait2sec = SKAction.wait(forDuration: 2);
             let wait1sec = SKAction.wait(forDuration: 1);
             let fade = SKAction.fadeAlpha(by: -1, duration: 0.5);
             
             let playsound = SKAction.run {
-                SKTAudio.sharedInstance().playSoundEffect("race_countdown.mp3");
-                self.gameScene.hud.countdownLabel.text = "3";
+                SKTAudio.sharedInstance().playBackgroundMusic("race_countdown.mp3");
+                SKTAudio.sharedInstance().backgroundMusicPlayer?.numberOfLoops = 0;
             }
 
             let action1 = SKAction.run {
@@ -108,24 +94,28 @@ class GameActiveState: GKState {
             let unpause = SKAction.run {
                 self.gameScene.isSoftPaused = false
                 self.gameScene.hud.countdownLabel.isHidden = true;
+                self.countdownActive = false;
+                
+            }
+            let stopMusic = SKAction.run {
+                SKTAudio.sharedInstance().stopBackgroundMusic()
             }
             
-            gameScene.cam.run(SKAction.sequence([wait2sec,playsound, action1, wait1sec, action2, wait1sec, action3,wait1sec, unpause]));
+            countdownActive = true;
+            gameScene.cam.run(SKAction.sequence([wait2sec,playsound, action1, wait1sec, action2, wait1sec, action3,wait1sec, unpause, wait2sec, stopMusic]));
             
         }
-        if previousState is GamePauseState {
+        
+        //Start unpause countdown of 1 second only when countdown is not active
+        if previousState is GamePauseState && countdownActive == false {
             let waitTime = 1.0;
-            
-            
             gameScene.isSoftPaused = true;
             let wait = SKAction.wait(forDuration: waitTime);
             let unpause = SKAction.run { self.gameScene.isSoftPaused = false }
             gameScene.cam.run(SKAction.sequence([wait, unpause]));
             
         }
-        
-        
-        
+    
     }
     
     
@@ -150,6 +140,8 @@ class GameActiveState: GKState {
     
     
     private func restartLevel() {
+        
+        //Reset all game variables
         previousTimeInterval = 0;
         gameScene.lastUpdateTime = 0;
         gameScene.lastWaypoint = 0;
@@ -157,35 +149,31 @@ class GameActiveState: GKState {
         gameScene.gameEnded = false;
         gameScene.summedLapTimes = 0;
         gameScene.totalTime = 0;
+        
+        //Removes old player if it exists
         gameScene.player?.removeFromParent();
+        
+        //Create a player and put it in the scene at the start position
         gameScene.player = Player(position: gameScene.startPosition, carTextureName: gameScene.carType, gameMode: gameScene.gameMode);
         gameScene.addChild(gameScene.player!);
+        
+        //Move camera to player position
         if gameScene.gameMode != .CONTROLLER {
             gameScene.cam.position = gameScene.player.position;
             gameScene.cam.zRotation = gameScene.player.zRotation;
         }
-        gameScene.hud.bestLapNode.isHidden = true;
-        gameScene.inputControl.disabled = false;
         
+        //Re-hide best lap label
+        gameScene.hud.bestLapNode.isHidden = true;
+        
+        //Update the labels with the reset values
         updateLabels()
     }
     
     private func updateLabels() {
         gameScene.hud.lapLabel.text = "Lap \(gameScene.lap)/\(gameScene.totalLaps)";
-        
         gameScene.hud.timeLabel.text = stringFromTimeInterval(interval: gameScene.totalTime) as String;
         gameScene.hud.speedLabel.text = "\(Int(gameScene.player.physicsBody?.velocity.length() ?? 0))";
     }
 }
 
-
-func stringFromTimeInterval(interval: TimeInterval) -> NSString {
-    let ti = NSInteger(interval);
-    
-    let ms = Int(interval.truncatingRemainder(dividingBy: 1) * 1000);
-    
-    let seconds = ti % 60;
-    let minutes = (ti / 60) % 60;
-    
-    return NSString(format: "%0.2d:%0.2d.%0.3d", minutes, seconds, ms);
-}

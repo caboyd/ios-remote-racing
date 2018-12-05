@@ -69,7 +69,7 @@ class JoystickButtonInput:JoystickInput {
 
 var count = 0;
 
-class tiltcontrols:InputControl{
+class TiltControls:InputControl{
  
     init(){
         self.motionManager = CMMotionManager();

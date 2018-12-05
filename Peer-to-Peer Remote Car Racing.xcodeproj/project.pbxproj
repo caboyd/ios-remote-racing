@@ -169,6 +169,14 @@
 			path = Leaderboard;
 			sourceTree = "<group>";
 		};
+		7018DB8121B86BF700648D0F /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				AB4E2E5C219FA21200383747 /* SKTUtils */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
 		7A66410D2194BC9600F80C9B = {
 			isa = PBXGroup;
 			children = (
@@ -190,20 +198,19 @@
 		7A6641182194BC9600F80C9B /* Peer-to-Peer Remote Car Racing */ = {
 			isa = PBXGroup;
 			children = (
+				7018DB8121B86BF700648D0F /* Libraries */,
 				68AA8E8621B1D93000D9A133 /* Leaderboard */,
 				AB23AF6421A9069E004FB964 /* Network */,
 				AB4E2E53219F980300383747 /* ViewControllers */,
 				ABD5FC5D21A0F1D300A0B155 /* Scenes */,
 				AB4E2E75219FA26B00383747 /* Resources */,
-				AB4E2E5C219FA21200383747 /* SKTUtils */,
 				7A6641192194BC9600F80C9B /* AppDelegate.swift */,
+				AB0EA9A121A2A015005B5FCE /* globals.swift */,
 				7A66411D2194BC9600F80C9B /* Main.storyboard */,
 				7A6641222194BC9900F80C9B /* LaunchScreen.storyboard */,
 				7A6641202194BC9900F80C9B /* Assets.xcassets */,
 				7A6641252194BC9900F80C9B /* Info.plist */,
 				68CEE77821AF3A9100CD4427 /* GoogleService-Info.plist */,
-				AB0EA9A121A2A015005B5FCE /* globals.swift */,
-				AB0EA9A321A2A91D005B5FCE /* FTButtonNode.swift */,
 			);
 			path = "Peer-to-Peer Remote Car Racing";
 			sourceTree = "<group>";
@@ -250,13 +257,13 @@
 		AB4E2E45219F974200383747 /* GameScene */ = {
 			isa = PBXGroup;
 			children = (
-				ABD5FC6E21A13EAC00A0B155 /* ButtonNode.swift */,
-				AB4E2E49219F974200383747 /* Track1.sks */,
-				AB23AF6021A8F086004FB964 /* Track2.sks */,
-				AB23AF6221A8F0E2004FB964 /* Track2.swift */,
 				AB4E2E4A219F974200383747 /* Track1.swift */,
+				AB4E2E49219F974200383747 /* Track1.sks */,
+				AB23AF6221A8F0E2004FB964 /* Track2.swift */,
+				AB23AF6021A8F086004FB964 /* Track2.sks */,
 				ABD5FC5B21A0DD1700A0B155 /* BaseGameScene.swift */,
 				ABD5FC7021A1409400A0B155 /* BaseGameScene+Buttons.swift */,
+				ABD5FC6E21A13EAC00A0B155 /* ButtonNode.swift */,
 			);
 			path = GameScene;
 			sourceTree = "<group>";
@@ -344,6 +351,7 @@
 		AB8BB63021A22F1E00E3E1F0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				AB0EA9A321A2A91D005B5FCE /* FTButtonNode.swift */,
 				ABD5FC6021A128E900A0B155 /* InputControl.swift */,
 				AB4E2E46219F974200383747 /* AnalogJoystick.swift */,
 				AB8BB62C21A2084700E3E1F0 /* UIHUD.sks */,
@@ -358,11 +366,11 @@
 		ABD5FC5D21A0F1D300A0B155 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				ABD5FC5E21A0F43200A0B155 /* GameStates */,
 				AB4E2E45219F974200383747 /* GameScene */,
-				AB8BB63021A22F1E00E3E1F0 /* UI */,
 				AB85BD5321A14D630066BCEE /* CompletedScene */,
 				AB85BD5021A14D440066BCEE /* PauseScene */,
-				ABD5FC5E21A0F43200A0B155 /* GameStates */,
+				AB8BB63021A22F1E00E3E1F0 /* UI */,
 				AB4E2E47219F974200383747 /* Entities */,
 			);
 			path = Scenes;
@@ -715,14 +723,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6X5B26J782;
+				DEVELOPMENT_TEAM = HJHS67AU74;
 				INFOPLIST_FILE = "Peer-to-Peer Remote Car Racing/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ca.uregina.cs.455.boyd111c.remote-racing";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.example.remote-racing5";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -735,14 +743,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6X5B26J782;
+				DEVELOPMENT_TEAM = HJHS67AU74;
 				INFOPLIST_FILE = "Peer-to-Peer Remote Car Racing/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ca.uregina.cs.455.boyd111c.remote-racing";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.example.remote-racing5";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

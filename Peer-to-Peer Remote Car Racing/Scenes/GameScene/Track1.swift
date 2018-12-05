@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 
+/// 1 Lap Track corresponding to Track1.sks
 class Track1: BaseGameScene {
     
     override func sceneDidLoad() {

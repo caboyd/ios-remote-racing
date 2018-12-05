@@ -22,18 +22,24 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        //Load the track scene
+        //Load the correct track scene
         if let scene = BaseGameScene(fileNamed: self.track) {
             self.scene = scene;
-            
             //setup the scene
+            
             scene.name = self.track;
             scene.carType = carType;
             
+            //Set the gameMode because it affects what is displaying
+            //in the scene
             scene.gameMode = gameMode;
+            
+            //This view will act the game scenes delegate
             scene.gameSceneDelegate = self;
+            
+            //Pass the network service to the game scene
             scene.networkService = networkService;
+            //set the gameScene as the network service delegate
             networkService?.delegate = scene;
             
             //debug
@@ -45,7 +51,7 @@ class GameViewController: UIViewController {
                 view.ignoresSiblingOrder = true
                 
                 //Debug stuff
-                //view.showsFPS = true
+                view.showsFPS = true
                 //view.showsNodeCount = true
                 //view.showsPhysics = true;
             }
@@ -98,6 +104,8 @@ extension GameViewController: BaseGameSceneProtocol {
     }
     
     func quitToTrackSelection() {
+        //set the network service delegate back to track selection controller
+        //before popping view and going back to that controller
         trackSelectionViewController?.networkService?.delegate = trackSelectionViewController;
         _ = navigationController?.popViewController(animated: true)
     }

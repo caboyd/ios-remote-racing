@@ -10,6 +10,7 @@ import Foundation
 import MultipeerConnectivity
 import os.log
 
+//NetworkService Class for when a device is acting as the Display
 class HostNetworkService : NetworkService {
     
     public let serviceAdvertiser : MCNearbyServiceAdvertiser;
@@ -18,6 +19,7 @@ class HostNetworkService : NetworkService {
         self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: NetworkService.myPeerId, discoveryInfo: nil, serviceType: NetworkService.serviceType)
         super.init();
         
+        //Start adveritising to peers to allow controllers to connect
         self.serviceAdvertiser.delegate = self;
         self.serviceAdvertiser.startAdvertisingPeer()
     }
@@ -33,6 +35,7 @@ extension HostNetworkService : MCNearbyServiceAdvertiserDelegate {
         os_log("didNotStartAdvertisingPeer: %s", log: networkLog, type: .debug, error.localizedDescription );
     }
     
+    //When invitation is received, automatically accept it
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         os_log("didReceiveInvitationFromPeer %@", log: networkLog, type: .debug, peerID);
         serviceAdvertiser.stopAdvertisingPeer();

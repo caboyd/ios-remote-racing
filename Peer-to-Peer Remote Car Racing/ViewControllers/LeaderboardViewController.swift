@@ -24,18 +24,26 @@ class LeaderboardViewController: UIViewController  {
         tabledScores.delegate = self
         tabledScores.dataSource = self
         
+        //Add grey round border
+        trackImage.layer.cornerRadius = 10;
+        trackImage.layer.borderColor = UIColor.gray.cgColor;
+        trackImage.layer.borderWidth = 3;
+        
+        //Create the two leaderboards with data from Firebase
         leaderboards.append(Leaderboard(trackName: "Track1", tableView: tabledScores));
         leaderboards.append(Leaderboard(trackName: "Track2", tableView: tabledScores));
         
+        //Add rounded cornerd
         tabledScores.layer.cornerRadius = 15;
         headerView.layer.cornerRadius = 15;
     }
     
-
+    //Navigate back
     @IBAction func backButton(_ sender: UIButton) {
         _ = navigationController?.popViewController(animated: true)
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
     }
+    
     
     @IBAction func nextTrack(_ sender: UIButton?) {
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
@@ -66,17 +74,23 @@ extension LeaderboardViewController :UITableViewDelegate, UITableViewDataSource 
         return 1;
     }
     
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         //Number of rows is the amount if entries in the leaderboard
         return leaderboards[trackID - 1].entries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        //get correct leaderboard
         let leaderboard = leaderboards[trackID - 1];
+        //get the cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardTableViewCell") as? LeaderboardTableViewCell
-        let time = stringFromTimeInterval(interval: leaderboard.entries[indexPath.row].Score) as String
+        //convert score from double to string
+        let timeAsString = stringFromTimeInterval(interval: leaderboard.entries[indexPath.row].Score) as String
+        
         cell?.nameLabel?.text = "\(leaderboard.entries[indexPath.row].Name)"
-        cell?.scoreLabel?.text = "\(time)"
+        cell?.scoreLabel?.text = "\(timeAsString)"
+        //Rank is the row in the table + 1
         cell?.rankLabel?.text = "\(indexPath.row + 1)"
         
         return cell!

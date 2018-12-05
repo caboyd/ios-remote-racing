@@ -46,7 +46,7 @@ unowned let gameScene: BaseGameScene;
     
     //Hide the overlay buttons for display
     if gameScene.gameMode == .DISPLAY {
-        overlay.contentNode.childNode(withName: ".//controller")?.isHidden = true;
+        overlay.contentNode.childNode(withName: ".//buttons")?.isHidden = true;
     } else {
         //If this function runs the buttons will unhide
         //Turns the buttons into button nodes that are touchable with textures
@@ -56,12 +56,15 @@ unowned let gameScene: BaseGameScene;
   
   override func didEnter(from previousState: GKState?) {
     super.didEnter(from: previousState)
+    //Disabled inputControl so it cant be used when game is paused
+    gameScene.inputControl.disabled = true;
     gameScene.isPaused = true
     gameScene.overlay = overlay
   }
   
   override func willExit(to nextState: GKState) {
     super.willExit(to: nextState)
+    gameScene.inputControl.disabled = false;
     gameScene.isPaused = false
     gameScene.overlay = nil
   }

@@ -56,6 +56,11 @@ public class SKTAudio {
       print("Could not create audio player: \(error!)")
     }
   }
+    
+  public func stopBackgroundMusic() {
+    backgroundMusicPlayer?.stop();
+    backgroundMusicPlayer = nil;
+  }
 
   public func pauseBackgroundMusic() {
     if let player = backgroundMusicPlayer {
