@@ -723,14 +723,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HJHS67AU74;
+				DEVELOPMENT_TEAM = 6X5B26J782;
 				INFOPLIST_FILE = "Peer-to-Peer Remote Car Racing/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ca.example.remote-racing5";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.uregina.cs.455.boyd111c.remote-racing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -743,14 +743,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HJHS67AU74;
+				DEVELOPMENT_TEAM = 6X5B26J782;
 				INFOPLIST_FILE = "Peer-to-Peer Remote Car Racing/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ca.example.remote-racing5";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.uregina.cs.455.boyd111c.remote-racing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
