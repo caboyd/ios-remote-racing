@@ -1,3 +1,10 @@
+/*
+ 
+    Source code from
+    https://stackoverflow.com/a/38197680
+
+ */
+
 import SpriteKit
 
 class FTButtonNode: SKSpriteNode {

@@ -28,7 +28,7 @@ class Leaderboard {
     var ref:DatabaseReference = Database.database().reference()
     
     init(trackName: String, tableView : UITableView) {
-        //Quest top 10 scores
+        //Query top 10 scores
         let query = ref.child(trackName).queryOrdered(byChild: "Score").queryLimited(toFirst: 10);
         
         //Observe query so we are notified if any new scores are added while viewing

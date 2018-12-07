@@ -9,6 +9,9 @@
 import Foundation
 import SpriteKit
 
+
+//The class representing the UIHUD.sks file
+
 class UIHUD : SceneRootNode {
     
     var lapLabel:SKLabelNode!;
@@ -20,6 +23,8 @@ class UIHUD : SceneRootNode {
   
     var timersNode: SKNode!;
     var speedNode: SKNode!;
+    
+    //load all the labels so they can be reference and updated during the game
     init() {
         super.init(fileNamed: String(describing: UIHUD.self))!;
         countdownLabel = (self.childNode(withName: "//countdown") as! SKLabelNode);

@@ -3,7 +3,7 @@
 //  Joystick
 //
 //  Created by Dmitriy Mitrophanskiy on 28.09.14.
-//
+//  https://github.com/MitrophD/Swift-SpriteKit-Analog-Stick
 //
 import SpriteKit
 

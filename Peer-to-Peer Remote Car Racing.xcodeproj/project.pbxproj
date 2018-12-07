@@ -177,6 +177,16 @@
 			path = Libraries;
 			sourceTree = "<group>";
 		};
+		70CFFFDE21BAF489001B7D94 /* Touchables */ = {
+			isa = PBXGroup;
+			children = (
+				ABD5FC6E21A13EAC00A0B155 /* ButtonNode.swift */,
+				AB4E2E46219F974200383747 /* AnalogJoystick.swift */,
+				AB0EA9A321A2A91D005B5FCE /* FTButtonNode.swift */,
+			);
+			path = Touchables;
+			sourceTree = "<group>";
+		};
 		7A66410D2194BC9600F80C9B = {
 			isa = PBXGroup;
 			children = (
@@ -263,7 +273,6 @@
 				AB23AF6021A8F086004FB964 /* Track2.sks */,
 				ABD5FC5B21A0DD1700A0B155 /* BaseGameScene.swift */,
 				ABD5FC7021A1409400A0B155 /* BaseGameScene+Buttons.swift */,
-				ABD5FC6E21A13EAC00A0B155 /* ButtonNode.swift */,
 			);
 			path = GameScene;
 			sourceTree = "<group>";
@@ -351,12 +360,11 @@
 		AB8BB63021A22F1E00E3E1F0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				AB0EA9A321A2A91D005B5FCE /* FTButtonNode.swift */,
+				70CFFFDE21BAF489001B7D94 /* Touchables */,
+				AB5EF42221A4F7BA006E9489 /* SceneRootNode.swift */,
 				ABD5FC6021A128E900A0B155 /* InputControl.swift */,
-				AB4E2E46219F974200383747 /* AnalogJoystick.swift */,
 				AB8BB62C21A2084700E3E1F0 /* UIHUD.sks */,
 				AB0EA99F21A29F0C005B5FCE /* UIHUD.swift */,
-				AB5EF42221A4F7BA006E9489 /* SceneRootNode.swift */,
 				AB5EF42021A4C26F006E9489 /* UITouchControls.swift */,
 				AB5EF41E21A4BD44006E9489 /* UITouchControls.sks */,
 			);

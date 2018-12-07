@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-
+//Helper class to load the UI sks files so they can be easily resized
 class SceneRootNode : SKNode {
     
     var originalSize : CGSize!;
@@ -22,6 +22,7 @@ class SceneRootNode : SKNode {
             fatalError("Scene \(fileName) not found");
         }
        
+        //Find the root note and original size of the sks file
         if let root = scene.childNode(withName: "root") {
             self.originalSize = scene.size;
             root.removeFromParent()
@@ -32,6 +33,7 @@ class SceneRootNode : SKNode {
             fatalError("Scene \(fileName) missing root node");
         }
         
+        //Resize the sks file to fit the screen
         resizeToDisplay();
         
     }
@@ -39,6 +41,7 @@ class SceneRootNode : SKNode {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     
     func resizeToDisplay() {
         //Fixes HUD for different resolution displays

@@ -14,9 +14,9 @@ let appDelegate = UIApplication.shared.delegate as! AppDelegate;
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    //NetworkService declared here so it is never destroyed when app is running
     var networkService: NetworkService?
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

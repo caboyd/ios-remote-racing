@@ -9,6 +9,8 @@
 import Foundation
 import SpriteKit
 
+
+//The class representing the UITouchControls.sks
 class UITouchControls : SceneRootNode {
     
     weak var gameScene : BaseGameScene?;
@@ -23,20 +25,26 @@ class UITouchControls : SceneRootNode {
         super.init(fileNamed: String(describing: UITouchControls.self))!;
         
         let js = childNode(withName: ".//joystick") as! AnalogJoystick;
-        
+    
+        //Setup pause button so it is clickable and styled
         buttons = childNode(withName: ".//buttons")!;
         setupPauseButton(gameScene: gameScene);
         
+        //Setup correct control type based on value passed in
         switch controlType {
         case .Joystick:
             inputControl = JoystickInput(analogJoystick: js);
+            //hide gas/reverse buttons when only joystick is necessary
             buttons.isHidden = true;
         case .JoystickButtons:
+            //Setup buttons so they are clickable and styled
             setupGasReverseButtons();
             inputControl = JoystickButtonInput(analogJoystick: js);
         case .TiltButtons:
+            //Setup buttons so they are clickable and styled
             setupGasReverseButtons();
             inputControl = TiltControls()
+            //Hide joystick when using tilt
             js.isHidden = true;
         }
 
@@ -47,6 +55,8 @@ class UITouchControls : SceneRootNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //Changes the pause button form SKSpriteNode to FTButtonNode
+    //This allows it to be styled and have on touch triggers
     func setupPauseButton(gameScene: BaseGameScene){
         let pause = childNode(withName: ".//pause") as! SKSpriteNode;
         pause.removeFromParent();
@@ -56,6 +66,8 @@ class UITouchControls : SceneRootNode {
         top.addChild(pauseButton);
     }
     
+    //Changes the gas and reverse buttons form SKSpriteNode to FTButtonNode
+    //This allows them to be styled and have on touch triggers
     func setupGasReverseButtons() {
         //Setup Gas Button Node
         let gas = buttons.childNode(withName: ".//gas") as! SKSpriteNode;
@@ -83,6 +95,7 @@ class UITouchControls : SceneRootNode {
         
     }
     
+    //Adds the Debug WIN button to the UI
     func addDebugHUD(gameScene: BaseGameScene) {
         let t = SKTexture(imageNamed: "blackButton");
         let t2 = SKTexture(imageNamed: "blackButtonHighlight")
@@ -100,6 +113,8 @@ class UITouchControls : SceneRootNode {
         
     }
  
+    //Actions for when gas/reverse button are touched and released
+    
     @objc func gasDown() {
         inputControl.velocity.y = 1.0;
     }
