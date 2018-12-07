@@ -51,7 +51,7 @@ class GameViewController: UIViewController {
                 view.ignoresSiblingOrder = true
                 
                 //Debug stuff
-                view.showsFPS = true
+                //view.showsFPS = true
                 //view.showsNodeCount = true
                 //view.showsPhysics = true;
             }
