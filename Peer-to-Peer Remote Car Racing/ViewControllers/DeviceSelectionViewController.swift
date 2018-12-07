@@ -30,7 +30,7 @@ class DeviceSelectionViewController: UIViewController, NetServiceDelegate {
         SKTAudio.sharedInstance().playSoundEffect("button_press.wav")
         
         //Start advertising to peers
-        let hns = HostNetworkService();
+        let hns = DisplayNetworkService();
         appDelegate.networkService = hns;
         networkService = hns;
         hns.delegate = self;
@@ -89,7 +89,7 @@ extension DeviceSelectionViewController: NetworkServiceDelegate {
                 
             }
         case .DISCONNECT:
-            if let ns = networkService as? HostNetworkService {
+            if let ns = networkService as? DisplayNetworkService {
                 ns.serviceAdvertiser.startAdvertisingPeer();
             }
         default:

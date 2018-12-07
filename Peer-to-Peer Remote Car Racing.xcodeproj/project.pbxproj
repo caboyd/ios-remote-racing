@@ -28,7 +28,7 @@
 		AB23AF6121A8F086004FB964 /* Track2.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB23AF6021A8F086004FB964 /* Track2.sks */; };
 		AB23AF6321A8F0E2004FB964 /* Track2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF6221A8F0E2004FB964 /* Track2.swift */; };
 		AB23AF6921A9069E004FB964 /* ControllerNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF6521A9069E004FB964 /* ControllerNetworkService.swift */; };
-		AB23AF6A21A9069E004FB964 /* HostNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF6621A9069E004FB964 /* HostNetworkService.swift */; };
+		AB23AF6A21A9069E004FB964 /* DisplayNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF6621A9069E004FB964 /* DisplayNetworkService.swift */; };
 		AB23AF6B21A9069E004FB964 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF6721A9069E004FB964 /* NetworkService.swift */; };
 		AB23AF6F21A90788004FB964 /* MessageBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF6E21A90788004FB964 /* MessageBase.swift */; };
 		AB23AF7121A920B3004FB964 /* InputControlMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23AF7021A920B3004FB964 /* InputControlMessage.swift */; };
@@ -99,7 +99,7 @@
 		AB23AF6021A8F086004FB964 /* Track2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Track2.sks; sourceTree = "<group>"; };
 		AB23AF6221A8F0E2004FB964 /* Track2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track2.swift; sourceTree = "<group>"; };
 		AB23AF6521A9069E004FB964 /* ControllerNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerNetworkService.swift; sourceTree = "<group>"; };
-		AB23AF6621A9069E004FB964 /* HostNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostNetworkService.swift; sourceTree = "<group>"; };
+		AB23AF6621A9069E004FB964 /* DisplayNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayNetworkService.swift; sourceTree = "<group>"; };
 		AB23AF6721A9069E004FB964 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		AB23AF6E21A90788004FB964 /* MessageBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBase.swift; sourceTree = "<group>"; };
 		AB23AF7021A920B3004FB964 /* InputControlMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputControlMessage.swift; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 			children = (
 				AB23AF6D21A90778004FB964 /* Messages */,
 				AB23AF6521A9069E004FB964 /* ControllerNetworkService.swift */,
-				AB23AF6621A9069E004FB964 /* HostNetworkService.swift */,
+				AB23AF6621A9069E004FB964 /* DisplayNetworkService.swift */,
 				AB23AF6721A9069E004FB964 /* NetworkService.swift */,
 			);
 			path = Network;
@@ -544,7 +544,7 @@
 				AB4E2E6D219FA21200383747 /* SKAction+Extensions.swift in Sources */,
 				7A66411C2194BC9600F80C9B /* HomeScreenViewController.swift in Sources */,
 				AB4E2E4D219F974200383747 /* AnalogJoystick.swift in Sources */,
-				AB23AF6A21A9069E004FB964 /* HostNetworkService.swift in Sources */,
+				AB23AF6A21A9069E004FB964 /* DisplayNetworkService.swift in Sources */,
 				ABD5FC6321A13DCF00A0B155 /* GameOverlayState.swift in Sources */,
 				7A66411A2194BC9600F80C9B /* AppDelegate.swift in Sources */,
 				AB23AF6921A9069E004FB964 /* ControllerNetworkService.swift in Sources */,

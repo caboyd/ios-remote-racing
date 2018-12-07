@@ -1,5 +1,5 @@
 //
-//  HostNetworkService.swift
+//  DisplayNetworkService.swift
 //  multipeer test
 //
 //  Created by user145437 on 11/9/18.
@@ -11,7 +11,7 @@ import MultipeerConnectivity
 import os.log
 
 //NetworkService Class for when a device is acting as the Display
-class HostNetworkService : NetworkService {
+class DisplayNetworkService : NetworkService {
     
     public let serviceAdvertiser : MCNearbyServiceAdvertiser;
 
@@ -29,7 +29,7 @@ class HostNetworkService : NetworkService {
     }
 }
 
-extension HostNetworkService : MCNearbyServiceAdvertiserDelegate {
+extension DisplayNetworkService : MCNearbyServiceAdvertiserDelegate {
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         os_log("didNotStartAdvertisingPeer: %s", log: networkLog, type: .debug, error.localizedDescription );
