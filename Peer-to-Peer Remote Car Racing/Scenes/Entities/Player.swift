@@ -10,7 +10,10 @@ import Foundation
 import SpriteKit
 
 
-
+/*
+ This class represents the car sprite node for the player
+ 
+ */
 class Player : SKSpriteNode {
     var velocity: CGVector
     var accel: CGVector;
@@ -62,7 +65,6 @@ class Player : SKSpriteNode {
             physics.collisionBitMask = 1;
             physics.contactTestBitMask = 3;
             physics.mass = 1;
-            //physics.density = 1;
         }
     }
     
@@ -70,11 +72,14 @@ class Player : SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //Set the position and rotation of the car
+    //Used in the controller device
     func setPositionRotation(_ position: CGPoint, _ angle: CGFloat) {
         self.position = position;
         self.zRotation = angle;
     }
     
+    //Apply a forward impulse to the car based on time passed
     func accelForward(_ delta_time: TimeInterval){
         let speed = CGFloat(delta_time * Player.ACCEL_FORWARD);
  
@@ -83,6 +88,7 @@ class Player : SKSpriteNode {
         physicsBody?.applyImpulse(dir * speed);
     }
     
+    //Apply a backward impulse to the car based on time passed
     func accelBackwards(_ delta_time: TimeInterval){
         let speed = CGFloat(delta_time * Player.ACCEL_BACKWARD);
         
@@ -91,6 +97,7 @@ class Player : SKSpriteNode {
         physicsBody?.applyImpulse( dir * speed);
     }
     
+    //Apply an angular impulse to the car based on time passed
     func turn(_ delta_time: TimeInterval){
         let speed = CGFloat(delta_time * -Player.TURN);
         physicsBody?.applyAngularImpulse(speed);

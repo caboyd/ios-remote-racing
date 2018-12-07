@@ -25,7 +25,7 @@ let systemYellowColor = UIColor(red:255 / 255, green: 204 / 255, blue: 0, alpha:
 
 
 
-//HELPER FUNCTIONS ---------------------------------------------------
+//GLOBAL HELPER FUNCTIONS ---------------------------------------------------
 
 
 //Convert a time Interval in seconds to the format mm:ss.MMM
