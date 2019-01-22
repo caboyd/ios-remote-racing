@@ -1,6 +1,6 @@
 # iOS Remote Car Racing Game
 
-Simple 2D Racing game using SpriteKit. Multiplayer Networking using Multipeer Connectivity. Tilt and Touch Controls implemented.
+Simple 2D Racing game using SpriteKit. Multiplayer Networking using Multipeer Connectivity. Tilt and Touch Controls implemented. Leaderboards per track using Firebase.
 
 # Presentation
 ![](http://caboyd.me/ios-remote-racing/p2p-rcr1.png)
